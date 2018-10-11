@@ -1,0 +1,8 @@
+.container {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.card-body {
+    padding: 0px 10px 15px 10px;
+}

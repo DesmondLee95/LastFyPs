@@ -1,0 +1,112 @@
+html, body{
+	background-color:#D3D3D3;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1 { 
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.01em;
+    margin-bottom: 0.01em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+h2{
+	color: #808080; 
+	
+}
+
+#logo {
+    padding: 10px;
+}
+
+.centered {
+    float: none;
+    margin: auto;
+}
+
+html, body {
+    overflow: auto;
+}
+.btn-change{
+    height: 40px;
+    width: 100px;
+    background: lightseagreen;
+    
+    float: left;
+    box-shadow: 0 0 1px #ccc;
+   
+    border: 0px;
+    color: #fff;
+}
+
+.input-group {
+    width:430px;
+}
+
+.form-group {
+    width:430px;
+}
+
+.btn-change:hover{
+    
+    background: #008080;
+}
+
+forgotPass{
+    text-align: right;
+	right: 0px;
+} 
+
+p.text-ctr{
+    color: #696969;
+    text-align: center;	
+}
+
+/*
+.navbar {
+	background-color:#F42828;
+	font-size:1.2em;
+    padding-bottom: 5px;
+	
+}
+
+.navbar-brand{
+	min-height:55px;
+	padding:0 15px 5px;
+	
+}
+*/
+
+
+.reset_para{
+    font-size: 14px;
+    
+}
+
+.row.firstrow {
+    padding-top: 5px;
+}
+
+.vidname {
+    font-size: 18px;
+    font-weight: bold;
+   
+}
+
+.uploadButton {
+    margin: 2px;
+    font-size: 15px;
+    padding: 5px 40px 5px 40px;
+    border-radius: 8px;
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+    width: 250px;
+}
+

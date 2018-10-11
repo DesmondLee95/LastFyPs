@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html data-ng-app="swinApp" data-ng-controller="loginCtrl" id="page-top">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="SwinHive | Swinburne's video-sharing platform" />
+    <meta name="keywords" content="videos, Swinburne" />
+    <meta name="author" content="FYP-GROUP">
+    <title></title>
+
+    <!-- Jquery - Popper -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- Bootstrap core CSS-->
+    <link rel="stylesheet" href="assets/Bootstrap4/css/bootstrap.css">
+
+    <link rel="stylesheet" href="assets/custom-css/styles.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="assets/custom-css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- Toaster css -->
+    <link rel="stylesheet" href="assets/toast/css/toaster.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <script data-require="moment.js@2.10.2" data-semver="2.10.2" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+
+
+
+
+</head>
+
+<body class="fixed-nav">
+    <div data-ng-controller="swinCtrl">
+        <div data-ng-view=""></div>
+        <toaster-container toaster-options="{'time-out': 3000,'position-class': 'toast-bottom-right'}"></toaster-container>
+    </div>
+</body>
+
+
+<!-- Angular -->
+<script src="assets/angular-1.7.4/angular.js"></script>
+
+<script src="assets/angular-1.7.4/angular-route.min.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-app.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-storage.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-messaging.js"></script>
+
+<!-- Toaster -->
+<script src="assets/toast/js/toaster.min.js"></script>
+
+<!-- Custom scripts for this page-->
+<script src="assets/custom-js/app.js"></script>
+<script src="home/home.js"></script>
+<script src="login/login.js"></script>
+<script src="userpage/userpage.js"></script>
+<script src="editProfile/editProfile.js"></script>
+<script src="changePassword/changePassword.js"></script>
+<script src="registration/registration.js"></script>
+<script src="upload/upload.js"></script>
+<script src="manageVideos/manageVideos.js"></script>
+<script src="video/video.js"></script>
+<script src="resetPassword/reset.js"></script>
+
+<!-- Bootstrap core JavaScript-->
+<script src="assets/Bootstrap4/js/bootstrap.js"></script>
+    
+<!--Initial JS-->
+<script src="assets/angular-avatar/angular-avatar.js"></script>
+
+</html>

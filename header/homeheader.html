@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-danger">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#!Home" style="color: white;">SwinHive</a>
+
+
+
+        <form class="form-inline my-2 my-lg-0 float-md-left">
+<!--
+            <select class="form-control" id="Categories" style="width: 100px;" data-ng-model="categories">
+                <option selected value="">All</option>
+                <option>Business</option>
+                <option>Design</option>
+                <option>Engineering</option>
+                <option>Science</option>
+                <option>Computing</option>
+                <option>English Language</option>
+                <option>Postgraduate (Coursework)</option>
+                <option>Postgraduate (Research)</option>
+                <option>Short Courses</option>
+            </select>
+-->
+            <div class="form-group">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 512px; margin-left: 5px; margin-right: 5px;" data-ng-model="name">
+            </div>
+        </form>
+        <div class="text-right">
+            
+            <a href="#!Upload" id="logo" style="color:White" data-ng-show="loggedIn != null"><i class="fa fa-video"></i></a>
+            <a href="#!login" id="logo" style="color:White" data-ng-show="loggedIn == null">Sign In</a>
+            <a href="#!userpage" id="logo" style="color:White" data-ng-show="loggedIn != null">Profile</a>
+        </div>
+
+    </div>
+
+</nav>

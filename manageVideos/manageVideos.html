@@ -1,0 +1,92 @@
+<header-file></header-file>
+<link rel="stylesheet" href="./assets/custom-css/manageVideos.css" />
+<div class="container">
+
+    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+        <div class="col-md-2 text-center" style="margin-top: 10px">
+            <ng-avatar bind="true" string="{{currentUserName}}" auto-color="true" class="rounded-circle" style="width: 150px; height: 150px;"></ng-avatar>
+        </div>
+        <div class="col-md-6">
+            <p><strong>
+                    <h3>{{currentUserName}}</h3>
+                </strong></p>
+            <p>{{currentUserId}}</p>
+            <p>{{currentUserCourse}}</p>
+            <h6>{{currentUservideo_upload}} Uploads</h6>
+        </div>
+
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-4" style="margin-bottom: 10px;" data-ng-repeat="uservids in editUserVideos track by $index">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" ng-src="{{uservids.thumbnail}}" alt="Card image cap" width="100px" height="185px">
+                        <div class="card-body">
+                            <h6 class="card-title"><strong>{{uservids.video_name}}</strong></h6>
+                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#editVideoModal" data-ng-click="getIndex(uservids.id); editing();">Edit</a>
+                            <a href="" class="btn btn-danger" data-ng-click="getIndex(uservids.id); deleteVideo();">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="col-md-offset-8">
+
+                <div>
+                    <a href="#!Upload" class="btn btn-danger uploadButton">Upload Video</a>
+                </div>
+                <div>
+                    <a href="#!userpage" class="btn btn-primary uploadButton">Profile</a>
+                </div>
+
+                <div>
+                    <a href="#!EditProfile" class="btn btn-primary uploadButton">Edit Profile</a>
+                </div>
+                <div>
+                    <a href="#!ChangePassword" class="btn btn-primary uploadButton">Change Password</a>
+                </div>
+
+                <div>
+                    <a href="" class="btn btn-primary uploadButton" ng-click="signout()">Sign Out</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editVideoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Video</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="visibility">Visibility</label>
+                    <select class="form-control" id="visibility" ng-model="editUserVideos[indexValue].visibility">
+                        <option>Public</option>
+                        <option>Private</option>
+                    </select>
+                </div>
+                <label>Name</label>
+                <input type="text" class="form-control" data-ng-model="editUserVideos[indexValue].video_name">
+                <label>Description</label>
+                <textarea data-ng-model="editUserVideos[indexValue].description" class="form-control"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" data-ng-click="notEditing()">Close</button>
+                <button type="button" class="btn btn-primary" data-ng-click="saveVideo()" data-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

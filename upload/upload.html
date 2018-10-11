@@ -1,0 +1,76 @@
+<link href="assets/custom-css/upload.css" rel="stylesheet">
+
+<header-file></header-file>
+<div class="container">
+        <div class="row firstrow">
+            <div class="col-md-5 col-sm-6 uploadbox">
+                <input type="file" id="file" class="inputfile" />
+                <label class="uploads" for="file">
+                    <i class="fas fa-upload fa-4x"></i>
+                    <br />
+                    <div id="upload_text">Choose a file to upload</div>
+                </label>
+                
+                <input type="file" id="pic" accept="image/*" class="inputfile">
+                <label class="uploads" for="pic">
+                    <i class="fas fa-upload fa-4x"></i>
+                    <br />
+                    <div id="thumbnail_text">Choose Thumbnail</div>
+                </label>
+                <progress value="0" max="100" class="upload_progress" id="upload_progress"></progress>
+
+                <p class="warningWords">Warning: Maximum file size for video (40MB) &amp; thumbnail (1MB)</p>
+            </div>
+            <div class="col-md-7 col-sm-6">
+                <div class="row">
+                    <div class="col-md-12 visiblealign">
+                        <select class="visiblebox" id="visibility">
+                            <option value="Public">Public</option>
+                            <option value="Private">Private</option></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="text" class="vid_name" id="video_name" placeholder="Video Name.. (Max. Characters: 32)" />
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea type="text" rows="8" class="vid_desc" id="video_desc" placeholder="Description.."></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="text" class="video_tag" id="video_tag" placeholder="Tags.." />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <select class="category" id="category">
+                            <option disabled selected value>Choose a category</option>
+                            <option value="Business">Business</option>
+                            <option value="Design">Design</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Science">Science</option>
+                            <option value="Computing">Computing</option>
+                            <option value="English Language">English Language</option>
+                            <option value="Postgraduate (Coursework)">Postgraduate (Coursework)</option>
+                            <option value="Postgraduate (Research)">Postgraduate (Research)</option>
+                            <option value="Short Courses">Short Courses</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-md-12 warningBox'>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 uploadBtnbox">
+                <button type="btn btn-primary" class="uploadButton" id="uploadButton" ng-click="uploadFile()">Upload Video</button>
+            </div>
+        </div>
+    </div>

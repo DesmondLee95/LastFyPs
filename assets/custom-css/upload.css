@@ -1,0 +1,127 @@
+.row.firstrow {
+    padding-top: 20px;
+}
+
+.visiblealign {
+    text-align: right;
+}
+
+.visiblebox {
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.vid_name {
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+    border-style: groove;
+
+}
+
+.vid_desc {
+    border-radius: 5px;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px px 100px 5px;
+    resize: none;
+    overflow: hidden;
+    border-style: groove;
+}
+
+.video_tag {
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 100%;
+    border-style: groove;
+    padding: 5px;
+}
+
+.category {
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    width: 100%;
+    border-style: groove;
+}
+
+.glyphicon.glyphicon-upload {
+    font-size: 50px;
+}
+
+.uploadbox {
+    text-align: center;
+}
+
+.uploadBtnbox {
+    text-align: right;
+    margin-top: 60px;
+}
+
+.uploadButton {
+    margin: 10px;
+    font-size: 20px;
+    padding: 5px 40px 5px 40px;
+    border-radius: 8px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+.warningWords {
+    font-weight: bold;
+}
+
+.uploads {
+    text-align: center;
+    background-color: #DCDCDC;
+    color: #808080;
+    padding: 100px;
+    border-radius: 20px;
+    width: 100%;
+    cursor: pointer;
+    max-width: 400px;
+}
+
+.fas {
+    margin-bottom: 5px;
+}
+
+.upload_progress {
+    width: 100%;
+    max-width: 400px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.upload_progress::-webkit-progress-bar {
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) inset;
+}
+
+.upload_progress::-webkit-progress-value {
+    background-color: limegreen;
+}
+
+.progress-bar {
+    color: black;
+    text-align: center;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: white;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}

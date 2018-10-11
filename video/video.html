@@ -1,0 +1,147 @@
+<headerwithprofile-File></headerwithprofile-File>
+<link rel="stylesheet" href="./assets/custom-css/video.css" />
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 videoCol">
+                <video width="720" id="videolink" height="480" class="videoPlayer" ng-src="{{videoLink}}" controls>
+                    <source src="" type="video/mp4" preload="metadata">
+                    Your browser does not support HTML5 video.
+                </video>
+
+                <!--
+                <div class="embed-responsive embed-responsive-16by9" ng-controller="homeCtrl">
+                    <iframe class="embed-responsive-item" ng-src="{{videoLink}}" allowfullscreen></iframe>
+                </div>
+-->
+            </div>
+        </div>
+
+        <div class="row vidNameRow">
+            <div class="col-xs-10 col-sm-10 col-md-10">
+                <div id="video_name" class="vidname"></div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 flagvid">
+                <label for="flagbtn">
+                    <i class="fas fa-flag fa-lg flags" title="Flag Video"></i>
+                    <button type="button" id="flagbtn" class="flagbtn" onclick="">Flag Video</button>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 vid_views">
+                <span id="video_views"></span> views
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Button trigger modal -->
+            <div class="col-md-3 vid_rate">
+                <div class="fa stars-outer">
+                    <div class="fas stars-inner"></div>
+                </div>
+                <strong><span id="vid_rating"></span></strong> &nbsp;
+                <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#ratevideomodal">
+                    Rate
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="ratevideomodal" tabindex="-1" role="dialog" aria-labelledby="ratevideomodal" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="ratevideoheader">Rate this video</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="rating" id="rating_form">
+                                    <button type="submit" class="star" data-star="1">
+                                        <span aria-hidden="true">&#9733;</span>
+                                        <span class="screen-reader">1 Star</span>
+                                    </button>
+
+                                    <button type="submit" class="star" data-star="2">
+                                        <span aria-hidden="true">&#9733;</span>
+                                        <span class="screen-reader">2 Stars</span>
+                                    </button>
+
+                                    <button type="submit" class="star" data-star="3">
+                                        <span aria-hidden="true">&#9733;</span>
+                                        <span class="screen-reader">3 Stars</span>
+                                    </button>
+
+                                    <button type="submit" class="star" data-star="4">
+                                        <span aria-hidden="true">&#9733;</span>
+                                        <span class="screen-reader">4 Stars</span>
+                                    </button>
+
+                                    <button type="submit" class="star" data-star="5">
+                                        <span aria-hidden="true">&#9733;</span>
+                                        <span class="screen-reader">5 Stars</span>
+                                    </button>
+                                </form>
+                                <div id="user_rated"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="closeModal" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="showRating"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <hr class="hrline">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-sm-6 uploaderBox">
+                <a href="#" class="links">
+                    <!-- uploader image -->
+                    <span id="uploader" class="uploader" href="#"></span>
+                </a>
+            </div>
+            <div class="col-xs-12 col-md-6 col-sm-6 publishBox">
+                <em>Published on:</em> <span id="uploaded_date" class="uploaded_date"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 descBox">
+                <div id="video_desc"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-6 categoryBox">
+                <strong style="font-size: 14px;">Category:</strong> <span id="video_category">Postgraduate (Coursework)</span>
+            </div>
+            <div class="col-md-8 col-sm-6 tagBox">
+                <strong style="font-size: 14px;">Tags:</strong> <span id="video_tag"></span>
+            </div>
+        </div>
+
+        <hr class="hrline2">
+        <div class="row">
+            <div class="col-md-1 col-sm-1 col-xs-2 imageBox">
+                <label for="userBtn">
+                    <img id="userimg" class="userimg" src="https://firebasestorage.googleapis.com/v0/b/educational-video-learning-app.appspot.com/o/profileImages%2Fdownload.jpg?alt=media&token=4a6a7e03-7fef-4abb-adf0-0c7e753235b7" height="35" width="35" />
+                    <button type="button" id="userBtn" class="userBtn" onclick=""></button>
+                </label>
+            </div>
+            <div class="col-md-11 col-sm-11 col-xs-10 commentBox">
+                <textarea type="text" rows="1" id="vid_comment" class="vid_comment" data-ng-keyup="emptyInput()" placeholder="Add a comment.."></textarea>
+                <button type="btn" id="post" class="post" data-ng-click="createComments()" disabled>POST</button>
+            </div>
+        </div>
+
+        <div id="commentGroup">
+        </div>
+    </div>
+</div>

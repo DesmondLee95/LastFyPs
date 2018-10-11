@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SwinHive | Search Page </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="SwinHive | Swinburne's video-sharing platform" />
+		<meta name="keywords" content="videos, Swinburne" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/styles.css" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link href="custom.css" rel="stylesheet">
+		
+	</head>
+		<body>
+			<nav class="navbar navbar-default navbar-fixed-top" roles="navigation">
+				<h1 id="logo" style="color:White;">
+					SwinHive
+				</h1>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">
+								<div id="imaginary_container"> 
+									<div class="input-group stylish-input-group">
+										<input type="text" class="form-control" id="search_user" name="search_user" placeholder="Search" >
+										<span class="input-group-addon">
+											<button type="submit">
+												<span class="glyphicon glyphicon-search"></span>
+											</button>  
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+            </nav>
+            
+            <section>
+                <div class="sec">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action="" class="">
+                                    <div>
+                                        <span>
+                                        Filter by:
+                                        <select>
+                                            <option value="">Category</option>
+                                            <option value=""></option>
+                                            <option value=""></option>                          
+                                        </select>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            Sort by:
+                                            <select>
+                                                <option value="">Short Video</option>
+                                                <option value="">Long Video</option>
+                                                <option value="">Upload Date</option>
+                                                <option value="">Rating</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+				
+		
+		
+			<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-app.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-auth.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-database.js"></script>
+			<script>
+				var config = {
+					apiKey: "AIzaSyBM0e_dkZOgrC5v5kk1t1loGAj1GiFntyA",
+					authDomain: "educational-video-learning-app.firebaseapp.com",
+					databaseURL: "https://educational-video-learning-app.firebaseio.com",
+					projectId: "educational-video-learning-app",
+					storageBucket: "educational-video-learning-app.appspot.com",
+					messagingSenderId: "1079981333838"
+				};
+				firebase.initializeApp(config);
+			</script>
+		<script src="#"></script>
+		
+		</body>
+</html>
