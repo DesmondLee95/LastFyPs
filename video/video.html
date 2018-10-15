@@ -18,10 +18,10 @@
         </div>
 
         <div class="row vidNameRow">
-            <div class="col-xs-10 col-sm-10 col-md-10">
+            <div class="col-10 col-sm-10 col-md-10">
                 <div id="video_name" class="vidname"></div>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 flagvid">
+            <div class="col-2 col-sm-2 col-md-2 flagvid">
                 <label for="flagbtn">
                     <i class="fas fa-flag fa-lg flags" title="Flag Video"></i>
                     <button type="button" id="flagbtn" class="flagbtn" onclick="">Flag Video</button>
@@ -36,13 +36,13 @@
         </div>
 
         <div class="row">
-            <!-- Button trigger modal -->
-            <div class="col-md-3 vid_rate">
+            <div class="col-md-6 col-sm-6 vid_rate">
                 <div class="fa stars-outer">
                     <div class="fas stars-inner"></div>
                 </div>
                 <strong><span id="vid_rating"></span></strong> &nbsp;
-                <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#ratevideomodal">
+                <!-- Button trigger modal -->
+                <button type="button" id="openModal" class="btn btn-success btn-xs" data-toggle="modal" data-target="#ratevideomodal" disabled>
                     Rate
                 </button>
 
@@ -101,13 +101,13 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-md-6 col-sm-6 uploaderBox">
+            <div class="col-12 col-md-6 col-sm-6 uploaderBox">
                 <a href="#" class="links">
-                    <!-- uploader image -->
-                    <span id="uploader" class="uploader" href="#"></span>
+                        <ng-avatar bind="true" string="{{uploaderName}}" auto-color="true" class="rounded-circle uploaderImg" style="width: 35px; height: 35px;"></ng-avatar>
+                        <span id="uploader" class="uploader"></span>
                 </a>
             </div>
-            <div class="col-xs-12 col-md-6 col-sm-6 publishBox">
+            <div class="col-12 col-md-6 col-sm-6 publishBox">
                 <em>Published on:</em> <span id="uploaded_date" class="uploaded_date"></span>
             </div>
         </div>
@@ -129,13 +129,13 @@
 
         <hr class="hrline2">
         <div class="row">
-            <div class="col-md-1 col-sm-1 col-xs-2 imageBox">
+            <div class="col-md-1 col-sm-1 col-12 imageBox">
                 <label for="userBtn">
-                    <img id="userimg" class="userimg" src="https://firebasestorage.googleapis.com/v0/b/educational-video-learning-app.appspot.com/o/profileImages%2Fdownload.jpg?alt=media&token=4a6a7e03-7fef-4abb-adf0-0c7e753235b7" height="35" width="35" />
+                    <ng-avatar bind="true" string="{{currentUserName}}" auto-color="true" class="rounded-circle" style="width: 35px; height: 35px;"></ng-avatar>
                     <button type="button" id="userBtn" class="userBtn" onclick=""></button>
                 </label>
             </div>
-            <div class="col-md-11 col-sm-11 col-xs-10 commentBox">
+            <div class="col-md-11 col-sm-11 col-offset-1 col-12 commentBox">
                 <textarea type="text" rows="1" id="vid_comment" class="vid_comment" data-ng-keyup="emptyInput()" placeholder="Add a comment.."></textarea>
                 <button type="btn" id="post" class="post" data-ng-click="createComments()" disabled>POST</button>
             </div>

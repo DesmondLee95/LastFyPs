@@ -171,8 +171,8 @@ div.commentArea {
 
 .uploaderBox {
     font-weight: bold;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 a.links:hover {
@@ -181,6 +181,17 @@ a.links:hover {
 
 .descBox {
     padding: 10px 10px 10px 15px;
+}
+
+.links {
+    display: flex;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    line-height: 33px;
+}
+
+.uploaderImg {
+    margin-right: 10px;
 }
 
 .row.firstrow {
@@ -192,8 +203,8 @@ a.links:hover {
 }
 
 video {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 
 .videoPlayer {
@@ -226,26 +237,26 @@ video {
 }
 
 .star {
-	background: none;
-	border: none;
-	font-size: 1.5em;
-	padding: 0em;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    padding: 0em;
 }
 
 .star.selected {
-	color: red;
+    color: red;
 }
 
 .screen-reader {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	white-space: nowrap;
-	width: 1px;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }
 
 .card-body {

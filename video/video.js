@@ -10,11 +10,11 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/Video', {
         templateUrl: 'video/video.html',
         controller: 'videoCtrl'
-    })
+    });
 }]);
 
-app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', function ($scope, $location, $sce, videoService) {
-    'use strict'
+app.controller('videoCtrl', ['$scope', '$compile', '$location', '$sce', 'videoService', function ($scope, $compile, $location, $sce, videoService) {
+    'use strict';
     //Initialize firestore
     var db = firebase.firestore();
 
@@ -23,10 +23,12 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
         timestampsInSnapshots: true
     });
 
+    var getVidId = sessionStorage.getItem("selectedVidId");
+    console.log(getVidId);
+
     $scope.trustSrc = function (src) {
         return $sce.trustAsResourceUrl(src);
-    }
-
+    };
 
     $scope.videoId = videoService.videoId;
 
@@ -42,12 +44,66 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
         console.log('Error Occured.');
     }) */
 
-    getUserImage();
+    //    getUserImage();
     showRated();
+    enableButton();
+    getImageComment();
+    getUploaderImage();
+
+    //Disable button to rate if user is not logged in.
+    function enableButton() {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                document.getElementById('openModal').disabled = false;
+            } else {
+                document.getElementById('openModal').disabled = true;
+            }
+        });
+    }
+
+    //Get user's initial to display as image.
+    function getImageComment() {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                var usersinfo = db.collection("Users").doc(user.email); //@TODO
+
+                usersinfo.get().then(function (doc) {
+                    'use strict';
+
+                    if (doc.exists) {
+                        $scope.currentUserName = doc.data().Name;
+
+                        $scope.$apply();
+                        console.log($scope.currentUserName);
+
+                    } else {
+                        console.log("No such document!");
+                    }
+                });
+            }
+        });
+    }
+
+    function getUploaderImage() {
+        $scope.videosRef = db.collection("Videos").doc(getVidId);
+
+        $scope.videosRef.get().then(function (doc) {
+            if (doc.exists) {
+                var users = doc.data().video_uploader_Email,
+                    userRef = db.collection("Users").doc(users);
+
+                userRef.get().then(function (doc) {
+                    $scope.uploaderName = doc.data().Name;
+                    document.getElementById('uploader').innerHTML = doc.data().Name;
+                    $scope.$apply();
+                });
+            }
+        })
+    }
 
     //Disable post button if input is empty or starts with a SPACE
     $scope.emptyInput = function () {
-        'use strict';
+
         var regex = /^[^\s].*/,
             commentcontent = document.getElementById("vid_comment").value;
 
@@ -56,36 +112,15 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
         } else {
             document.getElementById('post').disabled = true;
         }
-    }
-
-    //Get current user profile image to display in comment area
-    function getUserImage() {
-        'use strict';
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                var userRef = db.collection("Users").doc(user.email);
-                userRef.get().then(function (doc) {
-                    if (doc.exists) {
-                        //Use user's profile picture if exists, or else, use the default picture.
-                        if (doc.data().photoURL !== "") {
-                            //document.getElementById('userimg').src = doc.data().photoURL;
-                        } else {
-                            document.getElementById('userimg').src = "https://firebasestorage.googleapis.com/v0/b/educational-video-learning-app.appspot.com/o/profileImages%2Fdownload.jpg?alt=media&token=4a6a7e03-7fef-4abb-adf0-0c7e753235b7";
-                        }
-                    }
-                });
-            }
-        });
-    }
-
+    };
 
     //Creates the comment structure and content when button is pressed.
     $scope.createComments = function () {
-        'use strict';
+
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 var userRef = db.collection("Users").doc(user.email),
-                    videoRef = db.collection("Videos").doc($scope.videoId); //TODO
+                    videoRef = db.collection("Videos").doc(getVidId); //TODO
 
                 videoRef.get().then(function (doc) {
                     if (doc.exists) {
@@ -108,28 +143,21 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
                                     userColDiv = document.createElement("div"),
                                     userRowDiv = document.createElement("div"),
                                     UserTextColDiv = document.createElement("div"),
-                                    userImage = document.createElement("img"),
+                                    userImage = document.createElement("ng-avatar"),
                                     TextColDivContent = document.createTextNode(userInput),
                                     userRowDivContent = document.createTextNode(username),
                                     cgroup = document.getElementById("commentGroup");
-                                //Attributes for user profile image
-                                if (userphoto === "") {
-                                    userImage.src = "";
-                                    userImage.setAttribute("height", "30");
-                                    userImage.setAttribute("width", "30");
-                                    userImage.setAttribute("alt", "Image");
-                                } else {
-                                    userImage.src = userphoto;
-                                    userImage.setAttribute("height", "30");
-                                    userImage.setAttribute("width", "30");
-                                    userImage.setAttribute("alt", "Image");
-                                }
+                                userImage.setAttribute("bind", "true");
+                                userImage.setAttribute("string", username);
+                                userImage.setAttribute("auto-color", "true");
+                                userImage.setAttribute("style", "width: 30px; height: 30px;");
 
                                 bigDiv.className = 'row commentedBox';
-                                ImgColDiv.className = 'col-md-1 col-sm-1 col-xs-2 imageBoxComment';
-                                UserTextColDiv.className = 'col-md-11 col-sm-11 col-xs-10';
-                                TextColDiv.className = 'col-md-11 col-sm-11 col-xs-10 commentArea';
-                                userRowDiv.className = 'col-md-11 col-sm-11 col-xs-10 commentPoster';
+                                ImgColDiv.className = 'col-md-1 col-sm-1 col-2 imageBoxComment';
+                                UserTextColDiv.className = 'col-md-11 col-sm-11 col-10';
+                                TextColDiv.className = 'col-md-11 col-sm-11 col-10 commentArea';
+                                userRowDiv.className = 'col-md-11 col-sm-11 col-10 commentPoster';
+                                userImage.className = 'rounded-circle';
 
                                 UserTextColDiv.appendChild(userRowDiv);
                                 UserTextColDiv.appendChild(TextRowDiv);
@@ -138,14 +166,16 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
                                 bigDiv.appendChild(ImgColDiv);
                                 bigDiv.appendChild(UserTextColDiv);
 
+                                $compile(userImage)($scope);
                                 ImgColDiv.appendChild(userImage);
                                 userRowDiv.appendChild(userRowDivContent);
                                 TextColDiv.appendChild(TextColDivContent);
 
                                 cgroup.prepend(bigDiv);
+                                console.log(cgroup);
 
                                 //Store comment information into Firestore.
-                                db.collection("Videos").doc($scope.videoId).collection("comments").add({
+                                db.collection("Videos").doc(getVidId).collection("comments").add({
                                     comment_desc: userInput,
                                     comment_user: userId, //TODO
                                     comment_date: new Date()
@@ -162,13 +192,12 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
                 document.getElementById("vid_comment").value = "";
             }
         });
-    }
+    };
 
     //Display out previous comments and append them by using for loop.
-    db.collection("Videos").doc($scope.videoId).collection("comments").orderBy("comment_date", "desc") //TODO
+    db.collection("Videos").doc(getVidId).collection("comments").orderBy("comment_date", "desc")
         .get()
         .then(function (querySnapshot) {
-            'use strict';
 
             querySnapshot.forEach(function (doc) {
 
@@ -185,11 +214,12 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
                         var userRowDivContent = document.createTextNode(username);
 
                         //Attributes for user profile image
-                        userImage.src = userphoto;
-                        userImage.setAttribute("height", "30");
-                        userImage.setAttribute("width", "30");
-                        userImage.setAttribute("alt", "Image");
+                        userImage.setAttribute("bind", "true");
+                        userImage.setAttribute("string", username);
+                        userImage.setAttribute("auto-color", "true");
+                        userImage.setAttribute("style", "width: 30px; height: 30px;");
 
+                        $compile(userImage)($scope);
                         ImgColDiv.appendChild(userImage);
                         userRowDiv.appendChild(userRowDivContent);
                     });
@@ -203,16 +233,17 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
                     userColDiv = document.createElement("div"),
                     userRowDiv = document.createElement("div"),
                     UserTextColDiv = document.createElement("div"),
-                    userImage = document.createElement("img"),
+                    userImage = document.createElement("ng-avatar"),
                     TextColDivContent = document.createTextNode(userComments),
                     cgroup = document.getElementById("commentGroup");
 
                 //Classes name for the structure for css purpose
                 bigDiv.className = 'row commentedBox';
-                ImgColDiv.className = 'col-md-1 col-sm-1 col-xs-2 imageBoxComment';
-                UserTextColDiv.className = 'col-md-11 col-sm-11 col-xs-10';
-                TextColDiv.className = 'col-md-11 col-sm-11 col-xs-10 commentArea';
-                userRowDiv.className = 'col-md-11 col-sm-11 col-xs-10 commentPoster';
+                ImgColDiv.className = 'col-md-1 col-sm-1 col-2 imageBoxComment';
+                UserTextColDiv.className = 'col-md-11 col-sm-11 col-10';
+                TextColDiv.className = 'col-md-11 col-sm-11 col-10 commentArea';
+                userRowDiv.className = 'col-md-11 col-sm-11 col-10 commentPoster';
+                userImage.className = 'rounded-circle';
 
                 UserTextColDiv.appendChild(userRowDiv);
                 UserTextColDiv.appendChild(TextRowDiv);
@@ -229,15 +260,15 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
             });
         })
         .catch(function (error) {
-            'use strict';
+
             console.log("Error getting documents: ", error);
         });
 
-    $scope.videosRef = db.collection("Videos").doc($scope.videoId); //@TODO
+    $scope.videosRef = db.collection("Videos").doc(getVidId);
 
     //Display current video information
     $scope.videosRef.get().then(function (doc) {
-        'use strict';
+
         if (doc.exists) {
             //Format the timestamp taken from firestore and convert to date.
             var videoDate = new Date(doc.data().date_uploaded.toDate()),
@@ -250,7 +281,7 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
                 vid_info = document.getElementById("videolink");
 
             //Count and display average rating.
-            db.collection("Videos").doc($scope.videoId).collection("ratings").get().then(function (querySnapshot) {
+            db.collection("Videos").doc(getVidId).collection("ratings").get().then(function (querySnapshot) {
 
                 var allRating = [];
                 querySnapshot.forEach(function (doc) {
@@ -331,7 +362,7 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
                     if (roundedPlayedDuration > roundedtotalDuration) {
                         clearInterval(getView);
                         x += 1;
-                        db.collection("Videos").doc($scope.videoId).update({
+                        db.collection("Videos").doc(getVidId).update({
                             video_view: x
                         });
                     }
@@ -356,16 +387,16 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
             console.log("No such document!");
         }
     }).catch(function (error) {
-        'use strict';
+
         console.log("Error getting document:", error);
     });
 
 
     //Shows the previous rating given to a video to the individual user.
     function showRated() {
-        'use strict';
+
         firebase.auth().onAuthStateChanged(function (user) {
-            db.collection("Videos").doc($scope.videoId).collection("ratings").get().then(function (querySnapshot) {
+            db.collection("Videos").doc(getVidId).collection("ratings").get().then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
 
                     if (doc.data().rated_user === user.email) {
@@ -393,20 +424,24 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
 
     // Listen for form submissions for rating
     document.addEventListener('submit', function (event) {
-        'use strict';
+
         //Only allow authenticated users to rate the video
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
 
                 // Only run our code on .rating forms
-                if (!event.target.matches('.rating')) return;
+                if (!event.target.matches('.rating')) {
+                    return;
+                }
 
                 // Prevent form from submitting
                 event.preventDefault();
 
                 // Get the selected star
                 var selected = document.activeElement;
-                if (!selected) return;
+                if (!selected) {
+                    return;
+                }
                 var selectedIndex = parseInt(selected.getAttribute('data-star'), 10),
                     stars = Array.from(event.target.querySelectorAll('.star'));
 
@@ -431,13 +466,13 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
 
                 // Add aria-pressed role to the selected button
                 selected.setAttribute('aria-pressed', true);
-                db.collection("Videos").doc($scope.videoId).collection("ratings").where("rated_user", "==", user.email) //TODO
+                db.collection("Videos").doc(getVidId).collection("ratings").where("rated_user", "==", user.email) //TODO
                     .get()
                     .then(function (querySnapshot) {
                         //If rating document exist for a particular video, overwrite the previous rating, or else, create new rating document with the rated number.
                         if (querySnapshot.size > 0) {
                             querySnapshot.forEach(function (doc) {
-                                db.collection("Videos").doc($scope.videoId).collection("ratings").doc(doc.id).update({
+                                db.collection("Videos").doc(getVidId).collection("ratings").doc(doc.id).update({
                                     rating: selectedIndex
                                 });
                                 document.getElementById('user_rated').innerHTML = "You've rated this video " + selectedIndex + " stars.";
@@ -446,7 +481,7 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
                                 }, 2000);
                             });
                         } else {
-                            db.collection("Videos").doc($scope.videoId).collection("ratings").add({
+                            db.collection("Videos").doc(getVidId).collection("ratings").add({
                                 rated_user: user.email,
                                 rating: selectedIndex
                             });
@@ -456,13 +491,9 @@ app.controller('videoCtrl', ['$scope', '$location', '$sce', 'videoService', func
                             }, 2000);
                         }
                     });
-            } else {
-                alert("You're not logged in!");
-                event.preventDefault();
-                document.getElementById('closeModal').click();
-            }
+            } else {}
         });
 
     }, false);
 
-    }]);
+}]);

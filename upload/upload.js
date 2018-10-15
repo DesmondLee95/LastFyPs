@@ -29,6 +29,18 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
     db.settings({
         timestampsInSnapshots: true
     });
+
+    var uploadBtn = document.getElementById('uploadButton');
+    var checkTOU = document.getElementById('termsofuse');
+
+    checkTOU.onchange = function () {
+        if (this.checked) {
+            uploadBtn.disabled = false;
+        } else {
+            uploadBtn.disabled = true;
+        }
+    }
+    
     // VIDEO
     var selectedFile;
     var selectedFileSize;
@@ -42,9 +54,6 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
             $location.path("/login");
         }
     });
-
-
-
 
     document.getElementById("file").addEventListener('change', function (e) {
         'use strict';
@@ -153,7 +162,7 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
             }
             upload.on('state_changed',
                 function progress(snapshot) {
-                document.getElementById('uploadButton').disabled = true;
+                    document.getElementById('uploadButton').disabled = true;
                     var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     progressBar.value = percentage;
                     switch (snapshot.state) {

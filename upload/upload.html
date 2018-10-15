@@ -2,75 +2,105 @@
 
 <header-file></header-file>
 <div class="container">
-        <div class="row firstrow">
-            <div class="col-md-5 col-sm-6 uploadbox">
-                <input type="file" id="file" class="inputfile" />
-                <label class="uploads" for="file">
-                    <i class="fas fa-upload fa-4x"></i>
-                    <br />
-                    <div id="upload_text">Choose a file to upload</div>
-                </label>
-                
-                <input type="file" id="pic" accept="image/*" class="inputfile">
-                <label class="uploads" for="pic">
-                    <i class="fas fa-upload fa-4x"></i>
-                    <br />
-                    <div id="thumbnail_text">Choose Thumbnail</div>
-                </label>
-                <progress value="0" max="100" class="upload_progress" id="upload_progress"></progress>
+    <div class="row firstrow">
+        <div class="col-md-5 col-sm-6 uploadbox">
+            <input type="file" id="file" class="inputfile" />
+            <label class="uploads" for="file">
+                <i class="fas fa-upload fa-4x"></i>
+                <br />
+                <div id="upload_text">Choose a file to upload</div>
+            </label>
 
-                <p class="warningWords">Warning: Maximum file size for video (40MB) &amp; thumbnail (1MB)</p>
-            </div>
-            <div class="col-md-7 col-sm-6">
-                <div class="row">
-                    <div class="col-md-12 visiblealign">
-                        <select class="visiblebox" id="visibility">
-                            <option value="Public">Public</option>
-                            <option value="Private">Private</option></select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <input type="text" class="vid_name" id="video_name" placeholder="Video Name.. (Max. Characters: 32)" />
-                        <br />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <textarea type="text" rows="8" class="vid_desc" id="video_desc" placeholder="Description.."></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <input type="text" class="video_tag" id="video_tag" placeholder="Tags.." />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <select class="category" id="category">
-                            <option disabled selected value>Choose a category</option>
-                            <option value="Business">Business</option>
-                            <option value="Design">Design</option>
-                            <option value="Engineering">Engineering</option>
-                            <option value="Science">Science</option>
-                            <option value="Computing">Computing</option>
-                            <option value="English Language">English Language</option>
-                            <option value="Postgraduate (Coursework)">Postgraduate (Coursework)</option>
-                            <option value="Postgraduate (Research)">Postgraduate (Research)</option>
-                            <option value="Short Courses">Short Courses</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class='col-md-12 warningBox'>
+            <input type="file" id="pic" accept="image/*" class="inputfile">
+            <label class="uploads" for="pic">
+                <i class="fas fa-upload fa-4x"></i>
+                <br />
+                <div id="thumbnail_text">Choose Thumbnail</div>
+            </label>
+            <progress value="0" max="100" class="upload_progress" id="upload_progress"></progress>
 
-            </div>
+            <p class="warningWords">Warning: Maximum file size for video (40MB) &amp; thumbnail (1MB)</p>
         </div>
-        <div class="row">
-            <div class="col-md-12 uploadBtnbox">
-                <button type="btn btn-primary" class="uploadButton" id="uploadButton" ng-click="uploadFile()">Upload Video</button>
+        <div class="col-md-7 col-sm-6">
+            <div class="row">
+                <div class="col-md-12 visiblealign">
+                    <select class="visiblebox" id="visibility">
+                        <option value="Public">Public</option>
+                        <option value="Private">Private</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="vid_name" id="video_name" placeholder="Video Name.. (Max. Characters: 32)" />
+                    <br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea type="text" rows="8" class="vid_desc" id="video_desc" placeholder="Description.."></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="video_tag" id="video_tag" placeholder="Tags.." />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <select class="category" id="category">
+                        <option disabled selected value>Choose a category</option>
+                        <option value="Business">Business</option>
+                        <option value="Design">Design</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Science">Science</option>
+                        <option value="Computing">Computing</option>
+                        <option value="English Language">English Language</option>
+                        <option value="Postgraduate (Coursework)">Postgraduate (Coursework)</option>
+                        <option value="Postgraduate (Research)">Postgraduate (Research)</option>
+                        <option value="Short Courses">Short Courses</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-1 offset-md-5 col-sm-1 col-1 checkBoxWarning">
+            <input type="checkbox" id="termsofuse" name="termsofuse">
+        </div>
+        <div class="col-md-6 col-sm-11 col-10 warning">   
+            Please ensure that the video you are uploading complies with our <span data-toggle="modal" class="warningToc" data-target="#warningModal">Terms of use</span>.
+        </div>
+        <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningmodal" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ratevideoheader"><strong>Terms Of Use</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You agree not to use the Site to collect, upload, transmit, display, or distribute any User Content (i) that violates any third-party right or any intellectual property or proprietary right; (ii) that is unlawful, harassing, abusive, tortious, threatening, harmful, invasive of another’s privacy, vulgar, defamatory, false, intentionally misleading, trade libelous, pornographic, obscene, patently offensive, promotes racism, bigotry, hatred, or physical harm of any kind against any group or individual; (iii) that is harmful to minors in any way; or (iv) that is in violation of any law, regulation, or obligations or restrictions imposed by any third party.</p>
+
+                        <p>In addition, you agree not to: (i) upload, transmit, or distribute to or through the Site any software intended to damage or alter a computer system or data; (ii) send through the Site unsolicited or unauthorized advertising, promotional materials, junk mail, spam, chain letters, pyramid schemes, or any other form of duplicative or unsolicited messages; (iii) use the Site to harvest, collect, gather or assemble information or data regarding other users without their consent; (iv) interfere with, disrupt, or create an undue burden on servers or networks connected to the Site, or violate the regulations, policies or procedures of such networks; (v) attempt to gain unauthorized access to the Site, whether through password mining or any other means; (vi) harass or interfere with any other user’s use and enjoyment of the Site; or (vi) use software or automated agents or scripts to produce multiple accounts on the Site, or to generate automated searches, requests, or queries to the Site.</p>
+
+                        <p>We reserve the right to review any User Content, and to investigate and/or take appropriate action against you in our sole discretion if you violate the Acceptable Use Policy or any other provision of these Terms or otherwise create liability for us or any other person. Such action may include removing or modifying your User Content, terminating your Account in accordance with Section 8, and/or reporting you to law enforcement authorities.</p>
+
+                        <p>If you provide Swinburne Sarawak with any feedback or suggestions regarding the Site, you hereby assign to Swinburne Sarawak all rights in such Feedback and agree that Swinburne Sarawak shall have the right to use and fully exploit such Feedback and related information in any manner it believes appropriate.  Swinburne Sarawak will treat any Feedback you provide to Swinburne Sarawak as non-confidential and non-proprietary.</p>
+
+                        <p>You agree to indemnify and hold Swinburne Sarawak and its officers, employees, and agents harmless, including costs and attorneys’ fees, from any claim or demand made by any third-party due to or arising out of (a) your use of the Site, (b) your violation of these Terms, (c) your violation of applicable laws or regulations or (d) your User Content.  Swinburne Sarawak reserves the right to assume the exclusive defense and control of any matter for which you are required to indemnify us, and you agree to cooperate with our defense of these claims.  You agree not to settle any matter without the prior written consent of Swinburne Sarawak.  Swinburne Sarawak will use reasonable efforts to notify you of any such claim, action or proceeding upon becoming aware of it.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="closeModal" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 uploadBtnbox">
+            <button type="btn btn-primary" class="uploadButton" id="uploadButton" ng-click="uploadFile()" disabled>Upload Video</button>
+        </div>
+    </div>
+</div>

@@ -33,6 +33,7 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
         $scope.currentUserVideos[$scope.indexValue].views += 1;
         $scope.videoId = id;
         videoService.videoId = $scope.videoId;
+        sessionStorage.setItem("selectedVidId", videoService.videoId);
     };
 
     $scope.trustSrc = function (src) {
@@ -113,10 +114,5 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
             $location.path("/login");
         }
     });
-
-
-
-
-
 
     }]);

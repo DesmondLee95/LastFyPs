@@ -48,6 +48,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
         $scope.indexValue = $scope.publicVideos.findIndex(video => video.id === id);
         $scope.videoId = id;
         videoService.videoId = $scope.videoId;
+        sessionStorage.setItem("selectedVidId", videoService.videoId); 
     };
 
     // GETTING VIDEOS START ---------------------------------------------------------------------------------------------------
