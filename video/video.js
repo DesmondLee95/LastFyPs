@@ -150,13 +150,13 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$sce', 'videoSe
                                 userImage.setAttribute("bind", "true");
                                 userImage.setAttribute("string", username);
                                 userImage.setAttribute("auto-color", "true");
-                                userImage.setAttribute("style", "width: 30px; height: 30px;");
+                                userImage.setAttribute("style", "width: 35px; height: 35px;");
 
                                 bigDiv.className = 'row commentedBox';
-                                ImgColDiv.className = 'col-md-1 col-sm-1 col-2 imageBoxComment';
-                                UserTextColDiv.className = 'col-md-11 col-sm-11 col-10';
-                                TextColDiv.className = 'col-md-11 col-sm-11 col-10 commentArea';
-                                userRowDiv.className = 'col-md-11 col-sm-11 col-10 commentPoster';
+                                ImgColDiv.className = 'col-md-1 col-sm-1 col-3 imageBoxComment';
+                                UserTextColDiv.className = 'col-md-11 col-sm-11 col-9 pastCommentBox';
+                                TextColDiv.className = 'col-md-11 col-sm-11 col-9 commentArea';
+                                userRowDiv.className = 'col-md-11 col-sm-11 col-9 commentPoster';
                                 userImage.className = 'rounded-circle';
 
                                 UserTextColDiv.appendChild(userRowDiv);
@@ -172,7 +172,6 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$sce', 'videoSe
                                 TextColDiv.appendChild(TextColDivContent);
 
                                 cgroup.prepend(bigDiv);
-                                console.log(cgroup);
 
                                 //Store comment information into Firestore.
                                 db.collection("Videos").doc(getVidId).collection("comments").add({
@@ -217,8 +216,8 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$sce', 'videoSe
                         userImage.setAttribute("bind", "true");
                         userImage.setAttribute("string", username);
                         userImage.setAttribute("auto-color", "true");
-                        userImage.setAttribute("style", "width: 30px; height: 30px;");
-
+                        userImage.setAttribute("style", "width: 35px; height: 35px; display:inline-block");
+                        
                         $compile(userImage)($scope);
                         ImgColDiv.appendChild(userImage);
                         userRowDiv.appendChild(userRowDivContent);
@@ -239,10 +238,10 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$sce', 'videoSe
 
                 //Classes name for the structure for css purpose
                 bigDiv.className = 'row commentedBox';
-                ImgColDiv.className = 'col-md-1 col-sm-1 col-2 imageBoxComment';
-                UserTextColDiv.className = 'col-md-11 col-sm-11 col-10';
-                TextColDiv.className = 'col-md-11 col-sm-11 col-10 commentArea';
-                userRowDiv.className = 'col-md-11 col-sm-11 col-10 commentPoster';
+                ImgColDiv.className = 'col-md-1 col-sm-1 col-3 imageBoxComment';
+                UserTextColDiv.className = 'col-md-11 col-sm-11 col-9 pastCommentBox';
+                TextColDiv.className = 'col-md-11 col-sm-11 col-9 commentArea';
+                userRowDiv.className = 'col-md-11 col-sm-11 col-9 commentPoster';
                 userImage.className = 'rounded-circle';
 
                 UserTextColDiv.appendChild(userRowDiv);
@@ -255,7 +254,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$sce', 'videoSe
                 TextColDiv.appendChild(TextColDivContent);
 
                 cgroup.append(bigDiv);
-
+                console.log(cgroup);
                 getName();
             });
         })

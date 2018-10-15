@@ -1,9 +1,14 @@
+html {
+    overflow-y: hidden;
+}
+
 .post {
     background-color: white;
     border-radius: 3px;
     font-weight: bold;
     margin: 3px;
     padding: 2px 10px 2px 10px;
+    cursor: pointer;
 }
 
 .post:disabled {
@@ -12,6 +17,7 @@
     font-weight: bold;
     margin: 3px;
     padding: 2px 10px 2px 10px;
+    cursor: default;
 }
 
 .vidNameRow {
@@ -25,12 +31,27 @@
 div.commentArea {
     word-wrap: break-word;
     margin-bottom: 5px;
-    padding: 0px 1px 0px 0px;
+    margin-right: 0px;
+    font-size: 14px;
+    padding: 0px 1px 5px 0px;
+}
+
+.pastCommentBox {
+    padding-left: 0px;
+}
+
+.vid_comment {
+    width: 100%;
+    padding: 6px;
+    border-radius: 5px;
+    border-style: groove;
+    resize: none;
+    overflow: hidden;
 }
 
 .commentPoster {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     padding: 0px 10px 0px 0px;
 }
 
@@ -40,7 +61,7 @@ div.commentArea {
 
 .imageBoxComment {
     text-align: center;
-    margin-top: 3px;
+    margin-top: 2px;
 }
 
 .commentBox {
@@ -92,15 +113,6 @@ div.commentArea {
 
 .vid_rating {
     font-weight: bold;
-}
-
-.vid_comment {
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-    border-style: groove;
-    resize: none;
-    overflow: hidden;
 }
 
 .vidname {
