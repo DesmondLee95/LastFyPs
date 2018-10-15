@@ -129,13 +129,13 @@
 
         <hr class="hrline2">
         <div class="row">
-            <div class="col-md-1 col-sm-1 col-12 imageBox">
+            <div class="col-md-1 col-sm-2 col-12 imageBox">
                 <label for="userBtn">
                     <ng-avatar bind="true" string="{{currentUserName}}" auto-color="true" class="rounded-circle" style="width: 40px; height: 40px;"></ng-avatar>
                     <button type="button" id="userBtn" class="userBtn" onclick=""></button>
                 </label>
             </div>
-            <div class="col-md-11 col-sm-11 col-offset-1 col-12 commentBox">
+            <div class="col-md-11 col-sm-10 col-offset-1 col-12 commentBox">
                 <textarea type="text" rows="1" id="vid_comment" class="vid_comment" data-ng-keyup="emptyInput()" placeholder="Add a comment.."></textarea>
                 <button type="btn" id="post" class="post" data-ng-click="createComments()" disabled>POST</button>
             </div>

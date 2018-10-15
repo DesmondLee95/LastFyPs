@@ -150,13 +150,13 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$sce', 'videoSe
                                 userImage.setAttribute("bind", "true");
                                 userImage.setAttribute("string", username);
                                 userImage.setAttribute("auto-color", "true");
-                                userImage.setAttribute("style", "width: 35px; height: 35px;");
+                                userImage.setAttribute("style", "width: 35px; height: 35px; display:inline-block");
 
                                 bigDiv.className = 'row commentedBox';
-                                ImgColDiv.className = 'col-md-1 col-sm-1 col-3 imageBoxComment';
-                                UserTextColDiv.className = 'col-md-11 col-sm-11 col-9 pastCommentBox';
-                                TextColDiv.className = 'col-md-11 col-sm-11 col-9 commentArea';
-                                userRowDiv.className = 'col-md-11 col-sm-11 col-9 commentPoster';
+                                ImgColDiv.className = 'col-md-1 col-sm-2 col-2 imageBoxComment';
+                                UserTextColDiv.className = 'col-md-11 col-sm-10 offset-sm-0 col-10 pastCommentBox';
+                                TextColDiv.className = 'col-md-11 col-sm-10 offset-sm-0 col-10 commentArea';
+                                userRowDiv.className = 'col-md-11 col-sm-10 offset-sm-0 col-10 commentPoster';
                                 userImage.className = 'rounded-circle';
 
                                 UserTextColDiv.appendChild(userRowDiv);
@@ -217,10 +217,10 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$sce', 'videoSe
                         userImage.setAttribute("string", username);
                         userImage.setAttribute("auto-color", "true");
                         userImage.setAttribute("style", "width: 35px; height: 35px; display:inline-block");
-                        
+
                         $compile(userImage)($scope);
                         ImgColDiv.appendChild(userImage);
-                        userRowDiv.appendChild(userRowDivContent);
+                        userColDiv.appendChild(userRowDivContent);
                     });
 
                 }
@@ -238,10 +238,10 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$sce', 'videoSe
 
                 //Classes name for the structure for css purpose
                 bigDiv.className = 'row commentedBox';
-                ImgColDiv.className = 'col-md-1 col-sm-1 col-3 imageBoxComment';
-                UserTextColDiv.className = 'col-md-11 col-sm-11 col-9 pastCommentBox';
-                TextColDiv.className = 'col-md-11 col-sm-11 col-9 commentArea';
-                userRowDiv.className = 'col-md-11 col-sm-11 col-9 commentPoster';
+                ImgColDiv.className = 'col-md-1 col-sm-2 col-2 imageBoxComment';
+                UserTextColDiv.className = 'col-md-11 col-sm-10 offset-sm-0 col-10 pastCommentBox';
+                TextColDiv.className = 'col-md-11 col-sm-10 offset-sm-0 col-10 commentArea';
+                userRowDiv.className = 'col-md-11 col-sm-10 offset-sm-0 col-10 commentPoster';
                 userImage.className = 'rounded-circle';
 
                 UserTextColDiv.appendChild(userRowDiv);

@@ -28,7 +28,7 @@ html {
     margin-bottom: 15px;
 }
 
-div.commentArea {
+.commentArea {
     word-wrap: break-word;
     margin-bottom: 5px;
     margin-right: 0px;
