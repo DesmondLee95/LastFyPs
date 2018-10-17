@@ -55,8 +55,9 @@ html {
     padding: 0px 10px 0px 0px;
 }
 
-.imageBox {
+.commentImgBox {
     text-align: center;
+    display: inline-block;
 }
 
 .imageBoxComment {
@@ -65,11 +66,14 @@ html {
 }
 
 .commentBox {
-    padding-left: 0;
-    padding-top: 1px;
     text-align: right;
     padding: 0px 10px 0px 0px;
+    display: inline-block;
     margin-bottom: 5px;
+}
+
+.card-header {
+    padding: 0px;
 }
 
 .container {
@@ -77,6 +81,88 @@ html {
     position: relative;
     margin-top: 10px;
     border-radius: 5px;
+}
+
+.vidcontainer {
+    background-color: white;
+    position: relative;
+    padding: 10px 25px 25px 25px;
+    border-radius: 5px;
+    margin-top: 5px;
+    width: 87.5%;
+}
+
+.rightCol {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 5px;
+}
+
+.rcmText {
+    font-family: "Helvetica", Times, serif;
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.rcmImgHeader {
+    border: none;
+    width: 40%;
+}
+
+.cardDesc {
+    width: 60%;
+    position: relative;
+    display: inline-block;
+    float: right;
+}
+
+.rcmVidname {
+    margin: 5px 0px 5px 0px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Helvetica", Times, serif;
+    word-wrap: break-all;
+    height: 2.6em;
+    line-height: 1.4em;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.rcmCards {
+    min-width: 210px;
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 3px;
+    max-height: 90px;
+}
+
+.rcmPics {
+    height: 89px;
+    width: 100%;
+    position: relative;
+    border-radius: 3px;
+    margin: 0 auto;
+    float: left;
+}
+
+.rcmUploader {
+    margin-bottom: 0px;
+    color: 	#778899;
+    font-size: 13px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Helvetica", Times, serif;
+}
+
+.rcmViews {
+    font-size: 12px;
+    color: 	#778899;
+    font-family: "Helvetica", Times, serif;
 }
 
 .hrline {
@@ -273,4 +359,13 @@ video {
 
 .card-body {
     padding: 0px 10px 5px 10px;
+}
+
+@media (max-width: 575.98px) {
+    .vidcontainer {
+        background-color: white;
+        position: relative;
+        border-radius: 5px;
+    }
+
 }

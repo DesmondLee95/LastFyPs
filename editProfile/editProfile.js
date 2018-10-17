@@ -5,18 +5,18 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/EditProfile', {
         templateUrl: 'editProfile/editProfile.html',
         controller: 'editProfileCtrl'
-    })
+    });
 }]);
 
 app.factory("Auth", ["$firebaseAuth",
   function ($firebaseAuth) {
+        'use strict';
         return $firebaseAuth();
   }
 ]);
 
-
 app.controller('editProfileCtrl', ['$scope', 'Auth', '$location', 'toaster', function ($scope, Auth, $location, toaster) {
-    'use strict'
+    'use strict';
 
 
     var db = firebase.firestore();
@@ -33,15 +33,9 @@ app.controller('editProfileCtrl', ['$scope', 'Auth', '$location', 'toaster', fun
 
             var usersinfo = db.collection("Users").doc(user.email); //@TODO
 
-
-
-
             usersinfo.get().then(function (doc) {
-                'use strict';
 
                 if (doc.exists) {
-
-
                     $scope.EditName = doc.data().Name;
                     $scope.EditCourse = doc.data().Course;
                     $scope.$apply();
@@ -50,15 +44,12 @@ app.controller('editProfileCtrl', ['$scope', 'Auth', '$location', 'toaster', fun
                     console.log("No such document!");
                 }
             }).catch(function (error) {
-                'use strict';
+
                 console.log("Error getting document:", error);
             });
         } else {
             $location.path("/login");
         }
-
-
-
     });
 
     $scope.editSubmit = function () {
@@ -81,7 +72,16 @@ app.controller('editProfileCtrl', ['$scope', 'Auth', '$location', 'toaster', fun
             return;
         }
 
-        var usersinfo = db.collection("Users").doc($scope.userEmail);
+        var usersinfo = db.collection("Users").doc($scope.userEmail),
+            videosinfo = db.collection("Videos").get().then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    if (doc.data().video_uploader_Email === $scope.userEmail) {
+                        db.collection("Videos").doc(doc.id).update({
+                            video_uploader: $scope.EditName
+                        });
+                    }
+                });
+            });
 
         db.collection("Users").doc($scope.userEmail).update({
             Course: $scope.EditCourse
@@ -96,7 +96,6 @@ app.controller('editProfileCtrl', ['$scope', 'Auth', '$location', 'toaster', fun
         });
         $location.path("/userpage");
 
-    }
-
+    };
 
             }]);

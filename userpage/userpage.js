@@ -79,7 +79,7 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
             });
             console.log($scope.currentUserVideos);
 
-            var usersinfo = db.collection("Users").doc(user.email); //@TODO
+            var usersinfo = db.collection("Users").doc(user.email);
 
             usersinfo.get().then(function (doc) {
                 'use strict';
@@ -100,7 +100,7 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
 
                     $scope.$apply();
                     console.log($scope.currentUserName);
-
+                    
                 } else {
                     console.log("No such document!");
                 }
@@ -111,8 +111,7 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
             // User is signed in.
         } else {
             // No user is signed in.
-            $location.path("/login");
         }
-    });
+    }); 
 
     }]);
