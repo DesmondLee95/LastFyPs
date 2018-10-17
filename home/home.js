@@ -40,6 +40,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     $scope.postgraduateCoursework = [];
     $scope.postgraduateResearch = [];
     $scope.shortCourses = [];
+    $scope.others = [];
 
     // START
 
@@ -563,7 +564,53 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
         $scope.filteredSCVideos = SC.slice(begin, end);
     }
     
-    
+     // #region Getting Others Videos
+    db.collection("Videos").onSnapshot(function (querySnapshot) {
+        $scope.others = [];
+        querySnapshot.forEach(function (doc) {
+            if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Others") {
+                var videoJson = {
+                    id: doc.id,
+                    data: doc.data(),
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                }
+                $scope.others.push(videoJson);
+            }
+
+        });
+
+        $scope.$apply();
+    });
+
+    $scope.currentOthersPage = 1, $scope.numberofOthersPerPage = 3, $scope.showMoreOthersClicked = false, $scope.reverseSortOthers = true, $scope.orderByFieldOthers = 'timestamp'
+    $scope.$watch("others.length", otherspaginationFunc);
+    $scope.$watch("currentOthersPage + numberofOthersPerPage", otherspaginationFunc);
+
+    $scope.showLessOthers = function (index) {
+        $scope.numberofOthersPerPage = index * 3;
+        console.log(index);
+        $scope.showMoreOthersClicked = false;
+
+    }
+
+    $scope.showMoreOthers = function (index) {
+        $scope.numberofOthersPerPage = index * 100;
+        console.log(index);
+        $scope.showMoreOthersClicked = true;
+    }
+
+    function otherspaginationFunc() {
+        var others = $scope.others.filter(function (item) {
+            return !item.filtered
+        });
+        $scope.onumbers = Math.ceil(others.length / $scope.numberofOthersPerPage);
+        if ($scope.currentOthersPage < 1) $scope.currentOthersPage = 1;
+        if ($scope.currentOthersPage > $scope.onumbers) $scope.currentOthersPage = $scope.onumbers;
+        var begin = (($scope.currentOthersPage - 1) * $scope.numberofOthersPerPage),
+            end = begin + $scope.numberofOthersPerPage;
+        $scope.filteredOthersVideos = others.slice(begin, end);
+    }
+
     
     
 
