@@ -80,6 +80,18 @@
     cursor: pointer;
 }
 
+.uploadVid {
+    margin: 10px;
+    font-size: 20px;
+    padding: 5px 40px 5px 40px;
+    border-radius: 8px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
 .uploadButton:disabled {
     margin: 10px;
     font-size: 20px;

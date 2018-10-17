@@ -49,7 +49,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
         $scope.indexValue = $scope.publicVideos.findIndex(video => video.id === id);
         $scope.videoId = id;
         videoService.videoId = $scope.videoId;
-        sessionStorage.setItem("selectedVidId", videoService.videoId); 
+        sessionStorage.setItem("selectedVidId", videoService.videoId);
     };
 
     // GETTING VIDEOS START ---------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
                 }
                 $scope.publicVideos.push(videoJson);
             }
@@ -73,7 +73,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
         $scope.$apply();
     });
 
-    $scope.currentPage = 1, $scope.numPerPage = 3, $scope.showMoreClicked = false, $scope.reverseSort = true, $scope.orderByField = 'timestamp'
+    $scope.currentPage = 1, $scope.numPerPage = 4, $scope.showMoreClicked = false, $scope.reverseSort = true, $scope.orderByField = 'timestamp'
     $scope.$watch("name", function (newVal, oldVal) {
         for (var i = 0; i < $scope.publicVideos.length; i++) {
             $scope.publicVideos[i].filtered = $scope.publicVideos[i].data.video_name.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
@@ -93,7 +93,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     }
 
     $scope.showLess = function (index) {
-        $scope.numPerPage = index * 3;
+        $scope.numPerPage = index * 4;
         $scope.showMoreClicked = false;
         console.log($scope.reverseSort);
     }
@@ -125,22 +125,22 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
                 }
                 $scope.business.push(videoJson);
             }
-
+            console.log($scope.business);
         });
 
         $scope.$apply();
     });
 
-    $scope.currentBusinessPage = 1, $scope.numberofBusinessPerPage = 3, $scope.showMoreBusinessClicked = false, $scope.reverseSortBusiness = true, $scope.orderByFieldBusiness = 'timestamp'
+    $scope.currentBusinessPage = 1, $scope.numberofBusinessPerPage = 4, $scope.showMoreBusinessClicked = false, $scope.reverseSortBusiness = true, $scope.orderByFieldBusiness = 'timestamp'
     $scope.$watch("business.length", businesspaginationFunc);
     $scope.$watch("currentBusinessPage + numberofBusinessPerPage", businesspaginationFunc);
 
     $scope.showLessBusiness = function (index) {
-        $scope.numberofBusinessPerPage = index * 3;
+        $scope.numberofBusinessPerPage = index * 4;
         console.log(index);
         $scope.showMoreBusinessClicked = false;
 
@@ -172,7 +172,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
                 }
                 $scope.design.push(videoJson);
             }
@@ -184,15 +184,15 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     });
 
     $scope.currentDesignPage = 1;
-    $scope.numberofDesignPerPage = 3;
+    $scope.numberofDesignPerPage = 4;
     $scope.showMoreDesignClicked = false;
-    $scope.reverseSortDesign = true, 
-    $scope.orderByFieldDesign = 'timestamp'
+    $scope.reverseSortDesign = true,
+        $scope.orderByFieldDesign = 'timestamp'
     $scope.$watch("design.length", designpaginationFunc);
     $scope.$watch("currentDesignPage + numberofDesignPerPage", designpaginationFunc);
 
     $scope.showLessDesign = function (index) {
-        $scope.numberofDesignPerPage = index * 3;
+        $scope.numberofDesignPerPage = index * 4;
         console.log(index);
         $scope.showMoreDesignClicked = false;
 
@@ -226,7 +226,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
                 }
                 $scope.engineering.push(videoJson);
             }
@@ -236,15 +236,15 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     });
 
     $scope.currentEngineeringPage = 1;
-    $scope.numberofEngineeringPerPage = 3;
+    $scope.numberofEngineeringPerPage = 4;
     $scope.showMoreEngineeringClicked = false;
-    $scope.reverseSortEng = true, 
-    $scope.orderByFieldEng = 'timestamp'
+    $scope.reverseSortEng = true,
+        $scope.orderByFieldEng = 'timestamp'
     $scope.$watch("engineering.length", engineeringpaginationFunc);
     $scope.$watch("currentEngineeringPage + numberofEngineeringPerPage", engineeringpaginationFunc);
 
     $scope.showLessEngineering = function (index) {
-        $scope.numberofEngineeringPerPage = index * 3;
+        $scope.numberofEngineeringPerPage = index * 4;
         console.log(index);
         $scope.showMoreEngineeringClicked = false;
 
@@ -276,7 +276,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
                 }
                 $scope.science.push(videoJson);
             }
@@ -286,15 +286,15 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     });
 
     $scope.currentSciencePage = 1;
-    $scope.numberofSciencePerPage = 3;
+    $scope.numberofSciencePerPage = 4;
     $scope.showMoreScienceClicked = false;
-    $scope.reverseSortSci = true, 
-    $scope.orderByFieldSci = 'timestamp'
+    $scope.reverseSortSci = true,
+        $scope.orderByFieldSci = 'timestamp'
     $scope.$watch("science.length", sciencepaginationFunc);
     $scope.$watch("currentSciencePage + numberofSciencePerPage", sciencepaginationFunc);
 
     $scope.showLessScience = function (index) {
-        $scope.numberofSciencePerPage = index * 3;
+        $scope.numberofSciencePerPage = index * 4;
         console.log(index);
         $scope.showMoreScienceClicked = false;
     }
@@ -325,7 +325,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
                 }
                 $scope.computing.push(videoJson);
             }
@@ -333,17 +333,17 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
 
         $scope.$apply();
     });
-    
+
     $scope.currentComputingPage = 1;
-    $scope.numberofComputingPerPage = 3;
+    $scope.numberofComputingPerPage = 4;
     $scope.showMoreComputingClicked = false;
-    $scope.reverseSortComp = true, 
-    $scope.orderByFieldComp = 'timestamp'
+    $scope.reverseSortComp = true,
+        $scope.orderByFieldComp = 'timestamp'
     $scope.$watch("computing.length", computingpaginationFunc);
     $scope.$watch("currentComputingPage + numberofComputingPerPage", computingpaginationFunc);
 
     $scope.showLessComputing = function (index) {
-        $scope.numberofComputingPerPage = index * 3;
+        $scope.numberofComputingPerPage = index * 4;
         console.log(index);
         $scope.showMoreComputingClicked = false;
     }
@@ -374,7 +374,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
                 }
                 $scope.englishLanguage.push(videoJson);
             }
@@ -384,15 +384,15 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     });
 
     $scope.currentEnglishPage = 1;
-    $scope.numberofEnglishPerPage = 3;
+    $scope.numberofEnglishPerPage = 4;
     $scope.showMoreEnglishClicked = false;
-    $scope.reverseSortEnglish = true, 
-    $scope.orderByFieldEnglish = 'timestamp'
+    $scope.reverseSortEnglish = true,
+        $scope.orderByFieldEnglish = 'timestamp'
     $scope.$watch("englishLanguage.length", englishpaginationFunc);
     $scope.$watch("currentEnglishPage + numberofEnglishPerPage", englishpaginationFunc);
 
     $scope.showLessEnglish = function (index) {
-        $scope.numberofEnglishPerPage = index * 3;
+        $scope.numberofEnglishPerPage = index * 4;
         console.log(index);
         $scope.showMoreEnglishClicked = false;
     }
@@ -423,7 +423,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
                 }
                 $scope.postgraduateCoursework.push(videoJson);
             }
@@ -431,17 +431,17 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
 
         $scope.$apply();
     });
-    
+
     $scope.currentPgCoursePage = 1;
-    $scope.numberofPgCoursePerPage = 3;
+    $scope.numberofPgCoursePerPage = 4;
     $scope.showMorePgCourseClicked = false;
-    $scope.reverseSortPC = true, 
-    $scope.orderByFieldPC = 'timestamp'
+    $scope.reverseSortPC = true,
+        $scope.orderByFieldPC = 'timestamp'
     $scope.$watch("postgraduateCoursework.length", pgCoursepaginationFunc);
     $scope.$watch("currentPgCoursePage + numberofPgCoursePerPage", pgCoursepaginationFunc);
 
     $scope.showLessPgCourse = function (index) {
-        $scope.numberofPgCoursePerPage = index * 3;
+        $scope.numberofPgCoursePerPage = index * 4;
         console.log(index);
         $scope.showMorePgCourseClicked = false;
     }
@@ -472,7 +472,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
                 }
                 $scope.postgraduateResearch.push(videoJson);
             }
@@ -480,17 +480,17 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
 
         $scope.$apply();
     });
-    
+
     $scope.currentPgResearchPage = 1;
-    $scope.numberofPgResearchPerPage = 3;
+    $scope.numberofPgResearchPerPage = 4;
     $scope.showMorePgResearchClicked = false;
-    $scope.reverseSortPR = true, 
-    $scope.orderByFieldPR = 'timestamp'
+    $scope.reverseSortPR = true,
+        $scope.orderByFieldPR = 'timestamp'
     $scope.$watch("postgraduateResearch.length", pgResearchpaginationFunc);
     $scope.$watch("currentPgResearchPage + numberofPgResearchPerPage", pgResearchpaginationFunc);
 
     $scope.showLessPgResearch = function (index) {
-        $scope.numberofPgResearchPerPage = index * 3;
+        $scope.numberofPgResearchPerPage = index * 4;
         console.log(index);
         $scope.showMorePgResearchClicked = false;
     }
@@ -523,7 +523,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
                 }
                 $scope.shortCourses.push(videoJson);
             }
@@ -531,17 +531,17 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
 
         $scope.$apply();
     });
-    
+
     $scope.currentSCPage = 1;
-    $scope.numberofSCPerPage = 3;
+    $scope.numberofSCPerPage = 4;
     $scope.showMoreSCClicked = false;
-    $scope.reverseSortSVID = true, 
-    $scope.orderByFieldSVID = 'timestamp'
+    $scope.reverseSortSVID = true,
+        $scope.orderByFieldSVID = 'timestamp'
     $scope.$watch("shortCourses.length", SCResearchpaginationFunc);
     $scope.$watch("currentSCPage + numberofSCPerPage", SCResearchpaginationFunc);
 
     $scope.showLessSC = function (index) {
-        $scope.numberofSCPerPage = index * 3;
+        $scope.numberofSCPerPage = index * 4;
         console.log(index);
         $scope.showMoreSCClicked = false;
     }
@@ -563,8 +563,8 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
             end = begin + $scope.numberofSCPerPage;
         $scope.filteredSCVideos = SC.slice(begin, end);
     }
-    
-     // #region Getting Others Videos
+
+    // #region Getting Others Videos
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.others = [];
         querySnapshot.forEach(function (doc) {
@@ -572,7 +572,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
                 }
                 $scope.others.push(videoJson);
             }
@@ -582,12 +582,12 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
         $scope.$apply();
     });
 
-    $scope.currentOthersPage = 1, $scope.numberofOthersPerPage = 3, $scope.showMoreOthersClicked = false, $scope.reverseSortOthers = true, $scope.orderByFieldOthers = 'timestamp'
+    $scope.currentOthersPage = 1, $scope.numberofOthersPerPage = 4, $scope.showMoreOthersClicked = false, $scope.reverseSortOthers = true, $scope.orderByFieldOthers = 'timestamp'
     $scope.$watch("others.length", otherspaginationFunc);
     $scope.$watch("currentOthersPage + numberofOthersPerPage", otherspaginationFunc);
 
     $scope.showLessOthers = function (index) {
-        $scope.numberofOthersPerPage = index * 3;
+        $scope.numberofOthersPerPage = index * 4;
         console.log(index);
         $scope.showMoreOthersClicked = false;
 
@@ -611,8 +611,8 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
         $scope.filteredOthersVideos = others.slice(begin, end);
     }
 
-    
-    
+
+
 
     // GETTING VIDEOS END ---------------------------------------------------------------------------------------------------
 

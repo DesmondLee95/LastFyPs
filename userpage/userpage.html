@@ -3,12 +3,12 @@
 <div class="container">
 
     <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
-        <div class="col-md-2 text-center" style="margin-top: 10px">
+        <div class="col-md-3 col-sm-4 text-center" style="margin-top: 10px">
 
-            <ng-avatar bind="true" string="{{currentUserName}}" max-length="3" auto-color="true" class="rounded-circle" style="width: 150px; height: 150px;"></ng-avatar>
+            <ng-avatar bind="true" string="{{currentUserName}}" max-length="3" auto-color="true" class="rounded-circle" style="display:inline-block; width: 150px; height: 150px;"></ng-avatar>
 
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-sm-6">
             <p><strong>
                     <h3>{{currentUserName}}</h3>
                 </strong></p>
@@ -17,21 +17,21 @@
             <h6>{{currentUservideo_upload}} Uploads</h6>
         </div>
     </div>
-    
+
     <hr>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="row">
-                <div class="col-md-4" style="margin-bottom: 10px;" data-ng-repeat="uservids in currentUserVideos">
-                    <div class="card" style="width: 18rem;">
+                <div class="col-md-4 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="uservids in currentUserVideos">
+                    <div class="card profileCards">
                         <a href="#!Video">
 
-                            <img class="card-img-top" ng-src="{{uservids.thumbnailLink}}" width="100px" height="185px" alt="Card image cap" data-ng-click="getIndex(uservids.id)">
+                            <img class="card-img-top homeCardsImage" ng-src="{{uservids.thumbnailLink}}" alt="Card image cap" data-ng-click="getIndex(uservids.id)">
                         </a>
 
                         <div class="card-body">
-                            <h6 class="card-title"><strong>{{(uservids.video_name | limitTo: 25) + (uservids.video_name.length > 25 ? ' ...' : '')}}</strong> <br/> {{uservids.visibility}}</h6>
-                            <i class="card-text">{{uservids.video_uploader}}</i>
+                            <h6 class="card-title homeCardsName"><strong>{{uservids.video_name}}</strong> <br /> {{uservids.visibility}}</h6>
+                            <i class="card-text homeCardsUploader">{{uservids.video_uploader}}</i>
                             <p><i class="fas fa-eye"></i> {{uservids.views}}</p>
                         </div>
                     </div>
@@ -39,26 +39,21 @@
             </div>
 
         </div>
-        <div class="col-md-3">
-            <div class="col-md-offset-8">
-
-                <div>
-                    <a href="#!Upload" class="btn btn-danger uploadButton">Upload Video</a>
-                </div>
-                <div>
-                    <a href="#!ManageVideos" class="btn btn-primary uploadButton">Manage Videos</a>
-                </div>
-
-                <div>
-                    <a href="#!EditProfile" class="btn btn-primary uploadButton">Edit Profile</a>
-                </div>
-                <div>
-                    <a href="#!ChangePassword" class="btn btn-primary uploadButton">Change Password</a>
-                </div>
-
-                <div>
-                    <a href="#!Home" class="btn btn-primary uploadButton" ng-click="signout()">Sign Out</a>
-                </div>
+        <div class="col-md-4">
+            <div class="profileColumns">
+                <a href="#!Upload" class="btn btn-danger uploadVid">Upload Video</a>
+            </div>
+            <div class="profileColumns">
+                <a href="#!ManageVideos" class="btn btn-primary uploadVid">Manage Videos</a>
+            </div>
+            <div class="profileColumns">
+                <a href="#!EditProfile" class="btn btn-primary uploadVid">Edit Profile</a>
+            </div>
+            <div class="profileColumns">
+                <a href="#!ChangePassword" class="btn btn-primary uploadVid">Change Password</a>
+            </div>
+            <div class="profileColumns">
+                <a href="#!Home" class="btn btn-primary uploadVid" ng-click="signout()">Sign Out</a>
             </div>
         </div>
 
