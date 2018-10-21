@@ -62,7 +62,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
                 }
                 $scope.publicVideos.push(videoJson);
             }
@@ -73,7 +73,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
         $scope.$apply();
     });
 
-    $scope.currentPage = 1, $scope.numPerPage = 4, $scope.showMoreClicked = false, $scope.reverseSort = true, $scope.orderByField = 'timestamp'
+    $scope.currentPage = 1, $scope.numPerPage = 3, $scope.showMoreClicked = false, $scope.reverseSort = true, $scope.orderByField = 'timestamp'
     $scope.$watch("name", function (newVal, oldVal) {
         for (var i = 0; i < $scope.publicVideos.length; i++) {
             $scope.publicVideos[i].filtered = $scope.publicVideos[i].data.video_name.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
@@ -93,7 +93,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     }
 
     $scope.showLess = function (index) {
-        $scope.numPerPage = index * 4;
+        $scope.numPerPage = index * 3;
         $scope.showMoreClicked = false;
         console.log($scope.reverseSort);
     }
@@ -121,15 +121,21 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.business = [];
         querySnapshot.forEach(function (doc) {
+
             if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Business") {
+
+                console.log(doc.data());
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
                 }
+
                 $scope.business.push(videoJson);
+
+                $scope.business.sort($scope.orderByDate);
             }
-            console.log($scope.business);
+
         });
 
         $scope.$apply();
@@ -172,9 +178,12 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
                 }
+                
                 $scope.design.push(videoJson);
+                
+                 $scope.design.sort($scope.orderByDate);
             }
         });
 
@@ -226,9 +235,11 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
                 }
                 $scope.engineering.push(videoJson);
+                
+                 $scope.engineering.sort($scope.orderByDate);
             }
         });
 
@@ -276,9 +287,11 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
                 }
                 $scope.science.push(videoJson);
+                
+                 $scope.science.sort($scope.orderByDate);
             }
         });
 
@@ -325,9 +338,11 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
                 }
                 $scope.computing.push(videoJson);
+                
+                 $scope.computing.sort($scope.orderByDate);
             }
         });
 
@@ -374,9 +389,11 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
                 }
                 $scope.englishLanguage.push(videoJson);
+                
+                 $scope.englishLanguage.sort($scope.orderByDate);
             }
         });
 
@@ -423,9 +440,11 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
                 }
                 $scope.postgraduateCoursework.push(videoJson);
+                
+                $scope.postgraduateCoursework.sort($scope.orderByDate);
             }
         });
 
@@ -472,9 +491,11 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
                 }
                 $scope.postgraduateResearch.push(videoJson);
+                
+                 $scope.postgraduateResearch.sort($scope.orderByDate);
             }
         });
 
@@ -523,9 +544,11 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
                 }
                 $scope.shortCourses.push(videoJson);
+                
+                $scope.shortCourses.sort($scope.orderByDate);
             }
         });
 
@@ -572,9 +595,11 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
                 }
                 $scope.others.push(videoJson);
+                
+                 $scope.others.sort($scope.orderByDate);
             }
 
         });
@@ -617,6 +642,14 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     // GETTING VIDEOS END ---------------------------------------------------------------------------------------------------
 
 
+    // ORDER BY DATE FUNCTION
+
+    $scope.orderByDate = function (a, b) {
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.timestamp) - new Date(a.timestamp);
+    };
+
 }]);
 
 app.filter('range', function () {
@@ -626,3 +659,4 @@ app.filter('range', function () {
         return input;
     };
 });
+
