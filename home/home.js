@@ -73,7 +73,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
         $scope.$apply();
     });
 
-    $scope.currentPage = 1, $scope.numPerPage = 3, $scope.showMoreClicked = false, $scope.reverseSort = true, $scope.orderByField = 'timestamp'
+    $scope.currentPage = 1, $scope.numPerPage = 4, $scope.showMoreClicked = false, $scope.reverseSort = true, $scope.orderByField = 'timestamp'
     $scope.$watch("name", function (newVal, oldVal) {
         for (var i = 0; i < $scope.publicVideos.length; i++) {
             $scope.publicVideos[i].filtered = $scope.publicVideos[i].data.video_name.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
@@ -93,7 +93,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     }
 
     $scope.showLess = function (index) {
-        $scope.numPerPage = index * 3;
+        $scope.numPerPage = index * 4;
         $scope.showMoreClicked = false;
         console.log($scope.reverseSort);
     }
