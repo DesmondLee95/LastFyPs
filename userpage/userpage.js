@@ -110,7 +110,7 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
             });
             // User is signed in.
         } else {
-            // No user is signed in.
+            $location.path("/Home");     // No user is signed in.
         }
     }); 
 
