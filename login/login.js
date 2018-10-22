@@ -64,6 +64,13 @@ app.controller('loginCtrl', ['$scope', 'Auth', '$location', 'toaster', function 
 
             })
     }
+    
+      // signout
+    $scope.signout = function () {
+        firebase.auth().signOut();
+        $location.path("/Home");
+        location.reload();
+    };
 
     // Function for resetting password
     $scope.resetPass = function () {
