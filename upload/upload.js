@@ -17,9 +17,6 @@ app.factory("Auth", ["$firebaseAuth",
   }
 ]);
 
-
-
-
 app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function ($scope, Auth, $location, toaster) {
 
     //Initialize firestore
@@ -230,6 +227,7 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
                                                     video_desc: video_desc,
                                                     date_uploaded: new Date(),
                                                     video_visibility: visibility,
+                                                    block_status: false,
                                                     video_view: 0,
                                                     video_name: video_name,
                                                     thumbnail_link: $scope.thumbnailURL,

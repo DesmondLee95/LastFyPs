@@ -69,7 +69,7 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                                     Email: umail,
                                     Course: "",
                                     video_upload: 0,
-                                    photoURL: ""
+                                userType: "Student"
                                 })
                                 .then(function () {
                                     console.log("Document successfully written!");
@@ -117,7 +117,7 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                                     Email: umail,
                                     Course: "",
                                     video_upload: 0,
-                                    photoURL: ""
+                                    userType: "Staff"
                                 })
                                 .then(function () {
                                     console.log("Document successfully written!");
