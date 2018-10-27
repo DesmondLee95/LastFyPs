@@ -1,0 +1,133 @@
+.row.firstrow {
+    padding-top: 20px;
+}
+
+.containers {
+    border-radius: 5px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon {
+    left: 0px;
+}
+
+.right-addon .glyphicon {
+    right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 30px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}
+
+.sortBox {
+    line-height: 2;
+}
+
+.filterBox {
+    line-height: 2;
+}
+
+.delete_btn {
+    border: none;
+    background-color: white;
+}
+
+.table > thead > tr > th {
+    color: #9FA49A;
+    padding-bottom: 5px;
+}
+
+
+.vidStatus {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.filter_user {
+    margin: 3px;
+    padding: 3px;
+    border-radius: 4px;
+    border-color: lightgray;
+    box-shadow: 0.1px 0.1px gray inset;
+    width: 65%;
+}
+
+.sort_user {
+    margin: 3px;
+    padding: 3px;
+    border-radius: 4px;
+    border-color: lightgray;
+    box-shadow: 0.1px 0.1px gray inset;
+    width: 65%;
+}
+
+.filter_video {
+    margin: 3px;
+    padding: 3px;
+    border-radius: 4px;
+    border-color: lightgray;
+    box-shadow: 0.1px 0.1px gray inset;
+    width: 65%;
+}
+
+.sort_video {
+    margin: 3px;
+    padding: 3px;
+    border-radius: 4px;
+    border-color: lightgray;
+    box-shadow: 0.1px 0.1px gray inset;
+    width: 65%;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus {
+    background-color: #FF0000;
+    font-family: "Helvetica", Times, serif;
+}
+
+.nav-pills > li.active > a:hover {
+    background-color: #FF0000;
+}
+
+.nav-pills > li > a {
+    font-family: "Helvetica", Times, serif;
+    background-color: #F6EFEF;
+}
+
+.nav-pills > li > a:hover {
+    color: black;
+    background-color: #C0C0C0;
+}
+
+.selectedfilter {
+    border: none;
+    box-shadow: none;
+    display: inline-block;
+}
+
+.statusbtn {
+    width: 100px;
+}
+
+#modalText {
+    text-align: center;
+}

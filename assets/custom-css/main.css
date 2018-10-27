@@ -1,0 +1,20 @@
+html,
+body {
+    background-color: #D3D3D3;
+}
+
+.navbar {
+    background-color: red;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.container {
+    background-color: white;
+    position: relative;
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>SwinHive | Administration</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="SwinHive | Swinburne's video-sharing platform" />
+    <meta name="keywords" content="videos, Swinburne" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="../assets/custom-css/admin.css" />
+    <link rel="stylesheet" href="../assets/custom-css/main.css" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">SwinHive</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container containers">
+        <div class="row firstrow">
+            <div class="col-md-12">
+                <ul class="nav nav-pills nav-justified">
+                    <li class="active"><a data-toggle="tab" href="#users">USERS</a></li>
+                    <li><a data-toggle="tab" href="#videos">VIDEOS</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="users" class="tab-pane fade in active">
+                        <div class="row firstrow">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="inner-addon right-addon">
+                                    <input type="text" class="form-control" id="user_search" onkeyup="searchUser()" placeholder="Search User" />
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 filterBox">
+                                Filter by
+                                <select class="filter_user" id="filter_user" onchange="showUserList(this.value)">
+                                    <option selected value="default">None</option>
+                                    <option value="user_type">User Type</option>
+                                    <option value="course">Course</option>
+                                    <option value="status">Status</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 col-sm-6 sortBox">
+                                Sort by
+                                <select class="sort_user" id="sort_user" onchange="sortUser(this.value)">
+                                    <option selected value="0">Username</option>
+                                    <option value="1">Initials/ID</option>
+                                    <option value="2">Type</option>
+                                    <option value="3">Course</option>
+                                    <option value="4">Joined Date</option>
+                                    <option value="5">Status</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="usertypefilter" class="form-control selectedfilter" style="display:none">
+                                    <input type="radio" name="usertype" value="Student" onclick="filterUserType(this.value)">Student &nbsp;
+                                    <input type="radio" name="usertype" value="Staff" onclick="filterUserType(this.value)">Staff
+                                </form>
+                                <form id="coursefilter" class="form-control selectedfilter" style="display:none">
+                                    <input type="radio" name="usercourse" value="Bachelor of Business" onclick="filterUserCourse(this.value)">Business &nbsp;
+                                    <input type="radio" name="usercourse" value="Bachelor of Design" onclick="filterUserCourse(this.value)">Design &nbsp;
+                                    <input type="radio" name="usercourse" value="Bachelor of Engineering" onclick="filterUserCourse(this.value)">Engineering &nbsp;
+                                    <input type="radio" name="usercourse" value="Bachelor of Science" onclick="filterUserCourse(this.value)">Science &nbsp;
+                                    <input type="radio" name="usercourse" value="Bachelor of Information and Communication Technology" onclick="filterUserCourse(this.value)">ICT &nbsp;
+                                    <input type="radio" name="usercourse" value="Bachelor of Computer Science" onclick="filterUserCourse(this.value)">Computer Science &nbsp;
+                                    <input type="radio" name="usercourse" value="Master of Arts" onclick="filterUserCourse(this.value)">Master of Arts &nbsp;
+                                    <input type="radio" name="usercourse" value="Master of Business" onclick="filterUserCourse(this.value)">Master of Business &nbsp; <br />
+                                    <input type="radio" name="usercourse" value="Master of Business Administration" onclick="filterUserCourse(this.value)">Master of Business Administration &nbsp;
+                                    <input type="radio" name="usercourse" value="Master of Construction Management" onclick="filterUserCourse(this.value)">Master of Construction Management &nbsp;
+                                    <input type="radio" name="usercourse" value="Master of Engineering" onclick="filterUserCourse(this.value)">Master of Engineering &nbsp;
+                                    <input type="radio" name="usercourse" value="Master of Science" onclick="filterUserCourse(this.value)">Master of Science &nbsp;
+                                    <input type="radio" name="usercourse" value="Doctor of Philosophy" onclick="filterUserCourse(this.value)">PhD &nbsp;
+                                </form>
+                                <form id="statusfilter" class="form-control selectedfilter" style="display:none">
+                                    <input type="radio" name="userstatus" value="Active" onclick="filterVidStatus(this.value)">Active &nbsp;
+                                    <input type="radio" name="userstatus" value="Inactive" onclick="filterVidStatus(this.value)">Inactive
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row tableRow">
+                            <div class="col-md-12">
+                                <table id="userTable" class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Initials/ID</th>
+                                            <th>Type</th>
+                                            <th>Course</th>
+                                            <th>Joined Date</th>
+                                            <th class="vidStatus">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="userTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="videos" class="tab-pane fade">
+                        <div class="row firstrow">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="inner-addon right-addon">
+                                    <input type="text" class="form-control" id="video_search" onkeyup="searchVideo()" placeholder="Search Video" />
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 filterBox">
+                                Filter by
+                                <select class="filter_video" id="filter_video" onchange="showVideoList(this.value)">
+                                    <option selected value="default">None</option>
+                                    <option value="category">Category</option>
+                                    <option value="status">Status</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 col-sm-6 sortBox">
+                                Sort by
+                                <select class="sort_video" id="sort_video" onchange="sortVideo(this.value)">
+                                    <option selected value="0">Video Name</option>
+                                    <option value="1">Video Category</option>
+                                    <option value="2">Uploader Email</option>
+                                    <option value="3">Status</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="categoryfilter" class="form-control selectedfilter" style="display:none">
+                                    <input type="radio" name="vidcategory" value="Business" onclick="filterVidCat(this.value)">Business &nbsp;
+                                    <input type="radio" name="vidcategory" value="Design" onclick="filterVidCat(this.value)">Design &nbsp;
+                                    <input type="radio" name="vidcategory" value="Engineering" onclick="filterVidCat(this.value)">Engineering &nbsp;
+                                    <input type="radio" name="vidcategory" value="Science" onclick="filterVidCat(this.value)">Science &nbsp;
+                                    <input type="radio" name="vidcategory" value="Computing" onclick="filterVidCat(this.value)">Computing &nbsp;
+                                    <input type="radio" name="vidcategory" value="English" onclick="filterVidCat(this.value)">English &nbsp;
+                                    <input type="radio" name="vidcategory" value="Postgraduate (Coursework)" onclick="filterVidCat(this.value)">Postgrad (Coursework) &nbsp;
+                                    <input type="radio" name="vidcategory" value="Postgraduate (Research)" onclick="filterVidCat(this.value)">Postgrad (Research) &nbsp;
+                                    <input type="radio" name="vidcategory" value="Short Courses" onclick="filterVidCat(this.value)">Short Courses <br />
+                                    <input type="radio" name="vidcategory" value="Others" onclick="filterVidCat(this.value)">Others &nbsp;
+                                    <input type="radio" name="vidcategory" value="Events" onclick="filterVidCat(this.value)">Event
+                                </form>
+                                <form id="statusvidfilter" class="form-control selectedfilter" style="display:none">
+                                    <input type="radio" name="vidstatus" value="Active" onclick="filterVidStatus(this.value)">Active &nbsp;
+                                    <input type="radio" name="vidstatus" value="Inactive" onclick="filterVidStatus(this.value)">Inactive
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row tableRow">
+                            <div class="col-md-12">
+                                <table id="videoTable" class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Video Name</th>
+                                            <th>Video Category</th>
+                                            <th>Uploader Email</th>
+                                            <th class="vidStatus">Status</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="deleteModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">Delete User</h2>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body text-center" style="padding:20px 30px; ">
+                                <div id="modalContent"></div>
+                                <button type="button" id="modaldeleteBtn" class="btn btn-default btn-danger btn-block" onclick="deleteUser(this.id);" style="margin-top: 20px;">CONFIRM</button>
+                            </div>
+                            <div class="modal-footer" style="padding:20px 30px;">
+                                <button type="submit" class="btn btn-default btn-default btn-block" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-auth.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-messaging.js"></script>
+    <script src="functions/js/administration.js"></script>
+
+</body>

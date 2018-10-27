@@ -58,7 +58,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.publicVideos = [];
         querySnapshot.forEach(function (doc) {
-            if (doc.data().video_visibility === "Public" && doc.data().editing === false) {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false) {
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
@@ -122,7 +122,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
         $scope.business = [];
         querySnapshot.forEach(function (doc) {
 
-            if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Business") {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Business") {
 
                 console.log(doc.data());
                 var videoJson = {
@@ -174,7 +174,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.design = [];
         querySnapshot.forEach(function (doc) {
-            if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Design") {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Design") {
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
@@ -231,7 +231,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.engineering = [];
         querySnapshot.forEach(function (doc) {
-            if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Engineering") {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Engineering") {
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
@@ -283,7 +283,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.science = [];
         querySnapshot.forEach(function (doc) {
-            if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Science") {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Science") {
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
@@ -334,7 +334,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.computing = [];
         querySnapshot.forEach(function (doc) {
-            if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Computing") {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Computing") {
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
@@ -385,7 +385,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.englishLanguage = [];
         querySnapshot.forEach(function (doc) {
-            if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "English Language") {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "English Language") {
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
@@ -436,7 +436,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.postgraduateCoursework = [];
         querySnapshot.forEach(function (doc) {
-            if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Postgraduate (Coursework)") {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Postgraduate (Coursework)") {
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
@@ -487,7 +487,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.postgraduateResearch = [];
         querySnapshot.forEach(function (doc) {
-            if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Postgraduate (Research)") {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Postgraduate (Research)") {
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
@@ -540,7 +540,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.shortCourses = [];
         querySnapshot.forEach(function (doc) {
-            if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Short Courses") {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Short Courses") {
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
@@ -591,7 +591,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     db.collection("Videos").onSnapshot(function (querySnapshot) {
         $scope.others = [];
         querySnapshot.forEach(function (doc) {
-            if (doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Others") {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Others") {
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),

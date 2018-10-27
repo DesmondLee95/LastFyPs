@@ -291,7 +291,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
             db.collection("Videos").onSnapshot(function (querySnapshot) {
                 $scope.rcmVids = [];
                 querySnapshot.forEach(function (doc) {
-                    if (doc.data().video_visibility === "Public" && doc.data().editing === false && (doc.data().video_category === vidCategory)) {
+                    if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && (doc.data().video_category === vidCategory)) {
                         if (doc.id !== getVidId) {
                             var videoJson = {
                                 id: doc.id,
