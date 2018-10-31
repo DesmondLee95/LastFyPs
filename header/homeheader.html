@@ -1,6 +1,8 @@
+<link rel="stylesheet" href="../assets/custom-css/header.css" />
+
 <nav class="navbar navbar-expand-lg navbar-light bg-danger">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#!Home" style="color: white;">SwinHive</a>
+        <a class="navbar-brand" href="#!Home" style="color: white; padding-left: 5px">SwinHive</a>
 
 
 
@@ -20,10 +22,11 @@
             </select>
 -->
             <div class="form-group">
-                <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search" style="width: 415px; margin-left: 5px; margin-right: 5px;" data-ng-model="name">
+                <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search" style="width: 375px; margin-left: 5px; margin-right: 5px;" data-ng-model="name">
             </div>
         </form>
         <div class="text-right">    
+            <a href="#!Admin" id="logo" style="color:White" data-ng-show="loggedIn != null">Admin</a>
             <a href="#!Upload" id="logo" title="Upload video" style="color:White" data-ng-show="loggedIn != null"><i class="fa fa-video"></i></a>
             <a href="#!Home" id="logo" style="color:White" data-ng-show="loggedIn != null" ng-click="signout()">Sign Out</a>
             <a href="#!login" id="logo" style="color:White" data-ng-show="loggedIn == null">Sign In</a>

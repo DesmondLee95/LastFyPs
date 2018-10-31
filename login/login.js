@@ -20,35 +20,39 @@ app.factory("Auth", ["$firebaseAuth",
 
 app.controller('loginCtrl', ['$scope', 'Auth', '$location', 'toaster', function ($scope, Auth, $location, toaster) {
     'use strict'
-    
+
     Auth.$onAuthStateChanged(function (user) {
         //Check if user is verified before allowing login
         if (user) {
-            if(user.emailVerified) {
+            if (user.emailVerified) {
                 // User is signed in.
                 $scope.loggedIn = user.uid;
-//                $location.path("/Home");
+                //                $location.path("/Home");
             } else {
                 //User not signed in.
-                toaster.pop({type: 'danger', title: "Verification Required", body: "Please verify your email"});
+                toaster.pop({
+                    type: 'danger',
+                    title: "Verification Required",
+                    body: "Please verify your email"
+                });
                 return;
             }
-            
+
         } else if (!user) {
             $scope.loggedIn = null;
         }
-        
+
         $scope.$apply();
-                
+
     });
-    
-    $scope.$watch("loggedIn", function(event) {
-        if($scope.loggedIn == null) {
-            console.log("NULL: " + event); 
+
+    $scope.$watch("loggedIn", function (event) {
+        if ($scope.loggedIn == null) {
+            console.log("NULL: " + event);
         } else {
-            console.log("Value: " + event); 
+            console.log("Value: " + event);
         }
-       
+
     });
 
     // Function for loggin in
@@ -56,16 +60,21 @@ app.controller('loginCtrl', ['$scope', 'Auth', '$location', 'toaster', function 
 
         Auth.$signInWithEmailAndPassword(loginEmail, loginPassword)
             .then(function (user) {
-            
-            $scope.loggedInUserEmail = user.email;
-            $scope.loggedIn = user.uid;
-            $location.path("/Home");
-            
 
+                $scope.loggedInUserEmail = user.email;
+                $scope.loggedIn = user.uid;
+                $location.path("/Home");
+            })
+            .catch(function (error) {
+                if (error.message === "The user account has been disabled by an administrator.") {
+                    alert("This account has been disabled by the administrator!");
+                } else {
+                    console.log(error.message);
+                }
             })
     }
-    
-      // signout
+
+    // signout
     $scope.signout = function () {
         firebase.auth().signOut();
         $location.path("/Home");

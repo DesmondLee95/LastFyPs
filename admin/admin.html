@@ -1,5 +1,6 @@
 <title>SwinHive | Administration</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 
 <link rel="stylesheet" href="../assets/custom-css/admin.css" />
 
@@ -23,7 +24,7 @@
             </ul>
 
             <div class="tab-content">
-                <div id="users" class="tab-pane fade in active">
+                <div id="users" class="tab-pane active">
                     <div class="row firstrow">
                         <div class="col-md-6 col-sm-12">
                             <div class="inner-addon right-addon">
@@ -47,7 +48,7 @@
                                 <option value="1">Initials/ID</option>
                                 <option value="2">Type</option>
                                 <option value="3">Course</option>
-                                <option value="4">Joined Date</option>
+                                <option value="4">Date</option>
                                 <option value="5">Status</option>
                             </select>
                         </div>
@@ -67,9 +68,9 @@
                                 <input type="radio" name="usercourse" value="Bachelor of Information and Communication Technology" data-ng-click="filterUserCourse($event.target.value)">ICT &nbsp;
                                 <input type="radio" name="usercourse" value="Bachelor of Computer Science" data-ng-click="filterUserCourse($event.target.value)">Computer Science &nbsp;
                                 <input type="radio" name="usercourse" value="Master of Arts" data-ng-click="filterUserCourse($event.target.value)">Master of Arts &nbsp;
-                                <input type="radio" name="usercourse" value="Master of Business" data-ng-click="filterUserCourse($event.target.value)">Master of Business &nbsp; <br />
-                                <input type="radio" name="usercourse" value="Master of Business Administration" data-ng-click="filterUserCourse($event.target.value)">Master of Business Administration &nbsp;
-                                <input type="radio" name="usercourse" value="Master of Construction Management" data-ng-click="filterUserCourse($event.target.value)">Master of Construction Management &nbsp;
+                                <input type="radio" name="usercourse" value="Master of Business" data-ng-click="filterUserCourse($event.target.value)">Master of Business &nbsp;
+                                <input type="radio" name="usercourse" value="Master of Business Administration" data-ng-click="filterUserCourse($event.target.value)">Master of Business Administration &nbsp; <br/>
+                                <input type="radio" name="usercourse" value="Master of Construction Management" data-ng-click="filterUserCourse($event.target.value)">Master of Construction Management &nbsp; 
                                 <input type="radio" name="usercourse" value="Master of Engineering" data-ng-click="filterUserCourse($event.target.value)">Master of Engineering &nbsp;
                                 <input type="radio" name="usercourse" value="Master of Science" data-ng-click="filterUserCourse($event.target.value)">Master of Science &nbsp;
                                 <input type="radio" name="usercourse" value="Doctor of Philosophy" data-ng-click="filterUserCourse($event.target.value)">PhD &nbsp;
@@ -119,9 +120,9 @@
                         <div class="col-md-3 col-sm-6 col-6 sortBox">
                             Sort:
                             <select class="sort_video" id="sort_video" data-ng-model="sort_video" data-ng-init="sort_video='0'" data-ng-change="sortVideo(sort_video)">
-                                <option value="0">Video Name</option>
-                                <option value="1">Video Category</option>
-                                <option value="2">Uploader Email</option>
+                                <option value="0">Name</option>
+                                <option value="1">Category</option>
+                                <option value="2">Uploader</option>
                                 <option value="3">Status</option>
                             </select>
                         </div>
@@ -138,7 +139,7 @@
                                 <input type="radio" name="vidcategory" value="English" data-ng-click="filterVidCat($event.target.value)">English &nbsp;
                                 <input type="radio" name="vidcategory" value="Postgraduate (Coursework)" data-ng-click="filterVidCat($event.target.value)">Postgrad (Coursework) &nbsp;
                                 <input type="radio" name="vidcategory" value="Postgraduate (Research)" data-ng-click="filterVidCat($event.target.value)">Postgrad (Research) &nbsp;
-                                <input type="radio" name="vidcategory" value="Short Courses" data-ng-click="filterVidCat($event.target.value)">Short Courses <br />
+                                <input type="radio" name="vidcategory" value="Short Courses" data-ng-click="filterVidCat($event.target.value)">Short Courses
                                 <input type="radio" name="vidcategory" value="Others" data-ng-click="filterVidCat($event.target.value)">Others &nbsp;
                                 <input type="radio" name="vidcategory" value="Events" data-ng-click="filterVidCat($event.target.value)">Events
                             </form>

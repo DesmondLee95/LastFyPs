@@ -1,0 +1,23 @@
+@media (min-width: 320px) and (max-width: 419px) {
+    .form-group input{
+        width:310px !important;
+    }
+}
+
+@media (min-width: 420px) and (max-width: 519px) {
+    .form-group input{
+        width:370px !important;
+    }
+}
+
+@media (min-width: 520px) and (max-width: 535px) {
+    .form-group input{
+        width: 470px !important;
+    }
+}
+
+@media (min-width: 536px){
+    .form-group input{
+        width: 415px !important;
+    }
+}
