@@ -240,7 +240,7 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
                                                     //Clear form when video is successfully updated
                                                     console.log("Document successfully written!");
 
-                                                    alert("Upload is successfully!");
+                                                    alert("Upload is successful!");
 
                                                     var uploadCount = doc.data().video_upload + 1;
 
