@@ -754,8 +754,3 @@ app.filter('range', function () {
         return input;
     };
 });
-<<<<<<< HEAD
-=======
-
-
->>>>>>> b438871070bcbe200f27fcf6e56d24b1e7e816a3
