@@ -1,11 +1,17 @@
+body {
+    background-color: #D3D3D3;
+}
+
 .row.firstrow {
     padding-top: 20px;
 }
 
 .containers {
+    background-color: white;
     border-radius: 5px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 25px;
+    padding-right: 25px;
+    width: 65%;
 }
 
 /* enable absolute positioning */
@@ -86,7 +92,7 @@
     border-radius: 4px;
     border-color: lightgray;
     box-shadow: 0.1px 0.1px gray inset;
-    width: 65%;
+    width: 80%;
 }
 
 .sort_video {
@@ -95,27 +101,29 @@
     border-radius: 4px;
     border-color: lightgray;
     box-shadow: 0.1px 0.1px gray inset;
-    width: 65%;
+    width: 80%;
 }
 
-.nav-pills > li.active > a,
+/*.nav-pills > li.active > a,
 .nav-pills > li.active > a:focus {
     background-color: #FF0000;
     font-family: "Helvetica", Times, serif;
-}
+}*/
 
-.nav-pills > li.active > a:hover {
+/*.nav-pills > li.active > a:hover {
     background-color: #FF0000;
-}
+}*/
 
 .nav-pills > li > a {
     font-family: "Helvetica", Times, serif;
     background-color: #F6EFEF;
+    border-color: #F6EFEF;
 }
 
 .nav-pills > li > a:hover {
     color: black;
     background-color: #C0C0C0;
+    border-color: #C0C0C0;
 }
 
 .selectedfilter {
@@ -130,4 +138,201 @@
 
 #modalText {
     text-align: center;
+}
+
+@media (max-width: 1612px) {
+
+    .filter_user {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 73%;
+    }
+
+    .sort_user {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 76%;
+    }
+
+    .filter_video {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 73%;
+    }
+
+    .sort_video {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 76%;
+    }
+}
+
+@media (max-width: 1406px) {
+    .containers {
+        background-color: white;
+        border-radius: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 80%;
+    }
+}
+
+@media (max-width: 997px) {
+    .containers {
+        background-color: white;
+        border-radius: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 90%;
+    }
+
+    .filter_user {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 70%;
+    }
+
+    .sort_user {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 70%;
+    }
+
+    .filter_video {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 70%;
+    }
+
+    .sort_video {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 70%;
+    }
+}
+
+@media (max-width: 881px) {
+    .containers {
+        background-color: white;
+        border-radius: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 98%;
+    }
+}
+
+@media (max-width: 808px) {
+    .containers {
+        background-color: white;
+        border-radius: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 100%;
+    }
+    
+    .tableRow {
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .filter_user {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 80%;
+    }
+
+    .sort_user {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 80%;
+    }
+
+    .filter_video {
+        margin: 9px 3px 3px 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 80%;
+    }
+
+    .sort_video {
+        margin: 9px 3px 3px 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 80%;
+    }
+}
+
+@media (max-width: 525px) {
+
+    .filter_user {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 70%;
+    }
+
+    .sort_user {
+        margin: 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 70%;
+    }
+
+    .filter_video {
+        margin: 9px 3px 3px 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 70%;
+    }
+
+    .sort_video {
+        margin: 9px 3px 3px 3px;
+        padding: 3px;
+        border-radius: 4px;
+        border-color: lightgray;
+        box-shadow: 0.1px 0.1px gray inset;
+        width: 70%;
+    }
 }

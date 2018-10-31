@@ -3,7 +3,7 @@
 /*global angular */
 // DEFINING ANGULAR MODULE ngCookies
 /*jshint sub:true*/
-var app = angular.module('swinApp', ['ngRoute', 'home', 'login', 'userpage', 'editProfile', 'changePassword', 'registration', 'upload', 'manageVideos', 'video', 'resetPassword', 'firebase', 'toaster', 'ngAvatar']);
+var app = angular.module('swinApp', ['ngRoute', 'home', 'login', 'userpage', 'editProfile', 'changePassword', 'registration', 'upload', 'manageVideos', 'video', 'resetPassword', 'admin','firebase', 'toaster', 'ngAvatar']);
 var config = {
     apiKey: "AIzaSyBM0e_dkZOgrC5v5kk1t1loGAj1GiFntyA",
     authDomain: "educational-video-learning-app.firebaseapp.com",

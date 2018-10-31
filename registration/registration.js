@@ -50,7 +50,7 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
             alert("Password does not match.");
             return false;
         } else if (upass.length < 6 || hasUpperCase + hasLowerCase + hasNumbers + hasNonalphas < 3) {
-            
+
             alert("Password is too weak, please include a mix of upper and lowercase letters, numbers and no symbols.");
             return false;
         } else {
@@ -69,7 +69,7 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                                     Email: umail,
                                     Course: "",
                                     video_upload: 0,
-                                userType: "Student"
+                                    userType: "Student"
                                 })
                                 .then(function () {
                                     console.log("Document successfully written!");

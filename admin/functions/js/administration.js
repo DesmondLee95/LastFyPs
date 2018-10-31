@@ -51,10 +51,9 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var response = JSON.parse(this.response);
-                console.log(response);
 
                 for (i = 0; i < response.length; i += 1) {
-                    userStatus.push(response[i].disabled);
+                    userStatus[response[i].email] = response[i].disabled;
                     userEmails.push(response[i].email);
 
                     userDate = new Date(response[i].metadata.creationTime);
@@ -112,13 +111,13 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                         ButtonDelete.className = "delete_btn";
                         ButtonDeleteImage.className = "fa fa-trash";
 
-                        if (userStatus[i] === false) {
+                        if (userStatus[validUsers[i]] == false) {
                             ButtonDisable.className = "btn btn-success btn-block statusbtn";
-                            ButtonDisable.setAttribute("onclick", "disableUser(this.id);");
+                            ButtonDisable.setAttribute("data-ng-click", "disableUser($event.target.id);");
                             ButtonDisableText = document.createTextNode("Active");
                         } else {
                             ButtonDisable.className = "btn btn-danger btn-block statusbtn";
-                            ButtonDisable.setAttribute("onclick", "enableUser(this.id);");
+                            ButtonDisable.setAttribute("data-ng-click", "enableUser($event.target.id);");
                             ButtonDisableText = document.createTextNode("Inactive");
                         }
 
@@ -127,12 +126,14 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                         ButtonDisable.setAttribute("type", "button");
                         ButtonDisable.setAttribute("id", doc.id);
                         ButtonDelete.setAttribute("type", "button");
-                        ButtonDelete.setAttribute("onclick", "clickModal(this.id);");
+                        ButtonDelete.setAttribute("data-ng-click", "clickModal($event.target.id);");
                         ButtonDelete.setAttribute("data-toggle", "modal");
                         ButtonDelete.setAttribute("data-target", "#deleteModal");
                         ButtonDelete.setAttribute("data-id", doc.id);
                         ButtonDeleteImage.setAttribute("aria-hidden", "true");
 
+                        $compile(ButtonDelete)($scope);
+                        $compile(ButtonDisable)($scope);
                         ButtonDisable.appendChild(ButtonDisableText);
                         ButtonDelete.appendChild(ButtonDeleteImage);
 
@@ -144,7 +145,8 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
                         tBodyStatus.appendChild(ButtonDisable);
                         tBodyTrash.appendChild(ButtonDelete);
-                        console.log(tableID);
+
+                        $scope.sortUser(0);
                     }
                 });
             }
@@ -152,7 +154,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     }
 
     //Clear previous User table list when a user is deleted.
-    function refreshTableRow() {
+    $scope.refreshTableRow = function () {
 
         var nodeBody = document.getElementById('userTableBody');
         while (nodeBody.hasChildNodes()) {
@@ -163,7 +165,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     }
 
     //Disable user function
-    function disableUser(email) {
+    $scope.disableUser = function (email) {
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -177,13 +179,13 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                                 if (xhr.readyState === 4 && xhr.status === 200) {
                                     var response = this.responseText;
                                     console.log(response);
-                                    changeBtnAttr(email);
+                                    $scope.changeBtnAttr(email);
                                 }
                             };
                             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                             xhr.send(params);
                         } else {
-                            alert("Only Admin accounts can enable users!");
+                            alert("Only Admin accounts can disable users!");
                         }
                     }
                 });
@@ -194,7 +196,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     }
 
     //Enable user function
-    function enableUser(email) {
+    $scope.enableUser = function (email) {
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -208,7 +210,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                                 if (xhr.readyState === 4 && xhr.status === 200) {
                                     var response = this.responseText;
                                     console.log(response);
-                                    changeBtnAttr(email);
+                                    $scope.changeBtnAttr(email);
                                 }
                             };
                             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -225,7 +227,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     }
 
     //Delete user function
-    function deleteUser(email) {
+    $scope.deleteUser = function (email) {
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -240,7 +242,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                                     var response = this.responseText;
                                     console.log(response);
 
-                                    refreshTableRow();
+                                    $scope.refreshTableRow();
 
                                     if (response === "User with id " + email + " deleted") {
                                         db.collection("Users").doc(email).delete().then(function () {
@@ -258,7 +260,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                                             });
                                         });
                                     }
-                                    deleteUserStorage(email);
+                                    $scope.deleteUserStorage(email);
                                     $('#deleteModal').modal('hide');
                                 }
                             };
@@ -276,19 +278,20 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     }
 
     //Change button look when pressed for Users
-    function changeBtnAttr(id) {
+    $scope.changeBtnAttr = function (id) {
 
         var selectedBtn = document.getElementById(id);
 
         if (selectedBtn.innerHTML === "Active") {
             selectedBtn.className = "btn btn-danger btn-block statusbtn";
-            selectedBtn.setAttribute("onclick", "enableUser(this.id);");
+            selectedBtn.setAttribute("data-ng-click", "enableUser($event.target.id);");
             selectedBtn.innerHTML = "Inactive";
         } else {
             selectedBtn.className = "btn btn-success btn-block statusbtn";
-            selectedBtn.setAttribute("onclick", "disableUser(this.id);");
+            selectedBtn.setAttribute("data-ng-click", "disableUser($event.target.id);");
             selectedBtn.innerHTML = "Active";
         }
+        $compile(selectedBtn)($scope);
     }
 
     //Display all uploaded video in a list
@@ -310,31 +313,36 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                 tBodyVidName.setAttribute("width", "40%");
                 tBodyVidCategory.setAttribute("width", "25%");
                 tBodyVidUploader.setAttribute("width", "35%");
+
                 tBodyVidStatus.className = "vidStatus";
+
                 if (doc.data().block_status === false) {
                     BtnDisable.className = "btn btn-success btn-block statusbtn";
                     BtnDisable.setAttribute("id", doc.id);
-                    BtnDisable.setAttribute("onclick", "changeVidStatus(this.id);");
+                    BtnDisable.setAttribute("data-ng-click", "changeVidStatus($event.target.id);");
                     BtnDisableText = document.createTextNode("Active");
                 } else {
                     BtnDisable.className = "btn btn-danger btn-block statusbtn";
                     BtnDisable.setAttribute("id", doc.id);
-                    BtnDisable.setAttribute("onclick", "changeVidStatus(this.id);");
+                    BtnDisable.setAttribute("data-ng-click", "changeVidStatus($event.target.id);");
                     BtnDisableText = document.createTextNode("Inactive");
                 }
 
+                $compile(BtnDisable)($scope);
                 BtnDisable.appendChild(BtnDisableText);
                 tBodyVidStatus.appendChild(BtnDisable);
 
                 tBodyVidCategory.innerHTML = doc.data().video_category;
                 tBodyVidName.innerHTML = doc.data().video_name;
                 tBodyVidUploader.innerHTML = doc.data().video_uploader_Email;
+                console.log(vidtableID);
+                $scope.sortVideo(0);
             });
         });
     }
 
     //User Search function
-    function searchUser() {
+    $scope.searchUser = function () {
 
         var input = document.getElementById("user_search"),
             table = document.getElementById("userTable"),
@@ -352,10 +360,10 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                 }
             }
         }
-    }
+    };
 
     //Video Search function
-    function searchVideo() {
+    $scope.searchVideo = function () {
 
         var input = document.getElementById("video_search"),
             table = document.getElementById("videoTable"),
@@ -373,9 +381,9 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                 }
             }
         }
-    }
+    };
 
-    function deleteUserStorage(email) {
+    $scope.deleteUserStorage = function (email) {
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -403,7 +411,9 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     }
 
     //Block or unblock video
-    function changeVidStatus(id) {
+    $scope.changeVidStatus = function (id) {
+
+        var selectedBtn = document.getElementById(id);
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -413,24 +423,31 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                             var vidRef = db.collection("Videos").doc(id);
 
                             vidRef.get().then(function (doc) {
+                                console.log(doc.data().block_status);
                                 if (doc.data().block_status === true) {
                                     return vidRef.update({
                                             block_status: false
                                         })
                                         .then(function () {
                                             console.log("Video has been unblocked");
-                                            changeBtnAttrVid(id);
+                                            selectedBtn.className = "btn btn-success btn-block statusbtn";
+                                            selectedBtn.setAttribute("data-ng-click", "changeVidStatus($event.target.id);");
+                                            selectedBtn.innerHTML = "Active";
+                                            $compile(selectedBtn)($scope);
                                         })
                                         .catch(function (error) {
                                             console.error("Error updating document: ", error);
                                         });
-                                } else {
+                                } else if (doc.data().block_status === false) {
                                     return vidRef.update({
                                             block_status: true
                                         })
                                         .then(function () {
                                             console.log("Video has been blocked");
-                                            changeBtnAttrVid(id);
+                                            selectedBtn.className = "btn btn-danger btn-block statusbtn";
+                                            selectedBtn.setAttribute("data-ng-click", "changeVidStatus($event.target.id);");
+                                            selectedBtn.innerHTML = "Inactive";
+                                            $compile(selectedBtn)($scope);
                                         })
                                         .catch(function (error) {
                                             console.error("Error updating document: ", error);
@@ -438,7 +455,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                                 }
                             });
                         } else {
-                            alert("Only Admin accounts can enable/disable users!");
+                            alert("Only Admin accounts can enable/disable videos!");
                         }
                     }
                 });
@@ -447,24 +464,9 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
             }
         });
     }
-
-    //Change button look when pressed for Videos
-    function changeBtnAttrVid(id) {
-        var selectedBtn = document.getElementById(id);
-
-        if (selectedBtn.innerHTML === "Active") {
-            selectedBtn.className = "btn btn-danger btn-block statusbtn";
-            selectedBtn.setAttribute("onclick", "changeVidStatus(this.id);");
-            selectedBtn.innerHTML = "Inactive";
-        } else {
-            selectedBtn.className = "btn btn-success btn-block statusbtn";
-            selectedBtn.setAttribute("onclick", "changeVidStatus(this.id);");
-            selectedBtn.innerHTML = "Active";
-        }
-    }
-
+    
     //Sort user list
-    function sortUser(selected) {
+    $scope.sortUser = function (selected) {
         var table, rows, switching, i, x, y, shouldSwitch;
         table = document.getElementById("userTable");
         switching = true;
@@ -496,7 +498,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     }
 
     //Sort video list
-    function sortVideo(selected) {
+    $scope.sortVideo = function (selected) {
         var table, rows, switching, i, x, y, shouldSwitch;
         table = document.getElementById("videoTable");
         switching = true;
@@ -524,14 +526,14 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     }
 
     //Show radio buttons for filter based on dropdown selection
-    function showUserList(selected) {
+    $scope.showUserList = function (selected) {
         var i;
 
         if (selected === "user_type") {
             document.getElementById("usertypefilter").style.display = "";
             document.getElementById("coursefilter").style.display = "none";
             document.getElementById("statusfilter").style.display = "none";
-            filterUserType("");
+            $scope.filterUserType("");
             var rbType1 = document.getElementsByName("usertype");
             for (i = 0; i < rbType1.length; i += 1) {
                 rbType1[i].checked = false;
@@ -540,7 +542,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
             document.getElementById("coursefilter").style.display = "";
             document.getElementById("usertypefilter").style.display = "none";
             document.getElementById("statusfilter").style.display = "none";
-            filterUserCourse("");
+            $scope.filterUserCourse("");
             var rbCourse1 = document.getElementsByName("usercourse");
             for (i = 0; i < rbCourse1.length; i += 1) {
                 rbCourse1[i].checked = false;
@@ -549,7 +551,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
             document.getElementById("statusfilter").style.display = "";
             document.getElementById("coursefilter").style.display = "none";
             document.getElementById("usertypefilter").style.display = "none";
-            filterUserStatus("");
+            $scope.filterUserStatus("");
             var rbStatus1 = document.getElementsByName("userstatus");
             for (i = 0; i < rbStatus1.length; i += 1) {
                 rbStatus1[i].checked = false;
@@ -558,15 +560,15 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
             document.getElementById("usertypefilter").style.display = "none";
             document.getElementById("coursefilter").style.display = "none";
             document.getElementById("statusfilter").style.display = "none";
-            filterUserType("");
-            filterUserCourse("");
-            filterUserStatus("");
+            $scope.filterUserType("");
+            $scope.filterUserCourse("");
+            $scope.filterUserStatus("");
             var rbType2 = document.getElementsByName("usertype");
             for (i = 0; i < rbType2.length; i += 1) {
                 rbType2[i].checked = false;
             }
             var rbCourse2 = document.getElementsByName("usercourse");
-            for (i = 0; i < rbGroup2.length; i += 1) {
+            for (i = 0; i < rbCourse2.length; i += 1) {
                 rbCourse2[i].checked = false;
             }
             var rbStatus2 = document.getElementsByName("userstatus");
@@ -577,13 +579,13 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     }
 
     //Show radio buttons for filter based on dropdown selection
-    function showVideoList(selected) {
+    $scope.showVideoList = function (selected) {
         var i;
 
         if (selected === "category") {
             document.getElementById("categoryfilter").style.display = "";
             document.getElementById("statusvidfilter").style.display = "none";
-            filterVidCat("");
+            $scope.filterVidCat("");
             var rbCategory1 = document.getElementsByName("vidcategory");
             for (i = 0; i < rbCategory1.length; i += 1) {
                 rbCategory1[i].checked = false;
@@ -591,7 +593,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         } else if (selected === "status") {
             document.getElementById("statusvidfilter").style.display = "";
             document.getElementById("categoryfilter").style.display = "none";
-            filterVidStatus("");
+            $scope.filterVidStatus("");
             var rbVidStatus1 = document.getElementsByName("vidstatus");
             for (i = 0; i < rbVidStatus1.length; i += 1) {
                 rbVidStatus1[i].checked = false;
@@ -599,8 +601,8 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         } else if (selected === "default") {
             document.getElementById("statusvidfilter").style.display = "none";
             document.getElementById("categoryfilter").style.display = "none";
-            filterVidStatus("");
-            filterVidCat("");
+            $scope.filterVidStatus("");
+            $scope.filterVidCat("");
             var rbCategory2 = document.getElementsByName("vidcategory");
             for (i = 0; i < rbCategory2.length; i += 1) {
                 rbCategory2[i].checked = false;
@@ -612,7 +614,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         }
     }
 
-    function filterUserType(selected) {
+    $scope.filterUserType = function (selected) {
         'use strict';
         var input = selected,
             table = document.getElementById("userTable");
@@ -638,7 +640,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         }
     }
 
-    function filterUserCourse(selected) {
+    $scope.filterUserCourse = function (selected) {
         'use strict';
         var input = selected,
             table = document.getElementById("userTable");
@@ -664,7 +666,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         }
     }
 
-    function filterUserStatus(selected) {
+    $scope.filterUserStatus = function (selected) {
         'use strict';
         var input = selected,
             table = document.getElementById("userTable");
@@ -690,7 +692,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         }
     }
 
-    function filterVidCat(selected) {
+    $scope.filterVidCat = function (selected) {
         'use strict';
         var input = selected,
             table = document.getElementById("videoTable");
@@ -714,10 +716,10 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                 }
             }
         }
-        console.log(input);
     }
 
-    function filterVidStatus(selected) {
+    //Function to filter video based on status
+    $scope.filterVidStatus = function (selected) {
         'use strict';
         var input = selected,
             table = document.getElementById("videoTable");
@@ -741,10 +743,10 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                 }
             }
         }
-        console.log(input);
     }
 
-    function clickModal() {
+    //Function to open modal and show relevant information when deleting user.
+    $scope.clickModal = function () {
         $('#deleteModal').on('shown.bs.modal', function (event) {
             var button = $(event.relatedTarget), // Button that triggered the modal
                 selectedID = button.data('id'),
@@ -757,4 +759,4 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
             $(this).find('.modal-body .btn.btn-default.btn-danger.btn-block').attr("id", selectedID);
         });
     }
-}]);
+                    }]);
