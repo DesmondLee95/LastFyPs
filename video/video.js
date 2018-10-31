@@ -41,18 +41,6 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         return $sce.trustAsResourceUrl(src);
     };
 
-    /* var messaging = firebase.messaging();
-    messaging.requestPermission()
-    .then(function() {
-        return messaging.getToken();
-    })
-    .then(function(token) {
-        console.log(token);
-    })
-    .catch(function(err) {
-        console.log('Error Occured.');
-    }) */
-
     showRated();
     enableButton();
     getImageComment();

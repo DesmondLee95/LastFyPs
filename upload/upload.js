@@ -148,11 +148,11 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
             alert("Please fill in all details for your video file.");
         } else {
             //Validate video name length
-            if (video_name.length > 32) {
+            if (video_name.length > 64) {
                 alert("Video name is too long.");
                 return;
             } else {
-                if (video_tag.length > 32) {
+                if (video_tag.length > 48) {
                     alert("Tag is too long.");
                     return;
                 }
@@ -188,7 +188,7 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
                     }
                 },
                 function complete() {
-                    document.getElementById('uploadButton').disabled = false;
+                    document.getElementById('uploadButton').disabled = true;
                     // THUMBNAIL
                     uploadThumbnail.snapshot.ref.getDownloadURL().then(
                         function (downloadURL) {
@@ -240,7 +240,7 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
                                                     //Clear form when video is successfully updated
                                                     console.log("Document successfully written!");
 
-                                                    alert("Upload is successfully!");
+                                                    alert("Upload is successful!");
 
                                                     var uploadCount = doc.data().video_upload + 1;
 

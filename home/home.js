@@ -21,6 +21,36 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
         timestampsInSnapshots: true
     });
 
+    /*var messaging = firebase.messaging();
+
+    messaging.usePublicVapidKey('BEJMn5qymmZ8NSvmT65TGmOI3kBMXAOp--pphrLUz-Q-8PkGOxKT21IGj0JwT5b5eu2v6_fuFdRy5XzlQRBLUhc');
+
+    messaging.requestPermission()
+        .then(function () {
+            console.log('Notification permission granted.');
+            // TODO(developer): Retrieve an Instance ID token for use with FCM.
+            // ...
+        }).catch(function (err) {
+            console.log('Unable to get permission to notify.', err);
+        });
+
+    // Callback fired if Instance ID token is updated.
+    messaging.onTokenRefresh(function () {
+        messaging.getToken().then(function (refreshedToken) {
+            console.log('Token refreshed.');
+            // Indicate that the new Instance ID token has not yet been sent to the
+            // app server.
+            setTokenSentToServer(false);
+            // Send Instance ID token to app server.
+            sendTokenToServer(refreshedToken);
+            // ...
+        }).catch(function (err) {
+            console.log('Unable to retrieve refreshed token ', err);
+            showToken('Unable to retrieve refreshed token ', err);
+        });
+    });*/
+
+
     $scope.$watch("name", function (event) {
         console.log(event);
     });
@@ -41,6 +71,8 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     $scope.postgraduateResearch = [];
     $scope.shortCourses = [];
     $scope.others = [];
+    $scope.events = [];
+    
 
     // START
 
@@ -62,7 +94,8 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
                 $scope.publicVideos.push(videoJson);
             }
@@ -128,7 +161,8 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
 
                 $scope.business.push(videoJson);
@@ -178,12 +212,13 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
-                
+
                 $scope.design.push(videoJson);
-                
-                 $scope.design.sort($scope.orderByDate);
+
+                $scope.design.sort($scope.orderByDate);
             }
         });
 
@@ -235,11 +270,12 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
                 $scope.engineering.push(videoJson);
-                
-                 $scope.engineering.sort($scope.orderByDate);
+
+                $scope.engineering.sort($scope.orderByDate);
             }
         });
 
@@ -287,11 +323,12 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
                 $scope.science.push(videoJson);
-                
-                 $scope.science.sort($scope.orderByDate);
+
+                $scope.science.sort($scope.orderByDate);
             }
         });
 
@@ -338,11 +375,12 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
                 $scope.computing.push(videoJson);
-                
-                 $scope.computing.sort($scope.orderByDate);
+
+                $scope.computing.sort($scope.orderByDate);
             }
         });
 
@@ -389,11 +427,12 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
                 $scope.englishLanguage.push(videoJson);
-                
-                 $scope.englishLanguage.sort($scope.orderByDate);
+
+                $scope.englishLanguage.sort($scope.orderByDate);
             }
         });
 
@@ -440,10 +479,11 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
                 $scope.postgraduateCoursework.push(videoJson);
-                
+
                 $scope.postgraduateCoursework.sort($scope.orderByDate);
             }
         });
@@ -491,11 +531,12 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
                 $scope.postgraduateResearch.push(videoJson);
-                
-                 $scope.postgraduateResearch.sort($scope.orderByDate);
+
+                $scope.postgraduateResearch.sort($scope.orderByDate);
             }
         });
 
@@ -544,10 +585,11 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
                 $scope.shortCourses.push(videoJson);
-                
+
                 $scope.shortCourses.sort($scope.orderByDate);
             }
         });
@@ -595,11 +637,12 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
-                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm')
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
                 $scope.others.push(videoJson);
-                
-                 $scope.others.sort($scope.orderByDate);
+
+                $scope.others.sort($scope.orderByDate);
             }
 
         });
@@ -637,6 +680,58 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     }
 
 
+      // Getting Events Videos
+    db.collection("Videos").onSnapshot(function (querySnapshot) {
+        $scope.events = [];
+        querySnapshot.forEach(function (doc) {
+            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Events") {
+                var videoJson = {
+                    id: doc.id,
+                    data: doc.data(),
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
+                }
+                $scope.events.push(videoJson);
+                
+                $scope.events.sort($scope.orderByDate);
+            }
+        });
+
+        $scope.$apply();
+    });
+
+    $scope.currentEventsPage = 1;
+    $scope.numberofEventsPerPage = 4;
+    $scope.showMoreEventsClicked = false;
+    $scope.reverseSortEvents = true,
+    $scope.orderByFieldEvents = 'timestamp'
+    $scope.$watch("events.length", EventspaginationFunc);
+    $scope.$watch("currentEventsPage + numberofEventsPerPage", EventspaginationFunc);
+
+    $scope.showLessEvents = function (index) {
+        $scope.numberofEventsPerPage = index * 4;
+        console.log(index);
+        $scope.showMoreEventsClicked = false;
+    }
+
+    $scope.showMoreEvents = function (index) {
+        $scope.numberofEventsPerPage = index * 100;
+        console.log(index);
+        $scope.showMoreEventsClicked = true;
+    }
+
+    function EventspaginationFunc() {
+        var events = $scope.events.filter(function (item) {
+            return !item.filtered
+        });
+        $scope.Evnumbers = Math.ceil(events.length / $scope.numberofEventsPerPage);
+        if ($scope.currentEventsPage < 1) $scope.currentEventsPage = 1;
+        if ($scope.currentEventsPage > $scope.Evnumbers) $scope.currentEventsPage = $scope.Evnumbers;
+        var begin = (($scope.currentEventsPage - 1) * $scope.numberofEventsPerPage),
+            end = begin + $scope.numberofEventsPerPage;
+        $scope.filteredEventsVideos = events.slice(begin, end);
+    }
+
 
 
     // GETTING VIDEOS END ---------------------------------------------------------------------------------------------------
@@ -659,4 +754,8 @@ app.filter('range', function () {
         return input;
     };
 });
+<<<<<<< HEAD
+=======
 
+
+>>>>>>> b438871070bcbe200f27fcf6e56d24b1e7e816a3

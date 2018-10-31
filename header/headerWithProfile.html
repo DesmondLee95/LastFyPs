@@ -4,6 +4,7 @@
         
         <div class="text-right">
             <a href="#!login" id="logo" style="color:White" data-ng-if="loggedIn == undefined || loggedIn == null || loggedIn == ''">Sign In</a>
+            <a href="#!Home" id="logo" style="color:White" data-ng-show="loggedIn != null" ng-click="signout()">Sign Out</a>
             <a href="#!userpage" id="logo" style="color:White" data-ng-if="loggedIn != null">Profile</a>
         </div>
 

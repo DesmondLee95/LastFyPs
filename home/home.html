@@ -63,7 +63,7 @@
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                     <!-- ******************************** BUSINESS VIDEOS **************************************-->
                     <h2><strong>Business</strong></h2>
                     <div class="row">
-                        <div class="col-md-3 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredBusinessVideos | orderBy:orderByFieldBusiness:reverseSortBusiness">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredBusinessVideos | orderBy:orderByFieldBusiness:reverseSortBusiness">
                             <div class="card homeCards">
                                 <a href="#!Video">
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
@@ -96,7 +96,7 @@
                                                 </h6>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
 
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                     <h2><strong>Design</strong></h2>
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredDesignVideos | orderBy:orderByFieldDesign:reverseSortDesign">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredDesignVideos | orderBy:orderByFieldDesign:reverseSortDesign">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
@@ -130,7 +130,7 @@
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                     <h2><strong>Engineering</strong></h2>
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEngineeringVideos | orderBy:orderByFieldEng:reverseSortEng">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEngineeringVideos | orderBy:orderByFieldEng:reverseSortEng">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
@@ -163,7 +163,7 @@
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -183,7 +183,7 @@
                     <h2><strong>Science</strong></h2>
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredScienceVideos | orderBy:orderByFieldSci:reverseSortSci">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredScienceVideos | orderBy:orderByFieldSci:reverseSortSci">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
@@ -196,7 +196,7 @@
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -216,7 +216,7 @@
                     <h2><strong>Computing</strong></h2>
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredComputingVideos | orderBy:orderByFieldComp:reverseSortComp">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredComputingVideos | orderBy:orderByFieldComp:reverseSortComp">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
@@ -229,7 +229,7 @@
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -249,7 +249,7 @@
                     <h2><strong>English Language Videos</strong></h2>
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEnglishVideos | orderBy:orderByFieldEnglish:reverseSortEnglish">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEnglishVideos | orderBy:orderByFieldEnglish:reverseSortEnglish">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
@@ -262,7 +262,7 @@
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -283,7 +283,7 @@
                     <h2><strong>Postgraduate (Coursework)</strong></h2>
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredPgCourseVideos | orderBy:orderByFieldPC:reverseSortPC">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredPgCourseVideos | orderBy:orderByFieldPC:reverseSortPC">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
@@ -296,7 +296,7 @@
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -316,7 +316,7 @@
                     <h2><strong>Postgraduate (Research)</strong></h2>
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredPgResearchVideos | orderBy:orderByFieldPR:reverseSortPR">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredPgResearchVideos | orderBy:orderByFieldPR:reverseSortPR">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
@@ -329,7 +329,7 @@
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -349,7 +349,7 @@
                     <h2><strong>Short Courses</strong></h2>
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredSCVideos | orderBy:orderByFieldSVID:reverseSortSVID">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredSCVideos | orderBy:orderByFieldSVID:reverseSortSVID">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
@@ -362,7 +362,7 @@
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -382,7 +382,7 @@
                     <h2><strong>Others</strong></h2>
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredOthersVideos | orderBy:orderByFieldOthers:reverseSortOthers">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredOthersVideos | orderBy:orderByFieldOthers:reverseSortOthers">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
@@ -395,7 +395,7 @@
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -408,12 +408,45 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+
+                    <hr>
+
+                    <!-- ******************************** Events VIDEOS **************************************-->
+                    <h2><strong>Events</strong></h2>
+                    <div class="row">
+
+                        <div class="col-md-3 col-sm-6 col-6" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEventsVideos | orderBy:orderByFieldEvents:reverseSortEvents">
+                            <div class="card homeCards">
+                                <a href="#!Video">
+
+                                    <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
+                                </a>
+
+                                <div class="card-body">
+                                    <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                </h5>
+                                            </a></strong></h5>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="btn-group btn-group-sm" data-ng-show="showMoreEventsClicked == true">
+                                <button type="button" class="btn" ng-click="showLessEvents(1)">Show Less</button>
+                            </div>
+                            <div class="btn-group btn-group-sm" data-ng-hide="showMoreEventsClicked == true">
+                                <button type="button" class="btn" ng-click="showMoreEvents(1)">Show More</button>
+                            </div>
+                        </div>
+                    </div>
 
 
 
-
-
-
+>>>>>>> b438871070bcbe200f27fcf6e56d24b1e7e816a3
                 </div>
             </div>
         </div>
