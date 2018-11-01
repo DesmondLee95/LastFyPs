@@ -66,11 +66,15 @@ app.controller('loginCtrl', ['$scope', 'Auth', '$location', 'toaster', function 
                 $location.path("/Home");
             })
             .catch(function (error) {
-                if (error.message === "The user account has been disabled by an administrator.") {
-                    alert("This account has been disabled by the administrator!");
-                } else {
-                    console.log(error.message);
-                }
+                if(error.code === 'auth/invalid-email') {
+                alert("You've entered an invalid email.");
+            } else if(error.code === 'auth/user-disabled') {
+                alert("This account has been disabled by the administrator.");
+            } else if(error.code === 'auth/user-not-found') {
+                alert("This email does not exist.");
+            } else {
+                alert("You've entered the wrong password.");
+            }
             })
     }
 
