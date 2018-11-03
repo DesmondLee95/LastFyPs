@@ -79,8 +79,41 @@
                     </div>
                     <hr>
                 </div>
-
+                
                 <div data-ng-show="name == null || name == ''">
+                <!-- ******************************** Events VIDEOS **************************************-->
+                    <h2><strong>Events</strong></h2>
+                    <div class="row">
+
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEventsVideos | orderBy:orderByFieldEvents:reverseSortEvents">
+                            <div class="card homeCards">
+                                <a href="#!Video">
+
+                                    <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
+                                </a>
+
+                                <div class="card-body">
+                                    <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                </h5>
+                                            </a></strong></h5>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="btn-group btn-group-sm" data-ng-show="showMoreEventsClicked == true">
+                                <button type="button" class="btn" ng-click="showLessEvents(1)">Show Less</button>
+                            </div>
+                            <div class="btn-group btn-group-sm" data-ng-hide="showMoreEventsClicked == true">
+                                <button type="button" class="btn" ng-click="showMoreEvents(1)">Show More</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                
                     <!-- ******************************** BUSINESS VIDEOS **************************************-->
                     <h2><strong>Business</strong></h2>
                     <div class="row">
@@ -405,39 +438,6 @@
                             </div>
                             <div class="btn-group btn-group-sm" data-ng-hide="showMoreOthersClicked == true">
                                 <button type="button" class="btn" ng-click="showMoreOthers(1)">Show More</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <!-- ******************************** Events VIDEOS **************************************-->
-                    <h2><strong>Events</strong></h2>
-                    <div class="row">
-
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEventsVideos | orderBy:orderByFieldEvents:reverseSortEvents">
-                            <div class="card homeCards">
-                                <a href="#!Video">
-
-                                    <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
-                                </a>
-
-                                <div class="card-body">
-                                    <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
-                                                </h5>
-                                            </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="btn-group btn-group-sm" data-ng-show="showMoreEventsClicked == true">
-                                <button type="button" class="btn" ng-click="showLessEvents(1)">Show Less</button>
-                            </div>
-                            <div class="btn-group btn-group-sm" data-ng-hide="showMoreEventsClicked == true">
-                                <button type="button" class="btn" ng-click="showMoreEvents(1)">Show More</button>
                             </div>
                         </div>
                     </div>
