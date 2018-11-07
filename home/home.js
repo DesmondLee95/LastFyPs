@@ -12,7 +12,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
-app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($scope, $location, videoService) {
+app.controller('homeCtrl', ['$scope', '$location', 'videoService', 'channelService', function ($scope, $location, videoService, channelService) {
     'use strict';
 
     var db = firebase.firestore();
@@ -80,6 +80,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
     $scope.getIndex = function (id) {
         $scope.indexValue = $scope.publicVideos.findIndex(video => video.id === id);
         $scope.videoId = id;
+        console.log(id);
         videoService.videoId = $scope.videoId;
         sessionStorage.setItem("selectedVidId", videoService.videoId);
     };
@@ -98,14 +99,34 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                     timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 }
                 $scope.publicVideos.push(videoJson);
+                $scope.publicVideos.sort($scope.orderByDate);
             }
         });
 
-        console.log($scope.publicVideos);
         paginationFunc();
         $scope.$apply();
     });
 
+    $scope.clickAsc = function () {
+        console.log("CLICKED");
+        $scope.publicVideos.sort($scope.sortPublicAscending);
+        paginationFunc();
+    }
+
+    $scope.clickDescending = function () {
+        $scope.publicVideos.sort($scope.sortPublicDescending);
+        paginationFunc();
+    }
+
+    $scope.sortPublicAscending = function (a, b) {
+        return new Date(a.timestamp) - new Date(b.timestamp);
+    }
+
+    $scope.sortPublicDescending = function (a, b) {
+        return new Date(b.timestamp) - new Date(a.timestamp);
+    }
+    
+    
     $scope.currentPage = 1, $scope.numPerPage = 4, $scope.showMoreClicked = false, $scope.reverseSort = true, $scope.orderByField = 'timestamp'
     $scope.$watch("name", function (newVal, oldVal) {
         for (var i = 0; i < $scope.publicVideos.length; i++) {
@@ -157,7 +178,6 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
 
             if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && doc.data().video_category === "Business") {
 
-                console.log(doc.data());
                 var videoJson = {
                     id: doc.id,
                     data: doc.data(),
@@ -166,14 +186,16 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
                 }
 
                 $scope.business.push(videoJson);
+               
 
                 $scope.business.sort($scope.orderByDate);
             }
 
         });
-
+        $scope.videoDuration;
         $scope.$apply();
     });
+    
 
     $scope.currentBusinessPage = 1, $scope.numberofBusinessPerPage = 4, $scope.showMoreBusinessClicked = false, $scope.reverseSortBusiness = true, $scope.orderByFieldBusiness = 'timestamp'
     $scope.$watch("business.length", businesspaginationFunc);

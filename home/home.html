@@ -1,5 +1,5 @@
 <homeheader-file></homeheader-file>
-<link rel="stylesheet" href="../assets/custom-css/video.css" />
+<link rel="stylesheet" href="./assets/custom-css/video.css" />
 
 <div class="container" style="margin-top: 10px;">
     <br>
@@ -45,25 +45,31 @@
                 <!-- ******************************** PUBLIC VIDEOS **************************************-->
                 <div data-ng-model="pub" data-ng-hide="name == null || name == ''">
                     <h2><strong>Public</strong></h2>
-                    Sort By: <br />
-                    <button class="btn btn-default" ng-click="orderByField='timestamp'; reverseSort = !reverseSort">Date</button>
-
+                
+                    <button class="btn btn-default" ng-click="clickAsc()">Ascending</button>
+                    <button class="btn btn-default" ng-click="clickDescending()">Descending</button>
+                    
+                    <!-- Sort By: <br />
+                    <button class="btn btn-default" ng-click="orderByField='timestamp' ; reverseSort = !reverseSort">Date</button>
+                -->
                     <hr>
                     <div class="row">
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredVideos | orderBy:orderByField:reverseSort">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredVideos | orderBy:!reverseSort">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
-                                    <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
+                                    <p><small style="color: darkgrey;">{{videos.timestamp}}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -85,19 +91,21 @@
                     <h2><strong>Events</strong></h2>
                     <div class="row">
 
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEventsVideos | orderBy:orderByFieldEvents:reverseSortEvents">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEventsVideos">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -117,20 +125,21 @@
                     <!-- ******************************** BUSINESS VIDEOS **************************************-->
                     <h2><strong>Business</strong></h2>
                     <div class="row">
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredBusinessVideos | orderBy:orderByFieldBusiness:reverseSortBusiness">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredBusinessVideos">
                             <div class="card homeCards">
                                 <a href="#!Video">
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h6 class="card-title"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h6>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i> 
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
-
                                 </div>
                             </div>
                         </div>
@@ -150,19 +159,21 @@
                     <h2><strong>Design</strong></h2>
                     <div class="row">
 
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredDesignVideos | orderBy:orderByFieldDesign:reverseSortDesign">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredDesignVideos">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -183,13 +194,15 @@
                     <h2><strong>Engineering</strong></h2>
                     <div class="row">
 
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEngineeringVideos | orderBy:orderByFieldEng:reverseSortEng">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEngineeringVideos">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
@@ -216,13 +229,15 @@
                     <h2><strong>Science</strong></h2>
                     <div class="row">
 
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredScienceVideos | orderBy:orderByFieldSci:reverseSortSci">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredScienceVideos">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
@@ -249,13 +264,15 @@
                     <h2><strong>Computing</strong></h2>
                     <div class="row">
 
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredComputingVideos | orderBy:orderByFieldComp:reverseSortComp">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredComputingVideos">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
@@ -282,13 +299,15 @@
                     <h2><strong>English Language</strong></h2>
                     <div class="row">
 
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEnglishVideos | orderBy:orderByFieldEnglish:reverseSortEnglish">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredEnglishVideos">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
@@ -316,13 +335,15 @@
                     <h2><strong>Postgraduate (Coursework)</strong></h2>
                     <div class="row">
 
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredPgCourseVideos | orderBy:orderByFieldPC:reverseSortPC">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredPgCourseVideos">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
@@ -349,13 +370,15 @@
                     <h2><strong>Postgraduate (Research)</strong></h2>
                     <div class="row">
 
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredPgResearchVideos | orderBy:orderByFieldPR:reverseSortPR">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredPgResearchVideos">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
@@ -382,13 +405,15 @@
                     <h2><strong>Short Courses</strong></h2>
                     <div class="row">
 
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredSCVideos | orderBy:orderByFieldSVID:reverseSortSVID">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredSCVideos">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
@@ -415,13 +440,15 @@
                     <h2><strong>Others</strong></h2>
                     <div class="row">
 
-                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredOthersVideos | orderBy:orderByFieldOthers:reverseSortOthers">
+                        <div class="col-lg-3 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="videos in filteredOthersVideos">
                             <div class="card homeCards">
                                 <a href="#!Video">
 
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
-
+                                <div class="text-block">
+                                   <small>{{videos.data.duration}}</small>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
