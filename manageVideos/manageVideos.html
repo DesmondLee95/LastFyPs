@@ -80,8 +80,8 @@
                 <textarea data-ng-model="editUserVideos[indexValue].description" class="form-control"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" data-ng-click="notEditing()">Close</button>
-                <button type="button" class="btn btn-primary" data-ng-click="saveVideo()" data-dismiss="modal">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" data-ng-click="notEditing()" data-ng-disabled="!editUserVideos[indexValue].video_name || !editUserVideos[indexValue].description">Close</button>
+               <button type="button" class="btn btn-primary" data-ng-click="saveVideo()" data-dismiss="modal" data-ng-disabled="!editUserVideos[indexValue].video_name || !editUserVideos[indexValue].description">Save changes</button>
             </div>
         </div>
     </div>
