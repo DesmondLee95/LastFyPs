@@ -75,9 +75,9 @@
                     </select>
                 </div>
                 <label>Name</label>
-                <input type="text" class="form-control" data-ng-model="editUserVideos[indexValue].video_name">
+                <input type="text" class="form-control" data-ng-model="editUserVideos[indexValue].video_name" placeholder="Name cannot be empty!">
                 <label>Description</label>
-                <textarea data-ng-model="editUserVideos[indexValue].description" class="form-control"></textarea>
+                <textarea data-ng-model="editUserVideos[indexValue].description" class="form-control" placeholder="Description cannot be empty!"></textarea>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" data-ng-click="notEditing()" data-ng-disabled="!editUserVideos[indexValue].video_name || !editUserVideos[indexValue].description">Close</button>
