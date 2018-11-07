@@ -15,7 +15,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce', 'videoService', function ($scope, $compile, $location, $route, $sce, videoService) {
     'use strict';
-    
+
     //Initialize firestore
     var db = firebase.firestore();
 
@@ -23,6 +23,14 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     db.settings({
         timestampsInSnapshots: true
     });
+
+    var xhr;
+
+    if (window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        xhr = new window.ActiveXObject("Microsoft.XMLHTTP");
+    }
 
     var getVidId = sessionStorage.getItem("selectedVidId");
 
@@ -180,7 +188,6 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                         });
                     }
                 });
-
             } else {
                 alert("You're not logged-in!");
                 document.getElementById("vid_comment").value = "";
@@ -439,6 +446,89 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         });
     }
 
+    $scope.sendFlags = function () {
+
+        var reqURL = 'https://us-central1-educational-video-learning-app.cloudfunctions.net/sendFlags/',
+            adminEmail = "100074597@students.swinburne.edu.my",
+            userArray = [];
+
+        db.collection("Videos").doc(getVidId)
+            .get()
+            .then(function (doc) {
+                var email = doc.data().video_uploader_Email;
+
+                xhr.open('POST', reqURL, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var response = this.responseText;
+                        console.log(response);
+
+                        db.collection("Notifications").add({
+                            reason: "flagged",
+                            videoId: getVidId,
+                            userId: email
+                        })
+                    }
+                };
+
+                db.collection("Tokens").where("userEmail", "==", adminEmail)
+                    .get()
+                    .then(function (querySnapshot) {
+                        querySnapshot.forEach(function (doc) {
+                            if (userArray.includes(doc.data().tokenId) == false) {
+                                userArray.push(doc.data().tokenId);
+                            }
+                        })
+
+                        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                        var JSONstring = JSON.stringify(userArray);
+                        xhr.send("tokens=" + JSONstring);
+                    })
+            })
+    }
+    
+    $scope.sendWarning = function() {
+        var reqURL = 'https://us-central1-educational-video-learning-app.cloudfunctions.net/sendNotification/',
+            adminEmail = "100074597@students.swinburne.edu.my",
+            userArray = [];
+
+        db.collection("Videos").doc(getVidId)
+            .get()
+            .then(function (doc) {
+                var email = doc.data().video_uploader_Email;
+
+                xhr.open('POST', reqURL, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var response = this.responseText;
+                        console.log(response);
+
+                        db.collection("Notifications").add({
+                            reason: "low_rating",
+                            videoId: getVidId,
+                            userId: email
+                        })
+                    }
+                };
+
+                db.collection("Tokens").where("userEmail", "==", adminEmail)
+                    .get()
+                    .then(function (querySnapshot) {
+                        querySnapshot.forEach(function (doc) {
+                            if (userArray.includes(doc.data().tokenId) == false) {
+                                userArray.push(doc.data().tokenId);
+                            }
+                        })
+
+                        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                        var JSONstring = JSON.stringify(userArray);
+                        xhr.send("tokens=" + JSONstring);
+                    })
+            })
+    }
+
     // Listen for form submissions for rating
     document.addEventListener('submit', function (event) {
 
@@ -480,10 +570,14 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                 if (previousRating) {
                     previousRating.removeAttribute('aria-pressed');
                 }
+                
+                if(selectedIndex <= 2) {
+                    $scope.sendWarning();
+                }
 
                 // Add aria-pressed role to the selected button
                 selected.setAttribute('aria-pressed', true);
-                db.collection("Videos").doc(getVidId).collection("ratings").where("rated_user", "==", user.email) //TODO
+                db.collection("Videos").doc(getVidId).collection("ratings").where("rated_user", "==", user.email)
                     .get()
                     .then(function (querySnapshot) {
                         //If rating document exist for a particular video, overwrite the previous rating, or else, create new rating document with the rated number.
@@ -510,7 +604,5 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                     });
             } else {}
         });
-
     }, false);
-
 }]);

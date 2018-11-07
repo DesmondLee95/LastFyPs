@@ -3,7 +3,8 @@
 /*global angular */
 // DEFINING ANGULAR MODULE ngCookies
 /*jshint sub:true*/
-var app = angular.module('swinApp', ['ngRoute', 'home', 'login', 'userpage', 'editProfile', 'changePassword', 'registration', 'upload', 'manageVideos', 'video', 'resetPassword', 'admin','firebase', 'toaster', 'ngAvatar']);
+var app = angular.module('swinApp', ['ngRoute', 'home', 'login', 'userpage', 'editProfile', 'changePassword', 'registration', 'upload', 'manageVideos', 'video', 'resetPassword', 'admin', 'firebase', 'toaster', 'ngAvatar']);
+
 var config = {
     apiKey: "AIzaSyBM0e_dkZOgrC5v5kk1t1loGAj1GiFntyA",
     authDomain: "educational-video-learning-app.firebaseapp.com",
@@ -21,13 +22,11 @@ db.settings({
     timestampsInSnapshots: true
 });
 
-app.service("videoService", function() {
-  return {
-      videoId: ""
-  }
+app.service("videoService", function () {
+    return {
+        videoId: ""
+    };
 });
-
-
 
 // Header file
 app.directive('headerFile', function () {
@@ -65,9 +64,56 @@ app.factory("Auth", ["$firebaseAuth",
   }
 ]);
 
-app.controller('swinCtrl', ['$scope', 'Auth', '$location', function ($scope, Auth, $location) {
-    
-   
+app.controller('swinCtrl', ['$scope', 'Auth', '$location', 'toaster', function ($scope, Auth, $location, toaster) {
 
+    // Retrieve Firebase Messaging object.
+    var messaging = firebase.messaging();
+    // Add the public key generated from the console here.
+    messaging.usePublicVapidKey("BEJMn5qymmZ8NSvmT65TGmOI3kBMXAOp--pphrLUz-Q-8PkGOxKT21IGj0JwT5b5eu2v6_fuFdRy5XzlQRBLUhc");
 
-}]);
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            messaging.requestPermission()
+                .then(function () {
+                    console.log('Notification permission granted.');
+                    return messaging.getToken();
+                }).then(function (token) {
+                    db.collection("Tokens").add({
+                        userEmail: user.email,
+                        tokenId: token
+                    });
+                }).catch(function (err) {
+                    console.log('Unable to get permission to notify.', err);
+                });
+
+            // Callback fired if Instance ID token is updated.
+            messaging.onTokenRefresh(function () {
+                messaging.getToken()
+                    .then(function (refreshedToken) {
+                        db.collection("Tokens").add({
+                            userEmail: user.email,
+                            tokenId: refreshedToken
+                        });
+                    }).catch(function (err) {
+                        console.log('Unable to retrieve refreshed token ', err);
+                    });
+            });
+        } else {
+            console.log("No user is logged in");
+        }
+    });
+
+    messaging.onMessage(function (payload) {
+
+        toaster.pop({
+            type: 'danger',
+            title: payload.data.title,
+            body: payload.data.body
+        });
+        
+        $scope.$apply();
+        
+        console.log(payload);
+    });
+
+            }]);

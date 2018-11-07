@@ -161,3 +161,61 @@ exports.deleteStorage = functions.https.onRequest((req, res) => {
         res.send("Delete is successful");
     }
 })
+
+
+
+exports.sendNotification = functions.https.onRequest((req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    // allow preflight
+    if (req.method === 'OPTIONS') {
+        res.send(200);
+    } else {
+        var registrationTokens = JSON.parse(req.body.tokens);
+
+        var payload = {
+            data: {
+                "title": "SwinHive video is rated 2 or lower",
+                "body": "A video has been given a low rating. A copy of this notification has been saved to the database for further investigation."
+            }
+        };
+
+        admin.messaging().sendToDevice(registrationTokens, payload)
+            .then((response) => {
+                res.send(response);
+                console.log('Successfully sent message:', response);
+            })
+            .catch((error) => {
+                console.log('Error sending message:', error);
+            });
+    }
+})
+
+exports.sendFlags = functions.https.onRequest((req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    // allow preflight
+    if (req.method === 'OPTIONS') {
+        res.send(200);
+    } else {
+        var registrationTokens = JSON.parse(req.body.tokens);
+
+        var payload = {
+            data: {
+                "title": "SwinHive video is flagged",
+                "body": "A video has been flagged. A copy of this notification has been saved to the database for further investigation."
+            }
+        };
+
+        admin.messaging().sendToDevice(registrationTokens, payload)
+            .then((response) => {
+                res.send(response);
+                console.log('Successfully sent message:', response);
+            })
+            .catch((error) => {
+                console.log('Error sending message:', error);
+            });
+    }
+})

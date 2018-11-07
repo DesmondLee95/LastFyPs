@@ -12,7 +12,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
-app.controller('homeCtrl', ['$scope', '$location', 'videoService', 'channelService', function ($scope, $location, videoService, channelService) {
+app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($scope, $location, videoService) {
     'use strict';
 
     var db = firebase.firestore();
