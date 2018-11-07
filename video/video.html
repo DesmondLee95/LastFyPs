@@ -13,12 +13,6 @@
                             <source src="" type="video/mp4" preload="metadata">
                             Your browser does not support HTML5 video.
                         </video>
-
-                        <!--
-                <div class="embed-responsive embed-responsive-16by9" ng-controller="homeCtrl">
-                    <iframe class="embed-responsive-item" ng-src="{{videoLink}}" allowfullscreen></iframe>
-                </div>
--->
                     </div>
                 </div>
 
@@ -29,7 +23,7 @@
                     <div class="col-2 col-sm-2 col-md-2 flagvid">
                         <label for="flagbtn">
                             <i class="fas fa-flag fa-lg flags" title="Flag Video"></i>
-                            <button type="button" id="flagbtn" class="flagbtn" onclick="">Flag Video</button>
+                            <button type="button" id="flagbtn" class="flagbtn" data-ng-click="sendFlags()">Flag Video</button>
                         </label>
                     </div>
                 </div>
