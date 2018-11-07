@@ -37,13 +37,14 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
             uploadBtn.disabled = true;
         }
     }
-    
+
     // VIDEO
     var selectedFile;
     var selectedFileSize;
     var progressBar = document.getElementById('upload_progress');
     var filename = document.getElementById("upload_text");
     var fileExtValidate = /(.*?)\.(avi|AVI|wmv|WMV|flv|FLV|mpg|MPG|mp4|MP4|mkv|MKV|mov|MOV|3gp|3GP|webm|WEBM)$/;
+    $scope.videoToBeUploaded = [];
 
     firebase.auth().onAuthStateChanged(function (user) {
 
@@ -52,9 +53,54 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
         }
     });
 
+    var myVideos = [];
+
+    window.URL = window.URL || window.webkitURL;
+
+    document.getElementById('file').onchange = setFileInfo;
+
+    function setFileInfo() {
+        var files = this.files;
+        myVideos.push(files[0]);
+        var video = document.createElement('video');
+        video.preload = 'metadata';
+
+        video.onloadedmetadata = function () {
+            window.URL.revokeObjectURL(video.src);
+            var duration = video.duration;
+            myVideos[myVideos.length - 1].duration = duration;
+            updateInfos();
+        }
+
+        video.src = URL.createObjectURL(files[0]);
+    }
+
+    function padTime(t) {
+        return t < 10 ? "0"+t : t;
+    }
+
+    function updateInfos() {
+        for (var i = 0; i < myVideos.length; i++) {
+            $scope.videoDuration = Math.round(myVideos[i].duration);
+        }
+        
+        var hours = Math.floor($scope.videoDuration / 3600),
+            minutes = Math.floor(($scope.videoDuration % 3600) / 60),
+            seconds = Math.floor($scope.videoDuration % 60);
+        
+            $scope.videoDuration = padTime(hours) + ":" + padTime(minutes) + ":" + padTime(seconds);
+        
+        
+        
+        console.log($scope.videoDuration);
+    }
+
     document.getElementById("file").addEventListener('change', function (e) {
         'use strict';
         selectedFile = e.target.files[0];
+        $scope.videoToBeUploaded = [];
+        $scope.videoToBeUploaded.push(selectedFile);
+
         //Validate chosen file type
         if (fileExtValidate.test(selectedFile.name)) {
             //Validate chosen file size
@@ -234,7 +280,8 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
                                                     editing: false,
                                                     folder: $scope.randomFolder,
                                                     thumbnailName: thumbnailFileName,
-                                                    fileName: filename
+                                                    fileName: filename,
+                                                    duration: $scope.videoDuration
                                                 })
                                                 .then(function () {
                                                     //Clear form when video is successfully updated
