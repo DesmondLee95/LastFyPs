@@ -2,6 +2,16 @@ html {
     overflow-y: hidden;
 }
 
+.text-block {
+    position: absolute;
+    bottom: 98px;
+    right: 0px;
+    background-color: black;
+    color: grey;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
 .post {
     background-color: white;
     border-radius: 3px;
