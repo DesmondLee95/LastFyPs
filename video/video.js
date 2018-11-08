@@ -487,8 +487,8 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                     })
             })
     }
-    
-    $scope.sendWarning = function() {
+
+    $scope.sendWarning = function () {
         var reqURL = 'https://us-central1-educational-video-learning-app.cloudfunctions.net/sendNotification/',
             adminEmail = "100074597@students.swinburne.edu.my",
             userArray = [];
@@ -570,8 +570,8 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                 if (previousRating) {
                     previousRating.removeAttribute('aria-pressed');
                 }
-                
-                if(selectedIndex <= 2) {
+
+                if (selectedIndex <= 2) {
                     $scope.sendWarning();
                 }
 
@@ -590,6 +590,29 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                                 setTimeout(function () {
                                     document.getElementById('closeModal').click();
                                 }, 2000);
+
+                                //Count and display average rating.
+                                db.collection("Videos").doc(getVidId).collection("ratings").get().then(function (querySnapshot) {
+
+                                    var allRating = [];
+                                    querySnapshot.forEach(function (doc) {
+
+                                        allRating.push(doc.data().rating);
+                                    });
+
+                                    //Get total of all rating in the array.
+                                    function getSum(total, num) {
+                                        return total + num;
+                                    }
+                                    //Calculation for average rating and stars.
+                                    var fullRating = 5,
+                                        //Calculate average rating by sum / number of elements in the array
+                                        averageRating = allRating.reduce(getSum) / allRating.length,
+                                        roundedAvgRating = Math.round(averageRating * 10) / 10,
+                                        starsWidthRating = roundedAvgRating * 10 * 2 + '%';
+                                    document.querySelector('.stars-inner').style.width = starsWidthRating;
+                                    document.getElementById('vid_rating').innerHTML = roundedAvgRating;
+                                });
                             });
                         } else {
                             db.collection("Videos").doc(getVidId).collection("ratings").add({
@@ -600,6 +623,29 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                             setTimeout(function () {
                                 document.getElementById('closeModal').click();
                             }, 2000);
+
+                            //Count and display average rating.
+                            db.collection("Videos").doc(getVidId).collection("ratings").get().then(function (querySnapshot) {
+
+                                var allRating = [];
+                                querySnapshot.forEach(function (doc) {
+
+                                    allRating.push(doc.data().rating);
+                                });
+
+                                //Get total of all rating in the array.
+                                function getSum(total, num) {
+                                    return total + num;
+                                }
+                                //Calculation for average rating and stars.
+                                var fullRating = 5,
+                                    //Calculate average rating by sum / number of elements in the array
+                                    averageRating = allRating.reduce(getSum) / allRating.length,
+                                    roundedAvgRating = Math.round(averageRating * 10) / 10,
+                                    starsWidthRating = roundedAvgRating * 10 * 2 + '%';
+                                document.querySelector('.stars-inner').style.width = starsWidthRating;
+                                document.getElementById('vid_rating').innerHTML = roundedAvgRating;
+                            });
                         }
                     });
             } else {}
