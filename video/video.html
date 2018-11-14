@@ -149,14 +149,17 @@
                         <a href="#!Video" data-ng-click="getIndex(x.id)">
                             <img class="rcmPics" data-ng-click="getIndex(x.id)" src="{{x.data.thumbnail_link}}" alt="Video Thumbnail">
                         </a>
+                        <div class="text-block2">
+                            <small>{{x.data.duration}}</small>
+                        </div>
                     </div>
                     <div class="card-block cardDesc px-2">
                         <a href="#!Video">
                             <h4 class="card-title rcmVidname" data-ng-click="getIndex(x.id)">{{(x.data.video_name | limitTo: 55) + (x.data.video_name.length > 55 ? '...' : '')}}</h4>
                         </a>
-                        <a href="#!userpage">
+                        <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(x.data.video_uploader_Email)">
                             <p class="card-text rcmUploader">{{x.data.video_uploader}}</p>
-                        </a>
+                            </a></i>
                         <p class="card-text rcmViews">{{x.data.video_view}} views</p>
                     </div>
                 </div>

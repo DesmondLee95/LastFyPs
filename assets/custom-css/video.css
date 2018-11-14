@@ -6,10 +6,23 @@ html {
     position: absolute;
     bottom: 98px;
     right: 0px;
-    background-color: black;
-    color: grey;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
     padding-left: 2px;
     padding-right: 2px;
+}
+
+.text-block2 {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding-left: 2px;
+    padding-right: 2px;
+    box-sizing: border-box;
 }
 
 .post {

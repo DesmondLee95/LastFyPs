@@ -61,16 +61,17 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -98,14 +99,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -131,14 +132,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h6 class="card-title"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h6>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i> 
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i> 
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -166,14 +167,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -201,14 +202,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -236,14 +237,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -271,14 +272,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -306,14 +307,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -342,14 +343,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -377,14 +378,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                   <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -412,14 +413,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -447,14 +448,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small style="color: white">{{videos.data.duration}}</small>
+                                   <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
