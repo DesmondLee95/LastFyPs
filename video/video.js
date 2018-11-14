@@ -13,7 +13,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
-app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce', 'videoService', function ($scope, $compile, $location, $route, $sce, videoService) {
+app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce', 'videoService','channelService', function ($scope, $compile, $location, $route, $sce, videoService,channelService) {
     'use strict';
 
     //Initialize firestore
