@@ -75,6 +75,7 @@ app.controller('swinCtrl', ['$scope', 'Auth', '$location', 'toaster', function (
 
     // Retrieve Firebase Messaging object.
     var messaging = firebase.messaging();
+
     // Add the public key generated from the console here.
     messaging.usePublicVapidKey("BEJMn5qymmZ8NSvmT65TGmOI3kBMXAOp--pphrLUz-Q-8PkGOxKT21IGj0JwT5b5eu2v6_fuFdRy5XzlQRBLUhc");
 
@@ -85,10 +86,22 @@ app.controller('swinCtrl', ['$scope', 'Auth', '$location', 'toaster', function (
                     console.log('Notification permission granted.');
                     return messaging.getToken();
                 }).then(function (token) {
-                    db.collection("Tokens").add({
-                        userEmail: user.email,
-                        tokenId: token
-                    });
+                    db.collection("Tokens").where("userEmail", "==", user.email)
+                        .get()
+                        .then(function (querySnapshot) {
+                            if (querySnapshot.size == 0) {
+                                db.collection("Tokens").add({
+                                    userEmail: user.email,
+                                    tokenId: token
+                                });
+                            } else {
+                                querySnapshot.forEach(function (doc) {
+                                    db.collection("Tokens").doc(doc.id).update({
+                                        tokenId: token
+                                    })
+                                })
+                            }
+                        })
                 }).catch(function (err) {
                     console.log('Unable to get permission to notify.', err);
                 });
@@ -97,10 +110,16 @@ app.controller('swinCtrl', ['$scope', 'Auth', '$location', 'toaster', function (
             messaging.onTokenRefresh(function () {
                 messaging.getToken()
                     .then(function (refreshedToken) {
-                        db.collection("Tokens").add({
-                            userEmail: user.email,
-                            tokenId: refreshedToken
-                        });
+                        db.collection("Tokens").where("tokenId", "==", refreshedToken)
+                            .get()
+                            .then(function (querySnapshot) {
+                                if (querySnapshot.size == 0) {
+                                    db.collection("Tokens").add({
+                                        userEmail: user.email,
+                                        tokenId: refreshedToken
+                                    });
+                                }
+                            })
                     }).catch(function (err) {
                         console.log('Unable to retrieve refreshed token ', err);
                     });
@@ -117,9 +136,9 @@ app.controller('swinCtrl', ['$scope', 'Auth', '$location', 'toaster', function (
             title: payload.data.title,
             body: payload.data.body
         });
-        
+
         $scope.$apply();
-        
+
         console.log(payload);
     });
 

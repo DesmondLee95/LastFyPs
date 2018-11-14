@@ -63,8 +63,7 @@ body {
     padding-bottom: 5px;
 }
 
-
-.vidStatus {
+.vidStatusHeader {
     vertical-align: middle;
     text-align: center;
 }
@@ -76,6 +75,10 @@ body {
     border-color: lightgray;
     box-shadow: 0.1px 0.1px gray inset;
     width: 65%;
+}
+
+i {
+    cursor: pointer;
 }
 
 .sort_user {
@@ -105,20 +108,28 @@ body {
     width: 65%;
 }
 
-/*.nav-pills > li.active > a,
-.nav-pills > li.active > a:focus {
-    background-color: #FF0000;
-    font-family: "Helvetica", Times, serif;
-}*/
+.filter_notify {
+    margin: 3px;
+    padding: 3px;
+    border-radius: 4px;
+    border-color: lightgray;
+    box-shadow: 0.1px 0.1px gray inset;
+    width: 65%;
+}
 
-/*.nav-pills > li.active > a:hover {
-    background-color: #FF0000;
-}*/
+.sort_notify {
+    margin: 3px;
+    padding: 3px;
+    border-radius: 4px;
+    border-color: lightgray;
+    box-shadow: 0.1px 0.1px gray inset;
+    width: 65%;
+}
 
 .nav-pills > li > a {
     font-family: "Helvetica", Times, serif;
     background-color: #F6EFEF;
-    border-color: #F6EFEF;
+    border-color: #C0C0C0;
 }
 
 .nav-pills > li > a:hover {

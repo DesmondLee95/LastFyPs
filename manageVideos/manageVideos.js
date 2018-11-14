@@ -20,7 +20,7 @@ app.factory("Auth", ["$firebaseAuth",
 
 app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', function ($scope, Auth, $location, toaster) {
     'use strict'
-    
+
     var db = firebase.firestore();
 
     db.settings({
@@ -36,9 +36,42 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
         console.log($scope.editUserVideos[$scope.indexValue].folder);
     };
 
+    var user = firebase.auth().currentUser;
+    var messaging = firebase.messaging();
+
     // signout
     $scope.signout = function () {
-        firebase.auth().signOut();
+
+        firebase.auth().signOut().then(function () {
+            messaging.getToken().then(function (currentToken) {
+                if (currentToken) {
+                    var tokenRefs = db.collection("Tokens");
+
+                    if (currentToken !== null) {
+                        tokenRefs.where("tokenId", "==", currentToken)
+                            .get()
+                            .then(function (querySnapshot) {
+                                querySnapshot.forEach(function (doc) {
+                                    if(doc.data().userEmail == user.email) {
+                                        console.log("Token is deleted");
+                                    console.log(user.email + currentToken);
+                                    doc.ref.delete();
+                                    }
+                                })
+                            }).catch(function (error) {
+                                console.error("Error removing document: ", error);
+                            });
+                    }
+                } else {
+                    // Show permission request.
+                    console.log('No Instance ID token available. Request permission to generate one.');
+                }
+            }).catch(function (err) {
+                console.log('An error occurred while retrieving token. ', err);
+            });
+        }).catch(function (error) {
+            console.log(error);
+        });
         $location.path("/Home");
     };
 
@@ -137,7 +170,6 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                 });
             } else {
 
-
                 db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
                     video_name: $scope.editUserVideos[$scope.indexValue].video_name
                 });
@@ -150,6 +182,7 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                 db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
                     editing: false
                 });
+                
             }
         } else {
 
@@ -162,7 +195,7 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
             editing: false
         });
     });
-    
+
     $scope.editing = function () {
         db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
             editing: true

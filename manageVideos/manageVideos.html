@@ -21,9 +21,9 @@
     <div class="row">
         <div class="col-md-8">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="uservids in editUserVideos track by $index">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="uservids in editUserVideos track by $index">
                     <div class="card manageCards">
-                        <img class="card-img-top homeCardsImage" ng-src="{{uservids.thumbnail}}" alt="Card image cap" width="100px" height="185px">
+                        <img class="card-img-top homeCardsImage" ng-src="{{uservids.thumbnail}}" alt="Card image cap">
                         <div class="card-body">
                             <h6 class="card-title homeCardsName"><strong>{{uservids.video_name}}</strong></h6>
                             <a href="" class="btn btn-primary" data-toggle="modal" data-target="#editVideoModal" data-ng-click="getIndex(uservids.id); editing();">Edit</a>

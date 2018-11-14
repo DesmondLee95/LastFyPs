@@ -21,36 +21,6 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', function ($sc
         timestampsInSnapshots: true
     });
 
-    /*var messaging = firebase.messaging();
-
-    messaging.usePublicVapidKey('BEJMn5qymmZ8NSvmT65TGmOI3kBMXAOp--pphrLUz-Q-8PkGOxKT21IGj0JwT5b5eu2v6_fuFdRy5XzlQRBLUhc');
-
-    messaging.requestPermission()
-        .then(function () {
-            console.log('Notification permission granted.');
-            // TODO(developer): Retrieve an Instance ID token for use with FCM.
-            // ...
-        }).catch(function (err) {
-            console.log('Unable to get permission to notify.', err);
-        });
-
-    // Callback fired if Instance ID token is updated.
-    messaging.onTokenRefresh(function () {
-        messaging.getToken().then(function (refreshedToken) {
-            console.log('Token refreshed.');
-            // Indicate that the new Instance ID token has not yet been sent to the
-            // app server.
-            setTokenSentToServer(false);
-            // Send Instance ID token to app server.
-            sendTokenToServer(refreshedToken);
-            // ...
-        }).catch(function (err) {
-            console.log('Unable to retrieve refreshed token ', err);
-            showToken('Unable to retrieve refreshed token ', err);
-        });
-    });*/
-
-
     $scope.$watch("name", function (event) {
         console.log(event);
     });

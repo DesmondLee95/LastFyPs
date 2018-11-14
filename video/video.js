@@ -53,6 +53,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     enableButton();
     getImageComment();
     getUploaderImage();
+    disableButtonUploader();
 
     //Disable button to rate if user is not logged in.
     function enableButton() {
@@ -61,6 +62,24 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                 document.getElementById('openModal').disabled = false;
             } else {
                 document.getElementById('openModal').disabled = true;
+            }
+        });
+    }
+
+    function disableButtonUploader() {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                var currentEmail = user.email;
+
+                db.collection("Videos").doc(getVidId).get().then(function (doc) {
+                    if (doc.data().video_uploader_Email == currentEmail || currentEmail === "admin@admin.com") {
+                        document.getElementById('openModal').disabled = true;
+                    } else {
+                        document.getElementById('openModal').disabled = false;
+                    }
+                })
+            } else {
+
             }
         });
     }
@@ -318,13 +337,15 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                     return total + num;
                 }
                 //Calculation for average rating and stars.
-                var fullRating = 5,
-                    //Calculate average rating by sum / number of elements in the array
-                    averageRating = allRating.reduce(getSum) / allRating.length,
-                    roundedAvgRating = Math.round(averageRating * 10) / 10,
-                    starsWidthRating = roundedAvgRating * 10 * 2 + '%';
-                document.querySelector('.stars-inner').style.width = starsWidthRating;
-                document.getElementById('vid_rating').innerHTML = roundedAvgRating;
+                if (allRating.length != 0) {
+                    var fullRating = 5,
+                        //Calculate average rating by sum / number of elements in the array
+                        averageRating = allRating.reduce(getSum) / allRating.length,
+                        roundedAvgRating = Math.round(averageRating * 10) / 10,
+                        starsWidthRating = roundedAvgRating * 10 * 2 + '%';
+                    document.querySelector('.stars-inner').style.width = starsWidthRating;
+                    document.getElementById('vid_rating').innerHTML = roundedAvgRating;
+                }
             });
 
             //Get all necessary video information to display.
@@ -332,7 +353,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
             document.getElementById('uploaded_date').innerHTML = uploadDate;
             document.getElementById('videolink').src = doc.data().video_link;
             document.getElementById('video_category').innerHTML = doc.data().video_category;
-            document.getElementById('video_tag').innerHTML = (doc.data().video_tags).split(/[ ,]+/).join(', ');
+            document.getElementById('video_tag').innerHTML = doc.data().video_tags;
             document.getElementById('video_name').innerHTML = doc.data().video_name;
             document.getElementById('video_views').innerHTML = doc.data().video_view;
 
@@ -415,8 +436,6 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         console.log("Error getting document:", error);
     });
 
-
-    //Shows the previous rating given to a video to the individual user.
     function showRated() {
 
         firebase.auth().onAuthStateChanged(function (user) {
@@ -430,12 +449,8 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                         // Loop through each star, and add or remove the `.selected` class to toggle highlighting
                         stars.forEach(function (star, index) {
                             if (index < selectedIndex) {
-                                // Selected star or before it
-                                // Add highlighting
                                 star.classList.add('selected');
                             } else {
-                                // After selected star
-                                // Remove highlight
                                 star.classList.remove('selected');
                             }
                         });
@@ -449,7 +464,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     $scope.sendFlags = function () {
 
         var reqURL = 'https://us-central1-educational-video-learning-app.cloudfunctions.net/sendFlags/',
-            adminEmail = "100074597@students.swinburne.edu.my",
+            adminEmail = "admin@admin.com",
             userArray = [];
 
         db.collection("Videos").doc(getVidId)
@@ -464,7 +479,9 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                         console.log(response);
 
                         db.collection("Notifications").add({
-                            reason: "flagged",
+                            date: new Date(),
+                            reason: "Flagged",
+                            videoName: doc.data().video_name,
                             videoId: getVidId,
                             userId: email
                         })
@@ -490,7 +507,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
     $scope.sendWarning = function () {
         var reqURL = 'https://us-central1-educational-video-learning-app.cloudfunctions.net/sendNotification/',
-            adminEmail = "100074597@students.swinburne.edu.my",
+            adminEmail = "admin@admin.com",
             userArray = [];
 
         db.collection("Videos").doc(getVidId)
@@ -505,7 +522,9 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                         console.log(response);
 
                         db.collection("Notifications").add({
-                            reason: "low_rating",
+                            date: new Date(),
+                            reason: "Low Rating",
+                            videoName: doc.data().video_name,
                             videoId: getVidId,
                             userId: email
                         })
@@ -648,7 +667,9 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                             });
                         }
                     });
-            } else {}
+            } else {
+                document.getElementById('openModal').disabled = true;
+            }
         });
     }, false);
 }]);

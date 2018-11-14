@@ -32,7 +32,14 @@
                         <div class="card-body">
                             <h6 class="card-title homeCardsName"><strong>{{uservids.video_name}}</strong> <br /> {{uservids.visibility}}</h6>
                             <i class="card-text homeCardsUploader">{{uservids.video_uploader}}</i>
-                            <p><i class="fas fa-eye"></i> {{uservids.views}}</p>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-6">
+                                    <i class="fas fa-eye"></i> {{uservids.views}}
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-6" style="text-align: right; color: red;">
+                                    <div data-ng-show="{{uservids.block == true}}"><strong>BLOCKED</strong></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +59,7 @@
             <div class="profileColumns">
                 <a href="#!ChangePassword" class="btn btn-primary uploadVid">Change Password</a>
             </div>
-          
+
         </div>
 
     </div>

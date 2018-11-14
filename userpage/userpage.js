@@ -14,9 +14,9 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', function ($scope, $location, $sce, videoService) {
     'use strict'
 
-//    if (firebase.auth().currentUser === null) {
-//        $location.path("/login");
-//    }
+    //    if (firebase.auth().currentUser === null) {
+    //        $location.path("/login");
+    //    }
     var db = firebase.firestore();
 
     db.settings({
@@ -40,9 +40,42 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
         return $sce.trustAsResourceUrl(src);
     }
 
+    var user = firebase.auth().currentUser;
+    var messaging = firebase.messaging();
+
     // signout
     $scope.signout = function () {
-        firebase.auth().signOut();
+
+        firebase.auth().signOut().then(function () {
+            messaging.getToken().then(function (currentToken) {
+                if (currentToken) {
+                    var tokenRefs = db.collection("Tokens");
+
+                    if (currentToken !== null) {
+                        tokenRefs.where("tokenId", "==", currentToken)
+                            .get()
+                            .then(function (querySnapshot) {
+                                querySnapshot.forEach(function (doc) {
+                                    if(doc.data().userEmail == user.email) {
+                                        console.log("Token is deleted");
+                                    console.log(user.email + currentToken);
+                                    doc.ref.delete();
+                                    }
+                                })
+                            }).catch(function (error) {
+                                console.error("Error removing document: ", error);
+                            });
+                    }
+                } else {
+                    // Show permission request.
+                    console.log('No Instance ID token available. Request permission to generate one.');
+                }
+            }).catch(function (err) {
+                console.log('An error occurred while retrieving token. ', err);
+            });
+        }).catch(function (error) {
+            console.log(error);
+        });
         $location.path("/Home");
     };
 
@@ -66,6 +99,7 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
                             uploader_Name: doc.data().video_uploader,
                             visibility: doc.data().video_visibility,
                             views: doc.data().video_view,
+                            block: doc.data().block_status
                         };
 
                         // Pushing the json data one by one into the array of videos to be edited
@@ -100,7 +134,7 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
 
                     $scope.$apply();
                     console.log($scope.currentUserName);
-                    
+
                 } else {
                     console.log("No such document!");
                 }
@@ -110,8 +144,8 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
             });
             // User is signed in.
         } else {
-            $location.path("/Home");     // No user is signed in.
+            $location.path("/Home"); // No user is signed in.
         }
-    }); 
+    });
 
     }]);

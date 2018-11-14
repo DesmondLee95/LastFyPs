@@ -24,7 +24,7 @@ app.controller('adminLoginCtrl', ['$scope', 'Auth', '$location', 'toaster', func
     // Function for loggin in
     $scope.login = function (loginEmail, loginPassword) {
 
-        if (loginEmail == "100074597@students.swinburne.edu.my") {
+        if (loginEmail.indexOf('@admin.com', loginEmail.length - '@admin.com'.length) !== -1) {
             Auth.$signInWithEmailAndPassword(loginEmail, loginPassword)
                 .then(function (user) {
                     $location.path("/Admin");
