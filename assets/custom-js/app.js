@@ -28,7 +28,7 @@ app.service("videoService", function () {
     };
 });
 
-app.service("channelService", function() {
+app.service("channelService", function () {
     return {
         channelId: ""
     }
@@ -87,49 +87,53 @@ app.controller('swinCtrl', ['$scope', 'Auth', '$location', 'toaster', function (
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            messaging.requestPermission()
-                .then(function () {
-                    console.log('Notification permission granted.');
-                    return messaging.getToken();
-                }).then(function (token) {
-                    db.collection("Tokens").where("userEmail", "==", user.email)
-                        .get()
-                        .then(function (querySnapshot) {
-                            if (querySnapshot.size == 0) {
-                                db.collection("Tokens").add({
-                                    userEmail: user.email,
-                                    tokenId: token
-                                });
-                            } else {
-                                querySnapshot.forEach(function (doc) {
-                                    db.collection("Tokens").doc(doc.id).update({
-                                        tokenId: token
-                                    })
-                                })
-                            }
-                        })
-                }).catch(function (err) {
-                    console.log('Unable to get permission to notify.', err);
-                });
-
-            // Callback fired if Instance ID token is updated.
-            messaging.onTokenRefresh(function () {
-                messaging.getToken()
-                    .then(function (refreshedToken) {
-                        db.collection("Tokens").where("tokenId", "==", refreshedToken)
+            if (user.email == "admin@admin.com") {
+                messaging.requestPermission()
+                    .then(function () {
+                        console.log('Notification permission granted.');
+                        return messaging.getToken();
+                    }).then(function (token) {
+                        db.collection("Tokens").where("userEmail", "==", user.email)
                             .get()
                             .then(function (querySnapshot) {
                                 if (querySnapshot.size == 0) {
                                     db.collection("Tokens").add({
                                         userEmail: user.email,
-                                        tokenId: refreshedToken
+                                        tokenId: token
                                     });
+                                } else {
+                                    querySnapshot.forEach(function (doc) {
+                                        db.collection("Tokens").doc(doc.id).update({
+                                            tokenId: token
+                                        })
+                                    })
                                 }
                             })
                     }).catch(function (err) {
-                        console.log('Unable to retrieve refreshed token ', err);
+                        console.log('Unable to get permission to notify.', err);
                     });
-            });
+
+                // Callback fired if Instance ID token is updated.
+                messaging.onTokenRefresh(function () {
+                    messaging.getToken()
+                        .then(function (refreshedToken) {
+                            db.collection("Tokens").where("tokenId", "==", refreshedToken)
+                                .get()
+                                .then(function (querySnapshot) {
+                                    if (querySnapshot.size == 0) {
+                                        db.collection("Tokens").add({
+                                            userEmail: user.email,
+                                            tokenId: refreshedToken
+                                        });
+                                    }
+                                })
+                        }).catch(function (err) {
+                            console.log('Unable to retrieve refreshed token ', err);
+                        });
+                });
+            } else {
+                //Do nothing.
+            }
         } else {
             console.log("No user is logged in");
         }

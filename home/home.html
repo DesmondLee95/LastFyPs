@@ -1,41 +1,8 @@
 <homeheader-file></homeheader-file>
 <link rel="stylesheet" href="./assets/custom-css/video.css" />
 
-<div class="container" style="margin-top: 10px;">
+<div class="container vidcontainer">
     <br>
-    <!--
-    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="margin-bottom: 10px;">
-        <i class="fa fa-filter"></i> Filters
-    </button>
--->
-
-    <!--
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            <div class="row">
-                <div class="col-md-3 offset-md-4" style="padding-top: 10px;">
-                    <div class="form-group">
-                        <label for="Categories">Categories</label>
-                        <select class="form-control" id="Categories" style="width: 300px;" data-ng-model="categories">
-                            <option selected value="">All</option>
-                            <option>Business</option>
-                            <option>Design</option>
-                            <option>Engineering</option>
-                            <option>Science</option>
-                            <option>Computing</option>
-                            <option>English Language</option>
-                            <option>Postgraduate (Coursework)</option>
-                            <option>Postgraduate (Research)</option>
-                            <option>Short Courses</option>
-                        </select>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
--->
 
     <br>
     <div class="card card-body">
@@ -65,7 +32,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
@@ -103,7 +70,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
@@ -136,7 +103,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h6 class="card-title"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h6 class="card-title"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h6>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i> 
@@ -171,7 +138,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
@@ -206,7 +173,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
@@ -241,7 +208,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
@@ -276,7 +243,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
@@ -311,7 +278,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
@@ -347,7 +314,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
@@ -382,7 +349,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
@@ -417,7 +384,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
@@ -452,7 +419,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
-                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 30) + (videos.data.video_name.length > 30 ? ' ...' : '')}}</strong>
+                                                <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>

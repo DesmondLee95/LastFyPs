@@ -48,7 +48,7 @@ app.controller('channelCtrl', ['$scope', '$location', '$sce', 'videoService', 'c
 
     db.collection("Videos").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-            if (doc.data().video_uploader_Email === $scope.channelEmail) {
+            if (doc.data().video_uploader_Email === $scope.channelEmail && doc.data().block_status == false) {
                 // Creating a Json object that will hold the video information of the current user that is logged in
                 $scope.videosJson = {
                     id: doc.id,

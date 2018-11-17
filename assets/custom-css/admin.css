@@ -63,6 +63,10 @@ body {
     padding-bottom: 5px;
 }
 
+table {
+    width: 100%;
+}
+
 .vidStatusHeader {
     vertical-align: middle;
     text-align: center;
@@ -257,6 +261,8 @@ i {
 }
 
 @media (max-width: 980px) {
+    .
+    
     .containers {
         background-color: white;
         border-radius: 5px;

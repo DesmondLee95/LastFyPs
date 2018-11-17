@@ -1,42 +1,33 @@
-<link rel="stylesheet" href="../assets/custom-css/header.css" /> 
+<link rel="stylesheet" href="../assets/custom-css/header.css" />
 
-<nav class="navbar navbar-expand-lg navbar-light bg-danger">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-md navbar-dark bg-danger">
+    <div class="container-fluid" style="padding-right: 5px;">
         <a class="navbar-brand" href="#!Home" style="color: white; padding-left: 5px" onclick="reloadPage()">SwinHive</a>
-
-
-
-        <form class="form-inline my-2 my-lg-0 float-md-left">
-<!--
-            <select class="form-control" id="Categories" style="width: 100px;" data-ng-model="categories">
-                <option selected value="">All</option>
-                <option>Business</option>
-                <option>Design</option>
-                <option>Engineering</option>
-                <option>Science</option>
-                <option>Computing</option>
-                <option>English Language</option>
-                <option>Postgraduate (Coursework)</option>
-                <option>Postgraduate (Research)</option>
-                <option>Short Courses</option>
-            </select>
--->
-            <div class="form-group">
-                <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search" style="width: 375px; margin-left: 5px; margin-right: 5px;" data-ng-model="name">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarhomeHeader" aria-controls="navbarhomeHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarhomeHeader">
+            <form class="form-inline my-2 my-lg-0 mx-auto">
+                <div class="form-group fgroup">
+                    <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search" style="width: 100%; margin-left: 5px; margin-right: 5px;" data-ng-model="name">
+                </div>
+            </form>
+            <div class="text-right">
+                <a href="#!Upload" id="logo" title="Upload video" style="color:White" data-ng-show="loggedIn != null"><i class="fa fa-video"></i></a>
+                <a href="#!login" id="logo" style="color:White" data-ng-show="loggedIn == null">Sign In</a>
+                <a href="#!userpage" id="logo" style="color:White" data-ng-show="loggedIn != null">Profile</a>
+                <a href="#!Home" id="logo" style="color:White" data-ng-show="loggedIn != null" ng-click="signout()">Sign Out</a>
             </div>
-        </form>
-        <div class="text-right">    
-            <a href="#!Upload" id="logo" title="Upload video" style="color:White" data-ng-show="loggedIn != null"><i class="fa fa-video"></i></a>
-            <a href="#!login" id="logo" style="color:White" data-ng-show="loggedIn == null">Sign In</a>
-            <a href="#!userpage" id="logo" style="color:White" data-ng-show="loggedIn != null">Profile</a>
-            <a href="#!Home" id="logo" style="color:White" data-ng-show="loggedIn != null" ng-click="signout()">Sign Out</a>
         </div>
     </div>
-
 </nav>
 
 <script>
     function reloadPage() {
-        location.reload();
+        if ($location.path() == "/Home") {
+            location.reload();
+        } else {
+            //Do nothing
+        }
     }
 </script>

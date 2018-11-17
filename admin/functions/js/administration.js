@@ -369,7 +369,9 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                     tBodyNotifyUploader = notifytRow.insertCell(2),
                     tBodyNotifyReason = notifytRow.insertCell(3),
                     tBodyNotifyDate = notifytRow.insertCell(4),
-                    tBodyNotifyRemove = notifytRow.insertCell(5);
+                    tBodyNotifyRemove = notifytRow.insertCell(5),
+                    splittedEmail = doc.data().userId.split("@"),
+                    onlyID = splittedEmail[0];
 
                 BtnRemove.className = "btn btn-primary btn-block reasonbtn";
                 BtnRemove.setAttribute("id", doc.id);
@@ -382,9 +384,9 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
                 tBodyNotifyName.innerHTML = doc.data().videoName;
                 tBodyNotifyId.innerHTML = doc.data().videoId;
-                tBodyNotifyUploader.innerHTML = doc.data().userId;
+                tBodyNotifyUploader.innerHTML = onlyID;
                 tBodyNotifyReason.innerHTML = doc.data().reason;
-                tBodyNotifyDate.innerHTML = moment(doc.data().date.toDate()).format('DD, MMMM YYYY');
+                tBodyNotifyDate.innerHTML = moment(doc.data().date.toDate()).format('DD-MM-YYYY');
             });
         });
     }

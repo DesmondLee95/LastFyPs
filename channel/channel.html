@@ -14,27 +14,25 @@
                 </strong></p>
             <p>{{currentUserId}}</p>
             <p>{{currentUserCourse}}</p>
-            <h6>{{currentUservideo_upload}} Uploads</h6>
         </div>
     </div>
 
     <hr>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 channelRow">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="uservids in userChannelVideos">
-                    <div class="card profileCards">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="uservids in userChannelVideos">
+                    <div class="card channelCards">
                         <a href="#!Video">
 
-                            <img class="card-img-top homeCardsImage" ng-src="{{uservids.thumbnailLink}}" alt="Card image cap" data-ng-click="getIndex(uservids.id)">
+                            <img class="card-img-top channelCardsImage" ng-src="{{uservids.thumbnailLink}}" alt="Card image cap" data-ng-click="getIndex(uservids.id)">
                         </a>
                         <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                            <small>{{videos.data.duration}}</small>
                         </div>
 
                         <div class="card-body">
-                            <h6 class="card-title homeCardsName"><strong>{{uservids.video_name}}</strong> <br /> {{uservids.visibility}}</h6>
-                            <i class="card-text homeCardsUploader">{{uservids.video_uploader}}</i>
+                            <h6 class="card-title channelCardsName"><strong>{{uservids.video_name}}</strong></h6>
                             <p><i class="fas fa-eye"></i> {{uservids.views}}</p>
                         </div>
                     </div>
@@ -42,8 +40,8 @@
             </div>
 
         </div>
-        
-        
+
+
     </div>
-    
+
 </div>
