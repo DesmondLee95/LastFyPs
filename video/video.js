@@ -141,72 +141,77 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                var userRef = db.collection("Users").doc(user.email),
-                    videoRef = db.collection("Videos").doc(getVidId);
+                if (user.email !== "admin@admin.com") {
+                    var userRef = db.collection("Users").doc(user.email),
+                        videoRef = db.collection("Videos").doc(getVidId);
 
-                videoRef.get().then(function (doc) {
-                    if (doc.exists) {
+                    videoRef.get().then(function (doc) {
+                        if (doc.exists) {
 
-                        //Get current video's ID number to bind comment with video.
-                        var vid_id = doc.id;
+                            //Get current video's ID number to bind comment with video.
+                            var vid_id = doc.id;
 
-                        userRef.get().then(function (doc) {
-                            if (doc.exists) {
-                                var userInput = document.getElementById("vid_comment").value,
-                                    username = doc.data().Name,
-                                    userphoto = doc.data().photoURL,
-                                    userId = doc.id,
+                            userRef.get().then(function (doc) {
+                                if (doc.exists) {
+                                    var userInput = document.getElementById("vid_comment").value,
+                                        username = doc.data().Name,
+                                        userphoto = doc.data().photoURL,
+                                        userId = doc.id,
 
-                                    //Create structure for new comment
-                                    bigDiv = document.createElement("div"),
-                                    ImgColDiv = document.createElement("div"),
-                                    TextColDiv = document.createElement("div"),
-                                    TextRowDiv = document.createElement("div"),
-                                    userColDiv = document.createElement("div"),
-                                    userRowDiv = document.createElement("div"),
-                                    UserTextColDiv = document.createElement("div"),
-                                    userImage = document.createElement("ng-avatar"),
-                                    TextColDivContent = document.createTextNode(userInput),
-                                    userRowDivContent = document.createTextNode(username),
-                                    cgroup = document.getElementById("commentGroup");
-                                userImage.setAttribute("bind", "true");
-                                userImage.setAttribute("string", username);
-                                userImage.setAttribute("auto-color", "true");
-                                userImage.setAttribute("style", "width: 35px; height: 35px; display:inline-block");
+                                        //Create structure for new comment
+                                        bigDiv = document.createElement("div"),
+                                        ImgColDiv = document.createElement("div"),
+                                        TextColDiv = document.createElement("div"),
+                                        TextRowDiv = document.createElement("div"),
+                                        userColDiv = document.createElement("div"),
+                                        userRowDiv = document.createElement("div"),
+                                        UserTextColDiv = document.createElement("div"),
+                                        userImage = document.createElement("ng-avatar"),
+                                        TextColDivContent = document.createTextNode(userInput),
+                                        userRowDivContent = document.createTextNode(username),
+                                        cgroup = document.getElementById("commentGroup");
+                                    userImage.setAttribute("bind", "true");
+                                    userImage.setAttribute("string", username);
+                                    userImage.setAttribute("auto-color", "true");
+                                    userImage.setAttribute("style", "width: 35px; height: 35px; display:inline-block");
 
-                                bigDiv.className = 'row commentedBox';
-                                ImgColDiv.className = 'col-lg-1 col-md-2 col-sm-2 col-2 imageBoxComment';
-                                UserTextColDiv.className = 'col-lg-11 col-md-10 col-sm-10 col-10 pastCommentBox';
-                                TextColDiv.className = 'col-lg-11 col-md-10 col-sm-10 col-10 commentArea';
-                                userRowDiv.className = 'col-lg-11 col-md-10 col-sm-10 col-10 commentPoster';
-                                userImage.className = 'rounded-circle';
+                                    bigDiv.className = 'row commentedBox';
+                                    ImgColDiv.className = 'col-lg-1 col-md-2 col-sm-2 col-2 imageBoxComment';
+                                    UserTextColDiv.className = 'col-lg-11 col-md-10 col-sm-10 col-10 pastCommentBox';
+                                    TextColDiv.className = 'col-lg-11 col-md-10 col-sm-10 col-10 commentArea';
+                                    userRowDiv.className = 'col-lg-11 col-md-10 col-sm-10 col-10 commentPoster';
+                                    userImage.className = 'rounded-circle';
 
-                                UserTextColDiv.appendChild(userRowDiv);
-                                UserTextColDiv.appendChild(TextRowDiv);
-                                userRowDiv.appendChild(userColDiv);
-                                TextRowDiv.appendChild(TextColDiv);
-                                bigDiv.appendChild(ImgColDiv);
-                                bigDiv.appendChild(UserTextColDiv);
+                                    UserTextColDiv.appendChild(userRowDiv);
+                                    UserTextColDiv.appendChild(TextRowDiv);
+                                    userRowDiv.appendChild(userColDiv);
+                                    TextRowDiv.appendChild(TextColDiv);
+                                    bigDiv.appendChild(ImgColDiv);
+                                    bigDiv.appendChild(UserTextColDiv);
 
-                                $compile(userImage)($scope);
-                                ImgColDiv.appendChild(userImage);
-                                userRowDiv.appendChild(userRowDivContent);
-                                TextColDiv.appendChild(TextColDivContent);
+                                    $compile(userImage)($scope);
+                                    ImgColDiv.appendChild(userImage);
+                                    userRowDiv.appendChild(userRowDivContent);
+                                    TextColDiv.appendChild(TextColDivContent);
 
-                                cgroup.prepend(bigDiv);
+                                    cgroup.prepend(bigDiv);
 
-                                //Store comment information into Firestore.
-                                db.collection("Videos").doc(getVidId).collection("comments").add({
-                                    comment_desc: userInput,
-                                    comment_user: userId,
-                                    comment_date: new Date()
-                                });
-                                document.getElementById("vid_comment").value = "";
-                                document.getElementById('post').disabled = true;
-                            }
-                        });
-                    }
-                });
+                                    //Store comment information into Firestore.
+                                    db.collection("Videos").doc(getVidId).collection("comments").add({
+                                        comment_desc: userInput,
+                                        comment_user: userId,
+                                        comment_date: new Date()
+                                    });
+                                    document.getElementById("vid_comment").value = "";
+                                    document.getElementById('post').disabled = true;
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    alert("Admin are not allowed to rate!");
+                    document.getElementById("vid_comment").value = "";
+                }
             } else {
                 alert("You're not logged-in!");
                 document.getElementById("vid_comment").value = "";
@@ -468,7 +473,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     }
 
     $scope.sendFlags = function () {
-        
+
         var reqURL = 'https://us-central1-educational-video-learning-app.cloudfunctions.net/sendFlags/',
             adminEmail = "admin@admin.com",
             userArray = [];
@@ -491,7 +496,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                             videoId: getVidId,
                             userId: email
                         })
-                        
+
                         alert("The video has been reported and is currently pending to be reviewed.");
                     }
                 };

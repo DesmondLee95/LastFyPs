@@ -170,9 +170,29 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                 });
             } else {
 
-                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
-                    video_name: $scope.editUserVideos[$scope.indexValue].video_name
-                });
+                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id)
+                    .get()
+                    .then(function (doc) {
+                        if (doc.exists) {
+                            console.log(doc.data().video_name);
+                            var videoName = doc.data().video_name;
+
+                            db.collection("Notifications").where("videoName", "==", videoName)
+                                .get()
+                                .then(function (querySnapshot) {
+                                    querySnapshot.forEach(function (doc) {
+                                        console.log(doc.id);
+                                        db.collection("Notifications").doc(doc.id).update({
+                                            videoName: $scope.editUserVideos[$scope.indexValue].video_name
+                                        });
+                                    })
+                                })
+
+                            db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
+                                video_name: $scope.editUserVideos[$scope.indexValue].video_name
+                            });
+                        }
+                    })
 
                 db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
                     video_desc: $scope.editUserVideos[$scope.indexValue].description
@@ -183,24 +203,6 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                 db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
                     editing: false
                 });
-
-                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id)
-                    .get().then(function (doc) {
-                        if (doc.exists) {
-                            var videoName = doc.data().video_name;
-
-                            db.collection("Notifications").where("videoName", "==", videoName)
-                                .get()
-                                .then(function (querySnapshot) {
-                                    querySnapshot.forEach(function (doc) {
-                                        db.collection("Notifications").doc(doc.id).update({
-                                            videoName: $scope.editUserVideos[$scope.indexValue].video_name
-                                        });
-                                    })
-                                })
-                        }
-                    })
-
             }
         } else {
 
