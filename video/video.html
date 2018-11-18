@@ -160,7 +160,7 @@
                         <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(x.data.video_uploader_Email)">
                             <p class="card-text rcmUploader">{{x.data.video_uploader}}</p>
                             </a></i>
-                        <p class="card-text rcmViews">{{x.data.video_view}} views</p>
+                        <p class="card-text rcmViews"><i class="fas fa-eye"></i> {{x.data.video_view}} views</p>
                     </div>
                 </div>
                 <p ng-show="!rcmVids.length">No related videos found.</p>
