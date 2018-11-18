@@ -195,7 +195,7 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                                 })
 
                        }              
-            }
+            })
               $scope.reloadJson();
               console.log($scope.editUserVideos);             
         } else {
