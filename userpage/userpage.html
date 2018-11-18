@@ -28,13 +28,18 @@
 
                             <img class="card-img-top homeCardsImage" ng-src="{{uservids.thumbnailLink}}" alt="Card image cap" data-ng-click="getIndex(uservids.id)">
                         </a>
-
+                        <div class="text-block3">
+                            <small>{{uservids.duration}}</small>
+                        </div>
                         <div class="card-body">
                             <h6 class="card-title homeCardsName"><strong>{{uservids.video_name}}</strong> <br /> {{uservids.visibility}}</h6>
                             <i class="card-text homeCardsUploader">{{uservids.video_uploader}}</i>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-6">
                                     <i class="fas fa-eye"></i> {{uservids.views}}
+                                </div>
+                                <div class="tstamp">
+                                <p><small style="color: darkgrey;">{{uservids.timestampdisplay}}</small></p>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-6" style="text-align: right; color: red;">
                                     <div data-ng-show="{{uservids.block == true}}"><strong>BLOCKED</strong></div>
