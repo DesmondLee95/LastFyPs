@@ -54,6 +54,7 @@ app.controller('channelCtrl', ['$scope', '$location', '$sce', 'videoService', 'c
                     id: doc.id,
                     category: doc.data().video_category,
                     description: doc.data().video_desc,
+                    duration: doc.data().duration,
                     link: doc.data().video_link,
                     thumbnailLink: doc.data().thumbnail_link,
                     video_name: doc.data().video_name,
@@ -61,6 +62,8 @@ app.controller('channelCtrl', ['$scope', '$location', '$sce', 'videoService', 'c
                     uploader_Name: doc.data().video_uploader,
                     visibility: doc.data().video_visibility,
                     views: doc.data().video_view,
+                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                    timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY')
                 };
 
 
