@@ -20,13 +20,13 @@
 
     <hr>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 order-md-1 col-sm-12 order-sm-2 col-12 order-2">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="margin-bottom: 10px;" data-ng-repeat="uservids in currentUserVideos">
                     <div class="card profileCards">
                         <a href="#!Video">
 
-                            <img class="card-img-top homeCardsImage" ng-src="{{uservids.thumbnailLink}}" alt="Card image cap" data-ng-click="getIndex(uservids.id)">
+                            <img class="card-img-top profileCardsImage" ng-src="{{uservids.thumbnailLink}}" alt="Card image cap" data-ng-click="getIndex(uservids.id)">
                         </a>
                         <div class="text-block3">
                             <small>{{uservids.duration}}</small>
@@ -41,7 +41,7 @@
                                 <div class="tstamp">
                                 <p><small style="color: darkgrey;">{{uservids.timestampdisplay}}</small></p>
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-6" style="text-align: right; color: red;">
+                                <div class="col-md-6 col-sm-6 col-6 statusVid">
                                     <div data-ng-show="{{uservids.block == true}}"><strong>BLOCKED</strong></div>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
             </div>
 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 order-md-2 col-sm-12 order-sm-1 col-12 order-1" style="margin-bottom: 15px;">
             <div class="profileColumns">
                 <a href="#!Upload" class="btn btn-danger uploadVid">Upload Video</a>
             </div>

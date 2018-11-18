@@ -1,5 +1,6 @@
 <headerwithprofile-File></headerwithprofile-File>
 <link rel="stylesheet" href="./assets/custom-css/video.css" />
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -138,8 +139,8 @@
                         <textarea type="text" rows="1" id="vid_comment" class="vid_comment" data-ng-keyup="emptyInput()" placeholder="Add a comment.."></textarea>
                         <button type="btn" id="post" class="post" data-ng-click="createComments()" disabled>POST</button>
                     </div>
-                </div>
-                <div id="commentGroup">
+                    <div id="commentGroup">
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-12 rightCol">
@@ -158,7 +159,7 @@
                             <h4 class="card-title rcmVidname" data-ng-click="getIndex(x.id)">{{(x.data.video_name | limitTo: 55) + (x.data.video_name.length > 55 ? '...' : '')}}</h4>
                         </a>
                         <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(x.data.video_uploader_Email)">
-                            <p class="card-text rcmUploader">{{x.data.video_uploader}}</p>
+                                <p class="card-text rcmUploader">{{x.data.video_uploader}}</p>
                             </a></i>
                         <p class="card-text rcmViews"><i class="fas fa-eye"></i> {{x.data.video_view}} views</p>
                     </div>
