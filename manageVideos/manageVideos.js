@@ -241,7 +241,8 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                                 thumbnail: doc.data().thumbnail_link,
                                 folder: doc.data().folder,
                                 thumbnailFile: doc.data().thumbnailName,
-                                videoFile: doc.data().fileName
+                                videoFile: doc.data().fileName,
+                                duration: doc.data().duration
                             };
 
                             // Pushing the json data one by one into the array of videos to be edited
