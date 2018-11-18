@@ -25,6 +25,36 @@ html {
     box-sizing: border-box;
 }
 
+.text-block3 {
+    position: absolute;
+    bottom: 73px;
+    right: 0px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding-left: 2px;
+    padding-right: 2px;
+    
+}
+
+.text-block4 {
+    position: absolute;
+    bottom: 88px;
+    right: 0px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding-left: 2px;
+    padding-right: 2px;
+    
+}
+
+.tstamp {
+    position: absolute;
+    bottom: -12px;
+    right: 2px;
+}
+
 .post {
     background-color: white;
     border-radius: 3px;
