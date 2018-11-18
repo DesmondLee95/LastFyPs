@@ -99,6 +99,8 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
                             uploader_Name: doc.data().video_uploader,
                             visibility: doc.data().video_visibility,
                             views: doc.data().video_view,
+                            timestampdisplay: moment(doc.data().date_uploaded.toDate()).format('DD MMMM YYYY'),
+                            duration: doc.data().duration,
                             block: doc.data().block_status
                         };
 
