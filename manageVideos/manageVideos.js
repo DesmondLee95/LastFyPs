@@ -34,6 +34,9 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
     $scope.getIndex = function (id) {
         $scope.indexValue = $scope.editUserVideos.findIndex(video => video.id === id);
         console.log($scope.editUserVideos[$scope.indexValue].folder);
+        
+        $scope.toEditVideoName = $scope.editUserVideos[$scope.indexValue].video_name;
+        $scope.toEditVideoDes = $scope.editUserVideos[$scope.indexValue].description;
     };
 
     var user = firebase.auth().currentUser;
@@ -155,21 +158,23 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
 
         var r = confirm("Save Changes?");
         if (r == true) {
-
-            if ($scope.editUserVideos[$scope.indexValue].video_name === "") {
-                toaster.pop({
-                    type: 'warning',
-                    title: "Name Empty",
-                    body: "Name Cannot be empty"
+                
+                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
+                    video_visibility: $scope.editUserVideos[$scope.indexValue].visibility
                 });
-            } else if ($scope.editUserVideos[$scope.indexValue].description === "") {
-                toaster.pop({
-                    type: 'warning',
-                    title: "Description Empty",
-                    body: "Please fill in the description"
+                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
+                    editing: false
                 });
-            } else {
-
+            
+            
+                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
+                    video_name: $scope.toEditVideoName
+                });
+            
+                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
+                    video_desc: $scope.toEditVideoDes
+                });
+                              
                 db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id)
                     .get()
                     .then(function (doc) {
@@ -188,22 +193,10 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                                     })
                                 })
 
-                            db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
-                                video_name: $scope.editUserVideos[$scope.indexValue].video_name
-                            });
-                        }
-                    })
-
-                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
-                    video_desc: $scope.editUserVideos[$scope.indexValue].description
-                });
-                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
-                    video_visibility: $scope.editUserVideos[$scope.indexValue].visibility
-                });
-                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
-                    editing: false
-                });
+                       }              
             }
+              $scope.reloadJson();
+              console.log($scope.editUserVideos);             
         } else {
 
         }
@@ -225,7 +218,7 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
     $scope.reloadJson = function () {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-
+                $scope.editUserVideos = [];
                 // Getting all videos
                 db.collection("Videos").get().then(function (querySnapshot) {
                     // looping through the query which will contain all the documents
