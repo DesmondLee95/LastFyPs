@@ -210,7 +210,6 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                     document.getElementById("vid_comment").value = "";
                 }
             } else {
-                alert("You're not logged-in!");
                 document.getElementById("vid_comment").value = "";
             }
         });
