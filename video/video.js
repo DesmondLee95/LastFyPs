@@ -94,13 +94,9 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
                     if (doc.exists) {
                         $scope.currentUserName = doc.data().Name;
-
+                        
                         $scope.$apply();
-                        console.log($scope.currentUserName);
-
-                    } else {
-                        console.log("No such document!");
-                    }
+                    } else {}
                 });
             }
         });
