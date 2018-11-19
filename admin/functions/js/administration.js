@@ -115,7 +115,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         db.collection("Users").onSnapshot(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 for (i = 0; i < userEmails.length; i += 1) {
-                    if (doc.id === userEmails[i] && doc.data().userType !== "Admin") {
+                    if (doc.id === userEmails[i] && doc.data().Email !== "100074597@students.swinburne.edu.my" && doc.data().Email !== "100075532@students.swinburne.edu.my") {
                         if (validUsers.includes(doc.id) === false) {
                             validUsers.push(doc.id);
                         }
