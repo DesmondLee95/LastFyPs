@@ -31,15 +31,15 @@
                         <div class="text-block3">
                             <small>{{uservids.duration}}</small>
                         </div>
-                        <div class="card-body">
-                            <h6 class="card-title homeCardsName"><strong>{{uservids.video_name}}</strong> <br /> {{uservids.visibility}}</h6>
-                            <i class="card-text homeCardsUploader">{{uservids.video_uploader}}</i>
+                        <div class="card-body" style="padding: 0px 3px 0px 3px">
+                            <h6 class="card-title homeCardsName"><strong>{{uservids.video_name}}</strong></h6>
+                            <i class="card-text homeCardsUploader">{{uservids.visibility}}</i>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-6">
                                     <i class="fas fa-eye"></i> {{uservids.views}}
                                 </div>
                                 <div class="tstamp">
-                                <p><small style="color: darkgrey;">{{uservids.timestampdisplay}}</small></p>
+                                    <p><small style="color: darkgrey;">{{uservids.timestampdisplay}}</small></p>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-6 statusVid">
                                     <div data-ng-show="{{uservids.block == true}}"><strong>BLOCKED</strong></div>

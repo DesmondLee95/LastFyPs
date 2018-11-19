@@ -116,6 +116,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
                 userRef.get().then(function (doc) {
                     $scope.uploaderName = doc.data().Name;
+                    $scope.uploaderEmail = doc.data().Email;
                     document.getElementById('uploader').innerHTML = doc.data().Name;
                     $scope.$apply();
                 });
@@ -452,20 +453,21 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         firebase.auth().onAuthStateChanged(function (user) {
             db.collection("Videos").doc(getVidId).collection("ratings").get().then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
+                    if (user !== null) {
+                        if (doc.data().rated_user === user.email) {
+                            var selectedIndex = doc.data().rating,
+                                stars = document.querySelectorAll('.star');
 
-                    if (doc.data().rated_user === user.email) {
-                        var selectedIndex = doc.data().rating,
-                            stars = document.querySelectorAll('.star');
-
-                        // Loop through each star, and add or remove the `.selected` class to toggle highlighting
-                        stars.forEach(function (star, index) {
-                            if (index < selectedIndex) {
-                                star.classList.add('selected');
-                            } else {
-                                star.classList.remove('selected');
-                            }
-                        });
-                        document.getElementById('user_rated').innerHTML = "You've rated this video " + selectedIndex + " stars.";
+                            // Loop through each star, and add or remove the `.selected` class to toggle highlighting
+                            stars.forEach(function (star, index) {
+                                if (index < selectedIndex) {
+                                    star.classList.add('selected');
+                                } else {
+                                    star.classList.remove('selected');
+                                }
+                            });
+                            document.getElementById('user_rated').innerHTML = "You've rated this video " + selectedIndex + " stars.";
+                        }
                     }
                 });
             });

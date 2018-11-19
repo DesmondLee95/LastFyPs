@@ -25,7 +25,7 @@ html {
     box-sizing: border-box;
 }
 
-.text-block3 {
+.text-blockChannel {
     position: absolute;
     bottom: 73px;
     right: 0px;
@@ -34,7 +34,17 @@ html {
     color: white;
     padding-left: 2px;
     padding-right: 2px;
+}
 
+.text-block3 {
+    position: absolute;
+    bottom: 93px;
+    right: 0px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 .text-block4 {
@@ -217,7 +227,7 @@ html {
 }
 
 .profileCards {
-    height: 200px;
+    height: 220px;
     width: 100%;
 }
 
@@ -277,7 +287,7 @@ html {
     margin-bottom: 5px;
     margin-top: 0px;
     word-wrap: break-all;
-    height: 2.6em;
+    height: 2.7em;
     line-height: 1.4em;
     overflow: hidden;
     display: inline-block;
@@ -571,13 +581,35 @@ video {
         margin-top: 0px;
     }
 
+    .text-block3 {
+        position: absolute;
+        bottom: 94px;
+        right: 0px;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    .text-blockChannel {
+        position: absolute;
+        bottom: 68px;
+        right: 0px;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
     .homeCards {
         height: 315px;
         width: 100%;
     }
 
     .profileCards {
-        height: 285px;
+        height: 306px;
         width: 100%;
     }
 
@@ -602,13 +634,13 @@ video {
     }
 
     .channelCards {
-        height: 285px;
+        height: 315px;
         width: 100%;
     }
 
     .channelCardsImage {
         width: 100%;
-        height: 215px;
+        height: 245px;
     }
 
     .channelRow {
@@ -626,13 +658,25 @@ video {
         margin-top: 0px;
     }
 
+    .text-block3 {
+        position: absolute;
+        bottom: 93px;
+        right: 0px;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        padding-left: 2px;
+        padding-right: 2px;
+
+    }
+
     .homeCards {
         height: 280px;
         width: 100%;
     }
 
     .profileCards {
-        height: 200px;
+        height: 220px;
         width: 100%;
     }
 
@@ -641,9 +685,14 @@ video {
         width: 100%;
     }
 
+    .channelCards {
+        height: 240px;
+        width: 100%;
+    }
+
     .channelCardsImage {
         width: 100%;
-        height: 100px;
+        height: 170px;
     }
 
     .homeCardsImage {

@@ -101,8 +101,8 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12 col-md-6 col-sm-6 uploaderBox">
-                        <a href="#" class="links">
+                    <div class="col-12 col-md-6 col-sm-6 uploaderBox" data-ng-controller="channelCtrl">
+                        <a href="" class="links" data-ng-click="getInfo(uploaderEmail)">
                             <ng-avatar bind="true" string="{{uploaderName}}" auto-color="true" class="rounded-circle uploaderImg" style="width: 35px; height: 35px;"></ng-avatar>
                             <span id="uploader" class="uploader"></span>
                         </a>

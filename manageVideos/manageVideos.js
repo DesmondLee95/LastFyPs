@@ -34,7 +34,7 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
     $scope.getIndex = function (id) {
         $scope.indexValue = $scope.editUserVideos.findIndex(video => video.id === id);
         console.log($scope.editUserVideos[$scope.indexValue].folder);
-        
+
         $scope.toEditVideoName = $scope.editUserVideos[$scope.indexValue].video_name;
         $scope.toEditVideoDes = $scope.editUserVideos[$scope.indexValue].description;
     };
@@ -159,45 +159,45 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
 
         var r = confirm("Save Changes?");
         if (r == true) {
-                
-                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
-                    video_visibility: $scope.editUserVideos[$scope.indexValue].visibility
-                });
-                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
-                    editing: false
-                });
-            
-            
-                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
-                    video_name: $scope.toEditVideoName
-                });
-            
-                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
-                    video_desc: $scope.toEditVideoDes
-                });
-                              
-                db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id)
-                    .get()
-                    .then(function (doc) {
-                        if (doc.exists) {
-                            console.log(doc.data().video_name);
-                            var videoName = doc.data().video_name;
 
-                            db.collection("Notifications").where("videoName", "==", videoName)
-                                .get()
-                                .then(function (querySnapshot) {
-                                    querySnapshot.forEach(function (doc) {
-                                        console.log(doc.id);
-                                        db.collection("Notifications").doc(doc.id).update({
-                                            videoName: $scope.editUserVideos[$scope.indexValue].video_name
-                                        });
-                                    })
+            db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
+                video_visibility: $scope.editUserVideos[$scope.indexValue].visibility
+            });
+            db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
+                editing: false
+            });
+
+
+            db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
+                video_name: $scope.toEditVideoName
+            });
+
+            db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id).update({
+                video_desc: $scope.toEditVideoDes
+            });
+
+            db.collection("Videos").doc($scope.editUserVideos[$scope.indexValue].id)
+                .get()
+                .then(function (doc) {
+                    if (doc.exists) {
+                        console.log(doc.data().video_name);
+                        var videoName = doc.data().video_name;
+
+                        db.collection("Notifications").where("videoName", "==", videoName)
+                            .get()
+                            .then(function (querySnapshot) {
+                                querySnapshot.forEach(function (doc) {
+                                    console.log(doc.id);
+                                    db.collection("Notifications").doc(doc.id).update({
+                                        videoName: $scope.editUserVideos[$scope.indexValue].video_name
+                                    });
                                 })
+                            })
 
-                       }              
-            })
-              $scope.reloadJson();
-              console.log($scope.editUserVideos);             
+                    }
+                })
+            $scope.reloadJson();
+            console.log($scope.editUserVideos);
         } else {
 
         }
