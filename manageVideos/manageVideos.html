@@ -79,7 +79,7 @@
                 <textarea data-ng-model="toEditVideoDes" class="form-control" placeholder="Description cannot be empty!"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" id="thebutton" class="btn btn-secondary" data-dismiss="modal" data-ng-click="notEditing()" data-ng-disabled="!toEditVideoName || !toEditVideoDes">Close</button>
+                <button type="button" id="thebutton" class="btn btn-secondary" data-dismiss="modal" data-ng-disabled="!toEditVideoName || !toEditVideoDes">Close</button>
                <button type="button" class="btn btn-primary" data-ng-click="saveVideo()" data-ng-disabled="!toEditVideoName || !toEditVideoDes">Save changes</button>
             </div>
         </div>

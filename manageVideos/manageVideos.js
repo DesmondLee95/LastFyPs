@@ -198,10 +198,10 @@ app.controller('manageVideosCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                 })
             $scope.reloadJson();
             console.log($scope.editUserVideos);
+            document.getElementById('thebutton').click();
         } else {
-
+            document.getElementById('thebutton').click();    
         }
-
     };
 
     $("#editVideoModal").on("hidden.bs.modal", function () {
