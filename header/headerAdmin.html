@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-danger">
     <div class="container-fluid">
         <a class="navbar-brand" href="#!Admin" style="color: white; padding-left: 5px" onclick="reloadPage()">SwinHive Administration</a>
-        <div class="text-right"> 
+        <div class="text-right">
             <a href="#!login" id="logo" style="color:White" data-ng-show="loggedIn != null" ng-click="signout()">Sign Out</a>
         </div>
     </div>
@@ -9,10 +9,7 @@
 
 <script>
     function reloadPage() {
-        if ($location.path() == "/Admin") {
-            location.reload();
-        } else {
-            //Do nothing
-        }
+        location.reload();
     }
+
 </script>

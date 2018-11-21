@@ -278,22 +278,34 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                                 });
                             });
 
-                            /*db.collection("Videos").doc().collection("comments").get().then(function (querySnapshot) {
-                                querySnapshot.forEach(function (doc) {
-                                    if(doc.data().comment_user === email) {
-                                        doc.ref.delete();
-                                    }
-                                })
-                            })
-                            
-                            db.collection("Videos").doc().collection("ratings").get().then(function (querySnapshot) {
-                                querySnapshot.forEach(function (doc) {
-                                    if(doc.data().rated_user === email) {
-                                        doc.ref.delete();
-                                    }
-                                })
-                            })*/
+                            if (email != null) {
+                                db.collection("Videos").get().then(function (querySnapshot) {
+                                    querySnapshot.forEach(function (doc) {
+
+                                        db.collection("Videos").doc(doc.id).collection("comments")
+                                            .get().then(function (querySnapshot) {
+                                                querySnapshot.forEach(function (doc) {
+                                                    if (doc.data().comment_user == email) {
+                                                        doc.ref.delete();
+                                                        console.log("doc " + doc.id + " is deleted!");
+                                                    }
+                                                })
+                                            });
+
+                                        db.collection("Videos").doc(doc.id).collection("ratings")
+                                            .get().then(function (querySnapshot) {
+                                                querySnapshot.forEach(function (doc) {
+                                                    if (doc.data().rated_user == email) {
+                                                        doc.ref.delete();
+                                                        console.log("doc " + doc.id + " is deleted!");
+                                                    }
+                                                })
+                                            });
+                                    });
+                                });
+                            }
                         }
+
                         $scope.deleteUserStorage(email);
                         $('#deleteModal').modal('hide');
                     }

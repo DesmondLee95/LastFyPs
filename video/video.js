@@ -331,7 +331,9 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                     var allRating = [];
                     querySnapshot.forEach(function (doc) {
                         if (doc.data().rated_user !== "admin@admin.com") {
-                            allRating.push(doc.data().rating);
+                            if (!isNaN(doc.data().rating)) {
+                                allRating.push(doc.data().rating);
+                            }
                         }
                     });
 
@@ -626,8 +628,11 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
                                     var allRating = [];
                                     querySnapshot.forEach(function (doc) {
-
-                                        allRating.push(doc.data().rating);
+                                        if (doc.data().rated_user !== "admin@admin.com") {
+                                            if (!isNaN(doc.data().rating)) {
+                                                allRating.push(doc.data().rating);
+                                            }
+                                        }
                                     });
 
                                     //Get total of all rating in the array.
