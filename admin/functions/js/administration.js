@@ -262,12 +262,13 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                         $scope.refreshTableRow();
 
                         if (response === "User with id " + email + " deleted") {
-                            db.collection("Users").doc(email).delete().then(function () {
-                                console.log("Document successfully deleted!");
-                                alert("User has been deleted!");
-                            }).catch(function (error) {
-                                console.error("Error removing document: ", error);
-                            });
+                            db.collection("Users").doc(email).delete()
+                                .then(function () {
+                                    console.log("Document successfully deleted!");
+                                    alert("User has been deleted!");
+                                }).catch(function (error) {
+                                    console.error("Error removing document: ", error);
+                                });
 
                             var videoRef = db.collection("Videos").where("video_uploader_Email", "==", email);
                             videoRef.get().then(function (querySnapshot) {
@@ -276,6 +277,22 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                                     console.log("doc " + doc.id + " is deleted!");
                                 });
                             });
+
+                            /*db.collection("Videos").doc().collection("comments").get().then(function (querySnapshot) {
+                                querySnapshot.forEach(function (doc) {
+                                    if(doc.data().comment_user === email) {
+                                        doc.ref.delete();
+                                    }
+                                })
+                            })
+                            
+                            db.collection("Videos").doc().collection("ratings").get().then(function (querySnapshot) {
+                                querySnapshot.forEach(function (doc) {
+                                    if(doc.data().rated_user === email) {
+                                        doc.ref.delete();
+                                    }
+                                })
+                            })*/
                         }
                         $scope.deleteUserStorage(email);
                         $('#deleteModal').modal('hide');

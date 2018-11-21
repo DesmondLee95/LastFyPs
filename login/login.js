@@ -6,8 +6,7 @@ var app = angular.module('login', ['ngRoute', 'firebase']);
 app.config(['$routeProvider', function ($routeProvider) {
     'use strict';
     $routeProvider.when('/login', {
-        templateUrl: 'login/login.html',
-        controller: 'loginCtrl'
+        templateUrl: 'login/login.html'
     })
 }]);
 
@@ -16,7 +15,6 @@ app.factory("Auth", ["$firebaseAuth",
         return $firebaseAuth();
   }
 ]);
-
 
 app.controller('loginCtrl', ['$scope', 'Auth', '$location', 'toaster', function ($scope, Auth, $location, toaster) {
     'use strict'
@@ -32,7 +30,7 @@ app.controller('loginCtrl', ['$scope', 'Auth', '$location', 'toaster', function 
                 $scope.loggedIn = user.uid;
                 //                $location.path("/Home");
             } else {
-                //User not signed in.
+                firebase.auth().signOut();
                 toaster.pop({
                     type: 'danger',
                     title: "Verification Required",
@@ -55,19 +53,22 @@ app.controller('loginCtrl', ['$scope', 'Auth', '$location', 'toaster', function 
         } else {
             console.log("Value: " + event);
         }
-
     });
 
-    // Function for loggin in
     $scope.login = function (loginEmail, loginPassword) {
 
         if ((loginEmail.indexOf('@students.swinburne.edu.my', loginEmail.length - '@students.swinburne.edu.my'.length) !== -1) || (loginEmail.indexOf('@swinburne.edu.my', loginEmail.length - '@swinburne.edu.my'.length) !== -1)) {
             Auth.$signInWithEmailAndPassword(loginEmail, loginPassword)
                 .then(function (user) {
-
-                    $scope.loggedInUserEmail = user.email;
-                    $scope.loggedIn = user.uid;
-                    $location.path("/Home");
+                    firebase.auth().onAuthStateChanged(function (user) {
+                        if (user.emailVerified) {
+                            $scope.loggedInUserEmail = user.email;
+                            $scope.loggedIn = user.uid;
+                            $location.path("/Home");
+                        } else {
+                            alert("Your email is not verified!");
+                        }
+                    })
                 })
                 .catch(function (error) {
                     if (error.code === 'auth/invalid-email') {
@@ -81,6 +82,7 @@ app.controller('loginCtrl', ['$scope', 'Auth', '$location', 'toaster', function 
                     }
                 })
         } else {
+            firebase.auth().signOut();
             alert("You've entered an invalid email.");
         }
 
@@ -103,10 +105,10 @@ app.controller('loginCtrl', ['$scope', 'Auth', '$location', 'toaster', function 
                             .get()
                             .then(function (querySnapshot) {
                                 querySnapshot.forEach(function (doc) {
-                                    if(doc.data().userEmail == user.email) {
+                                    if (doc.data().userEmail == user.email) {
                                         console.log("Token is deleted");
-                                    console.log(user.email + currentToken);
-                                    doc.ref.delete();
+                                        console.log(user.email + currentToken);
+                                        doc.ref.delete();
                                     }
                                 })
                             }).catch(function (error) {

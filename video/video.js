@@ -94,7 +94,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
                     if (doc.exists) {
                         $scope.currentUserName = doc.data().Name;
-                        
+
                         $scope.$apply();
                     } else {}
                 });
@@ -330,8 +330,9 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
                     var allRating = [];
                     querySnapshot.forEach(function (doc) {
-
-                        allRating.push(doc.data().rating);
+                        if (doc.data().rated_user !== "admin@admin.com") {
+                            allRating.push(doc.data().rating);
+                        }
                     });
 
                     //Get total of all rating in the array.

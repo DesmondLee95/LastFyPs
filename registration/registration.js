@@ -69,7 +69,6 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                                     Email: umail,
                                     Course: "",
                                     video_upload: 0,
-                                    userType: "Student"
                                 })
                                 .then(function () {
                                     console.log("Document successfully written!");
@@ -82,7 +81,6 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                                     console.log("Verified");
                                 } else {
                                     user.sendEmailVerification().then(function () {
-                                        alert("You've successfully signed up, please verify your email to login.");
                                         // Email sent.
                                         document.getElementById('registration').reset();
                                         $location.path("/login")
@@ -117,7 +115,6 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                                     Email: umail,
                                     Course: "",
                                     video_upload: 0,
-                                    userType: "Staff"
                                 })
                                 .then(function () {
                                     console.log("Document successfully written!");
@@ -130,10 +127,9 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                                     console.log("Verified");
                                 } else {
                                     user.sendEmailVerification().then(function () {
-                                        alert("You've successfully signed up, please verify your Email to login.");
                                         // Email sent.
                                         document.getElementById('registration').reset();
-                                        window.location = 'login.html';
+                                        $location.path("/login");
                                     }).catch(function (error) {
                                         // An error happened.
                                     });
