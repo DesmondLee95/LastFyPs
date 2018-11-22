@@ -496,7 +496,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                             videoId: getVidId,
                             userId: email
                         })
-
+                        console.log("Hey");
                         alert("The video has been reported and is currently pending to be reviewed.");
                     }
                 };
