@@ -70,55 +70,51 @@ app.controller('channelCtrl', ['$scope', '$location', '$sce', 'videoService', 'c
                 // Pushing the json data one by one into the array of videos to be edited
                 $scope.userChannelVideos.push($scope.videosJson);
 
-                }
+            }
             // doc.data() is never undefined for query doc snapshots
             //                    console.log(doc.id, " => ", doc.data());
-            
+
         });
 
-        var usersinfo = db.collection("Users").doc($scope.channelEmail);
 
-        usersinfo.get().then(function (doc) {
-            'use strict';
+        if ($scope.channelEmail !== null) {
+            var usersinfo = db.collection("Users").doc($scope.channelEmail);
 
-            if (doc.exists) {
+            usersinfo.get().then(function (doc) {
+                'use strict';
 
-                var userEmail = doc.data().Email;
+                if (doc.exists) {
 
-                var splitEmail = userEmail.split("@");
+                    var userEmail = doc.data().Email;
 
-                $scope.currentUserId = splitEmail[0];
+                    var splitEmail = userEmail.split("@");
 
-                $scope.currentUserCourse = doc.data().Course;
+                    $scope.currentUserId = splitEmail[0];
 
-                $scope.currentUserName = doc.data().Name;
-                $scope.currentUserphotoURL = doc.data().photoURL;
-                $scope.currentUservideo_upload = doc.data().video_upload;
+                    $scope.currentUserCourse = doc.data().Course;
 
+                    $scope.currentUserName = doc.data().Name;
+                    $scope.currentUserphotoURL = doc.data().photoURL;
+                    $scope.currentUservideo_upload = doc.data().video_upload;
+
+                    $scope.$apply();
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch(function (error) {
+                'use strict';
+                console.log("Error getting document:", error);
+            });
+
+
+
+            for (var i = 0; i < $scope.userChannelVideos.length; i++) {
+                $scope.userName = $scope.userChannelVideos[i].uploader_Name;
                 $scope.$apply();
-                console.log($scope.currentUserName);
-
-            } else {
-                console.log("No such document!");
+                break;
             }
-        }).catch(function (error) {
-            'use strict';
-            console.log("Error getting document:", error);
-        });
 
 
-
-        for (var i = 0; i < $scope.userChannelVideos.length; i++) {
-            console.log($scope.userChannelVideos[i].uploader_Name);
-            $scope.userName = $scope.userChannelVideos[i].uploader_Name;
-            $scope.$apply();
-            break;
         }
-
-
-
-
     });
-
-
 }]);

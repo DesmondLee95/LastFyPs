@@ -479,6 +479,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         var reqURL = 'https://us-central1-educational-video-learning-app.cloudfunctions.net/sendFlags/',
             adminEmail = "admin@admin.com",
             userArray = [];
+        document.body.classList.add('waiting');
 
         db.collection("Videos").doc(getVidId)
             .get()
@@ -499,6 +500,7 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                             userId: email
                         })
                         console.log("Hey");
+                        document.body.classList.remove('waiting');
                         alert("The video has been reported and is currently pending to be reviewed.");
                     }
                 };

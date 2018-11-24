@@ -26,6 +26,10 @@ html {
     box-sizing: border-box;
 }
 
+body.waiting * {
+    cursor: wait;
+}
+
 .text-blockChannel {
     position: absolute;
     bottom: 73px;
@@ -61,14 +65,17 @@ html {
 
 .statusVid {
     position: absolute;
-    top: 50px;
-    left: 50px;
-    font-size: 16px;
-    color: red;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.9);
+    top: 0px;
+    left: -15px;
     cursor: default;
-    padding-right: 4px;
+}
+
+.statusVidText {
+    color: red;
+    font-size: 13.5px;
+    border-radius: 3px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.);
 }
 
 .tstamp {
@@ -704,5 +711,15 @@ video {
     .homeCardsImage {
         width: 100%;
         height: 180px;
+    }
+}
+
+@media (max-width: 340px) {
+    .statusVidText {
+        color: red;
+        font-size: 12px;
+        border-radius: 3px;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.);
     }
 }

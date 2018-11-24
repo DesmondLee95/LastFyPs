@@ -563,9 +563,8 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     //Sort user list
     $scope.sortUser = function (selected) {
         var table, rows, switching, i, x, y, shouldSwitch;
-        table = document.getElementById("userTableBody");
+        table = document.getElementById("userTable");
         switching = true;
-        console.log(selected);
 
         while (switching) {
 
