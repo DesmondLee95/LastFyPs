@@ -414,12 +414,11 @@ html {
 }
 
 .flagbtn {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
+    padding: 0px 10px 0px 10px;
+    top: 1px;
+    right: 15px;
+    overflow: visible;
     position: absolute;
-    z-index: -1;
 }
 
 .userBtn {
