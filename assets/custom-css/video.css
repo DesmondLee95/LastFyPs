@@ -71,6 +71,8 @@ body.waiting * {
 }
 
 .statusVidText {
+    left: 0px;
+    font-size: 16px;
     color: red;
     font-size: 13.5px;
     border-radius: 3px;
