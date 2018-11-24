@@ -2,6 +2,16 @@ html {
     overflow-y: hidden;
 }
 
+.bottompart {
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   
+   color: black;
+   text-align: center;
+}
+
 .text-block {
     position: absolute;
     bottom: 98px;
@@ -60,12 +70,14 @@ html {
 
 .statusVid {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 50px;
+    left: 50px;
     font-size: 16px;
     color: red;
-    padding-left: 2px;
-    padding-right: 2px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.9);
+    cursor: default;
+    padding-right: 4px;
 }
 
 .tstamp {
