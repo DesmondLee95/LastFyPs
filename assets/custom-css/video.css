@@ -365,6 +365,18 @@ html {
     font-weight: bold;
 }
 
+#flagbtn:disabled {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: default;
+}
+
+.flagbtn {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .vidname {
     font-size: 18px;
     font-weight: bold;
@@ -411,14 +423,6 @@ html {
 
 .checked {
     color: red;
-}
-
-.flagbtn {
-    padding: 0px 10px 0px 10px;
-    top: 1px;
-    right: 15px;
-    overflow: visible;
-    position: absolute;
 }
 
 .userBtn {

@@ -146,5 +146,4 @@ app.controller('loginCtrl', ['$scope', 'Auth', '$location', 'toaster', function 
             document.getElementById('user_mail').focus();
         });
     }
-
             }]);

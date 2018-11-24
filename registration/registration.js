@@ -86,7 +86,7 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                                         $location.path("/login")
                                         document.getElementById('registration').reset();
                                     }).catch(function (error) {
-                                        // An error happened.
+                                        console.log(error);
                                     });
                                 }
                             });
@@ -112,7 +112,7 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                         .createUserWithEmailAndPassword(umail, upass)
                         .then(function (user) {
                             db.collection("Users").doc(umail).set({
-                                    Name: "",
+                                    Name: uname,
                                     Email: umail,
                                     Course: "",
                                     video_upload: 0,

@@ -47,11 +47,4 @@ app.controller('adminLoginCtrl', ['$scope', 'Auth', '$location', 'toaster', func
             return;
         }
     }
-
-    // signout
-    $scope.signout = function () {
-        firebase.auth().signOut();
-        $location.path("/login");
-        location.reload();
-    };
             }]);

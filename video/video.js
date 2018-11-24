@@ -74,12 +74,14 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                 db.collection("Videos").doc(getVidId).get().then(function (doc) {
                     if (doc.data().video_uploader_Email == currentEmail || currentEmail === "admin@admin.com") {
                         document.getElementById('openModal').disabled = true;
+                        document.getElementById('flagbtn').disabled = true;
                     } else {
                         document.getElementById('openModal').disabled = false;
+                        document.getElementById('flagbtn').disabled = false;
                     }
                 })
             } else {
-
+                document.getElementById('flagbtn').disabled = false;
             }
         });
     }

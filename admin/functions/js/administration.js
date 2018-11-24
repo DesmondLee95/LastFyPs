@@ -385,7 +385,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
     function getNotificationList() {
 
-        var videosUploaded = db.collection("Notifications");
+        var videosUploaded = db.collection("Notifications").orderBy("date", "desc");
 
         videosUploaded.get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
@@ -565,6 +565,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         var table, rows, switching, i, x, y, shouldSwitch;
         table = document.getElementById("userTableBody");
         switching = true;
+        console.log(selected);
 
         while (switching) {
 

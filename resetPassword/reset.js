@@ -21,7 +21,7 @@ app.factory("Auth", ["$firebaseAuth",
 app.controller('resetCtrl', ['$scope', 'Auth', '$location', 'toaster', function ($scope, Auth, $location, toaster) {
     'use strict'
 
-    function resetPass() {
+    $scope.resetPass = function() {
         'use strict';
 
         var auth = firebase.auth(),
@@ -30,7 +30,7 @@ app.controller('resetCtrl', ['$scope', 'Auth', '$location', 'toaster', function 
         auth.sendPasswordResetEmail(emailAddress).then(function () {
             // Email sent.
             alert("A reset password email has been sent to your email");
-            window.location = "login.html";
+            $location.path("/login");
         }).catch(function (error) {
             // An error happened.
             console.log("Email has not been sent.");
