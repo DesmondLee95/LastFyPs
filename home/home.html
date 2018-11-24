@@ -12,10 +12,10 @@
                 <!-- ******************************** PUBLIC VIDEOS **************************************-->
                 <div data-ng-model="pub" data-ng-hide="name == null || name == ''">
                     <h2><strong>Public</strong></h2>
-                
+
                     <button class="btn btn-default" ng-click="clickAsc()">Ascending</button>
                     <button class="btn btn-default" ng-click="clickDescending()">Descending</button>
-                    
+
                     <!-- Sort By: <br />
                     <button class="btn btn-default" ng-click="orderByField='timestamp' ; reverseSort = !reverseSort">Date</button>
                 -->
@@ -28,7 +28,7 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
@@ -38,7 +38,7 @@
                                     <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -53,9 +53,9 @@
                     </div>
                     <hr>
                 </div>
-                
+
                 <div data-ng-show="name == null || name == ''">
-                <!-- ******************************** Events VIDEOS **************************************-->
+                    <!-- ******************************** Events VIDEOS **************************************-->
                     <h2><strong>Events</strong></h2>
                     <div class="row">
 
@@ -66,7 +66,7 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
@@ -87,9 +87,9 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <hr>
-                
+
                     <!-- ******************************** BUSINESS VIDEOS **************************************-->
                     <h2><strong>Business</strong></h2>
                     <div class="row">
@@ -99,14 +99,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i> 
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
@@ -169,7 +169,7 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
@@ -204,7 +204,7 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
@@ -239,7 +239,7 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
@@ -274,7 +274,7 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
@@ -310,7 +310,7 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
@@ -345,14 +345,14 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
                                                 <h5 class="card-title homeCardsName"><strong>{{(videos.data.video_name | limitTo: 50) + (videos.data.video_name.length > 50 ? ' ...' : '')}}</strong>
                                                 </h5>
                                             </a></strong></h5>
-                                   <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
+                                    <i class="card-text homeCardsUploader" style="font-size: 14px" data-ng-controller="channelCtrl"><a href="" data-ng-click="getInfo(videos.data.video_uploader_Email)">{{(videos.data.video_uploader | limitTo: 35) + (videos.data.video_uploader.length > 35 ? ' ...' : '')}}</a></i>
                                     <p><small style="color: darkgrey;">{{videos.timestampdisplay}}</small></p>
                                 </div>
                             </div>
@@ -380,7 +380,7 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
@@ -415,7 +415,7 @@
                                     <img class="card-img-top homeCardsImage" ng-src="{{videos.data.thumbnail_link}}" alt="Card image cap" data-ng-click="getIndex(videos.id)">
                                 </a>
                                 <div class="text-block">
-                                   <small>{{videos.data.duration}}</small>
+                                    <small>{{videos.data.duration}}</small>
                                 </div>
                                 <div class="card-body" style="padding: 0px 3px 0px 3px">
                                     <h5 class="card-title homeCardsName"><strong><a href="#!Video" data-ng-click="getIndex(videos.id)" data-toggle="tooltip" data-placement="top" title="{{videos.data.video_name}}">
@@ -440,9 +440,7 @@
             </div>
         </div>
         <br>
-        </div>
-        
-        <p style="text-align:center; font-size: 10px;">If there is any issue, please contact the admin at <strong>admin@admin.com</strong></p>
-        
     </div>
+
+    <p style="text-align:center; font-size: 10px;">If there is any issue, please contact the admin at <strong>admin@admin.com</strong></p>
 </div>
