@@ -51,7 +51,7 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
             return false;
         } else if (upass.length < 6 || hasUpperCase + hasLowerCase + hasNumbers + hasNonalphas < 3) {
 
-            alert("Password is too weak, please include a mix of upper and lowercase letters, numbers and no symbols.");
+            alert("Password must have at least 6 characters, please include a mix of upper and lowercase letters, and also numbers");
             return false;
         } else {
             //Email validation
