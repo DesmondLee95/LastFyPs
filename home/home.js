@@ -44,10 +44,9 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', 'channelServi
     $scope.shortCourses = [];
     $scope.others = [];
     $scope.events = [];
+	
+	// START
     
-
-    // START
-
     // Getting video Index On click and other information
     $scope.getIndex = function (id) {
         $scope.indexValue = $scope.publicVideos.findIndex(video => video.id === id);

@@ -87,9 +87,7 @@ app.controller('channelCtrl', ['$scope', '$location', '$sce', 'videoService', 'c
 
                     var userEmail = doc.data().Email;
 
-                    var splitEmail = userEmail.split("@");
-
-                    $scope.currentUserId = splitEmail[0];
+                    $scope.currentUserId = userEmail;
 
                     $scope.currentUserCourse = doc.data().Course;
 

@@ -110,7 +110,7 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
             if (selectedFileSize > 40) {
                 alert("Chosen file exceeds 40MB!");
                 selectedFile.value = null;
-                document.getElementById("upload_text").innerHTML = "Choose a file to upload";
+                document.getElementById("upload_text").innerHTML = "Choose Video";
                 document.getElementById("upload_text").style.color = "#808080";
                 document.getElementById("upload_text").style.fontSize = "15px";
             } else {
@@ -121,7 +121,7 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
         } else {
             alert("Invalid file type!");
             selectedFile.value = null;
-            document.getElementById("upload_text").innerHTML = "Choose a file to upload";
+            document.getElementById("upload_text").innerHTML = "Choose Video";
             document.getElementById("upload_text").style.color = "#808080";
             document.getElementById("upload_text").style.fontSize = "15px";
         }
@@ -144,7 +144,7 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
             if (selectedThumbnailSize > 1) {
                 alert("Chosen file exceeds 1MB!");
                 selectedFile.value = null;
-                document.getElementById("thumbnail_text").innerHTML = "Choose a file to upload";
+                document.getElementById("thumbnail_text").innerHTML = "Choose Thumbnail";
                 document.getElementById("thumbnail_text").style.color = "#808080";
                 document.getElementById("thumbnail_text").style.fontSize = "15px";
             } else {
@@ -155,7 +155,7 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
         } else {
             alert("Invalid file type!");
             selectedFile.value = null;
-            document.getElementById("thumbnail_text").innerHTML = "Choose a file to upload";
+            document.getElementById("thumbnail_text").innerHTML = "Choose Thumbnail";
             document.getElementById("thumbnail_text").style.color = "#808080";
             document.getElementById("thumbnail_text").style.fontSize = "15px";
         }

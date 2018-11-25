@@ -133,7 +133,6 @@ app.controller('userpageCtrl', ['$scope', '$location', '$sce', 'videoService', f
                     $scope.currentUservideo_upload = doc.data().video_upload;
 
                     $scope.$apply();
-                    console.log($scope.currentUserName);
 
                 } else {
                     console.log("No such document!");

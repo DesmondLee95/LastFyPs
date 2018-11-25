@@ -95,7 +95,6 @@ app.controller('editProfileCtrl', ['$scope', 'Auth', '$location', 'toaster', fun
             body: "Profile Edited"
         });
         $location.path("/userpage");
-
-    };
+    };  
 
             }]);
