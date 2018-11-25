@@ -9,11 +9,11 @@
         <div class="collapse navbar-collapse" id="navbarhomeHeader">
             <form class="form-inline my-2 my-lg-0 mx-auto">
                 <div class="form-group fgroup">
-                    <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search" style="width: 100%; margin-left: 5px; margin-right: 5px;" data-ng-model="name">
+                    <input class="form-control mr-sm-1" type="search" placeholder="Search" data-ng-hide="currentPath === '/Upload'" aria-label="Search" style="width: 100%; margin-left: 5px; margin-right: 5px;" data-ng-model="name">
                 </div>
             </form>
             <div class="text-right">
-                <a href="#!Upload" id="logo" title="Upload video" style="color:White" data-ng-show="loggedIn != null"><i class="fa fa-video"></i></a>
+                <a href="#!Upload" id="logo" title="Upload video" style="color:White" data-ng-show="loggedIn != null && currentPath !== '/Upload'"><i class="fa fa-video"></i></a>
                 <a href="#!login" id="logo" style="color:White" data-ng-show="loggedIn == null">Sign In</a>
                 <a href="#!userpage" id="logo" style="color:White" data-ng-show="loggedIn != null">Profile</a>
                 <a href="#!Home" id="logo" style="color:White" data-ng-show="loggedIn != null" ng-click="signout()">Sign Out</a>

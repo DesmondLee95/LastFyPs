@@ -26,6 +26,8 @@ app.controller('uploadCtrl', ['$scope', 'Auth', '$location', 'toaster', function
     db.settings({
         timestampsInSnapshots: true
     });
+    
+    $scope.currentPath = $location.path();
 
     var uploadBtn = document.getElementById('uploadButton');
     var checkTOU = document.getElementById('termsofuse');

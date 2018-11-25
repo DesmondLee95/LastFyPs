@@ -205,12 +205,15 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
             if (user.email === "admin@admin.com") {
                 var reqURL = 'https://us-central1-educational-video-learning-app.cloudfunctions.net/disableUser/',
                     params = "email=" + email;
+                document.body.classList.add('waiting');
                 xhr.open('POST', reqURL, true);
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {
                         var response = this.responseText;
                         console.log(response);
                         $scope.changeBtnAttr(email);
+
+                        document.body.classList.remove('waiting');
                     }
                 };
                 xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -229,12 +232,15 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
             if (user.email === "admin@admin.com") {
                 var reqURL = 'https://us-central1-educational-video-learning-app.cloudfunctions.net/enableUser/',
                     params = "email=" + email;
+                document.body.classList.add('waiting');
                 xhr.open('POST', reqURL, true);
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {
                         var response = this.responseText;
                         console.log(response);
                         $scope.changeBtnAttr(email);
+
+                        document.body.classList.remove('waiting');
                     }
                 };
                 xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -253,6 +259,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
             if (user.email === "admin@admin.com") {
                 var reqURL = 'https://us-central1-educational-video-learning-app.cloudfunctions.net/deleteUser/',
                     params = "email=" + email;
+                document.body.classList.add('waiting');
                 xhr.open('POST', reqURL, true);
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -304,6 +311,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                                     });
                                 });
                             }
+                            document.body.classList.remove('waiting');
                         }
 
                         $scope.deleteUserStorage(email);
@@ -385,7 +393,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
     function getNotificationList() {
 
-        var videosUploaded = db.collection("Notifications").orderBy("date", "desc");
+        var videosUploaded = db.collection("Notifications").orderBy("date");
 
         videosUploaded.get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
@@ -489,6 +497,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
         firebase.auth().onAuthStateChanged(function (user) {
             if (user.email === "admin@admin.com") {
                 var vidRef = db.collection("Videos").doc(id);
+                document.body.classList.add('waiting');
 
                 vidRef.get().then(function (doc) {
                     if (doc.data().block_status === true) {
@@ -498,6 +507,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                             .then(function () {
                                 console.log("Video has been unblocked");
                                 $scope.changeBtnAttrVid(id);
+                                document.body.classList.remove('waiting');
                             })
                             .catch(function (error) {
                                 console.error("Error updating document: ", error);
@@ -509,6 +519,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                             .then(function () {
                                 console.log("Video has been blocked");
                                 $scope.changeBtnAttrVid(id);
+                                document.body.classList.remove('waiting');
                             })
                             .catch(function (error) {
                                 console.error("Error updating document: ", error);

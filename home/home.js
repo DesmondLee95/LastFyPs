@@ -24,6 +24,8 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', 'channelServi
     $scope.$watch("name", function (event) {
         console.log(event);
     });
+    
+    $scope.currentPath = $location.path();
 
     // All videos go here
 

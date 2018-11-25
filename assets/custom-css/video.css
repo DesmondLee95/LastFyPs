@@ -171,13 +171,14 @@ body.waiting * {
     background-color: white;
     position: relative;
     margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 5px;
 }
 
 .vidcontainer {
     background-color: white;
     position: relative;
-    padding: 10px 25px 25px 25px;
+    padding: 10px 25px 10px 25px;
     border-radius: 5px;
     margin-top: 5px;
     width: 87.5%;

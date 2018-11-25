@@ -105,13 +105,14 @@
 
 .warningWords {
     font-weight: bold;
+    font-size: 13px;
 }
 
 .uploads {
     text-align: center;
     background-color: #DCDCDC;
     color: #808080;
-    padding: 100px;
+    padding: 70px;
     border-radius: 20px;
     width: 100%;
     cursor: pointer;
@@ -122,7 +123,7 @@
     text-align: center;
     background-color: #DCDCDC;
     color: #808080;
-    padding: 100px;
+    padding: 58px;
     border-radius: 20px;
     width: 100%;
     cursor: pointer;
@@ -190,7 +191,7 @@
         text-align: center;
         background-color: #DCDCDC;
         color: #808080;
-        padding: 70px;
+        padding: 54px;
         border-radius: 20px;
         width: 100%;
         cursor: pointer;
@@ -201,7 +202,7 @@
         text-align: center;
         background-color: #DCDCDC;
         color: #808080;
-        padding: 70px;
+        padding: 44px;
         border-radius: 20px;
         width: 100%;
         cursor: pointer;
@@ -209,9 +210,70 @@
     }
 }
 
-@media (max-width: 996px) {
+@media (max-width: 991px) {
 
     .uploads {
+        text-align: center;
+        background-color: #DCDCDC;
+        color: #808080;
+        padding: 54px;
+        border-radius: 20px;
+        width: 100%;
+        cursor: pointer;
+        max-width: 400px;
+    }
+
+    .uploadsPic {
+        text-align: center;
+        background-color: #DCDCDC;
+        color: #808080;
+        padding: 42px;
+        border-radius: 20px;
+        width: 100%;
+        cursor: pointer;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .uploads {
+        text-align: center;
+        background-color: #DCDCDC;
+        color: #808080;
+        padding: 42px;
+        border-radius: 20px;
+        width: 100%;
+        cursor: pointer;
+        max-width: 400px;
+    }
+
+    .uploadsPic {
+        text-align: center;
+        background-color: #DCDCDC;
+        color: #808080;
+        padding: 42px;
+        border-radius: 20px;
+        width: 100%;
+        cursor: pointer;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 537px) {
+
+    .uploads {
+        text-align: center;
+        background-color: #DCDCDC;
+        color: #808080;
+        padding: 60px;
+        border-radius: 20px;
+        width: 100%;
+        cursor: pointer;
+        max-width: 400px;
+    }
+
+    .uploadsPic {
         text-align: center;
         background-color: #DCDCDC;
         color: #808080;
@@ -221,19 +283,5 @@
         cursor: pointer;
         max-width: 400px;
     }
-
-    .uploadsPic {
-        text-align: center;
-        background-color: #DCDCDC;
-        color: #808080;
-        padding: 50.5px;
-        border-radius: 20px;
-        width: 100%;
-        cursor: pointer;
-        max-width: 400px;
-    }
-
-    .warningWords {
-        font-size: 13px;
-    }
 }
+
