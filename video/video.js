@@ -294,148 +294,153 @@ app.controller('videoCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
 
         if (doc.exists) {
             if (doc.data().block_status === false) {
-                //Format the timestamp taken from firestore and convert to date.
-                var videoDate = new Date(doc.data().date_uploaded.toDate()),
-                    month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][videoDate.getMonth()],
-                    uploadDate = month + ' ' + videoDate.getDate() + ', ' + videoDate.getFullYear(),
-                    //Store user email into users variable.
-                    users = doc.data().video_uploader_Email,
-                    vidCategory = doc.data().video_category,
-                    userRef = db.collection("Users").doc(users),
-                    //Store video ID into vid_info variable.
-                    vid_info = document.getElementById("videolink");
+                if (doc.data().editing === false) {
+                    //Format the timestamp taken from firestore and convert to date.
+                    var videoDate = new Date(doc.data().date_uploaded.toDate()),
+                        month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][videoDate.getMonth()],
+                        uploadDate = month + ' ' + videoDate.getDate() + ', ' + videoDate.getFullYear(),
+                        //Store user email into users variable.
+                        users = doc.data().video_uploader_Email,
+                        vidCategory = doc.data().video_category,
+                        userRef = db.collection("Users").doc(users),
+                        //Store video ID into vid_info variable.
+                        vid_info = document.getElementById("videolink");
 
-                //Get Recommended video list to display at the side for users.
-                db.collection("Videos").onSnapshot(function (querySnapshot) {
-                    $scope.rcmVids = [];
-                    querySnapshot.forEach(function (doc) {
-                        if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && (doc.data().video_category === vidCategory)) {
-                            if (doc.id !== getVidId) {
-                                var videoJson = {
-                                    id: doc.id,
-                                    data: doc.data(),
-                                    timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
-                                    view: doc.data().video_view
+                    //Get Recommended video list to display at the side for users.
+                    db.collection("Videos").onSnapshot(function (querySnapshot) {
+                        $scope.rcmVids = [];
+                        querySnapshot.forEach(function (doc) {
+                            if (doc.data().block_status === false && doc.data().video_visibility === "Public" && doc.data().editing === false && (doc.data().video_category === vidCategory)) {
+                                if (doc.id !== getVidId) {
+                                    var videoJson = {
+                                        id: doc.id,
+                                        data: doc.data(),
+                                        timestamp: moment(doc.data().date_uploaded.toDate()).format('DD, MMMM YYYY HH:mm'),
+                                        view: doc.data().video_view
+                                    }
+                                    $scope.rcmVids.push(videoJson);
+                                    console.log($scope.rcmVids);
                                 }
-                                $scope.rcmVids.push(videoJson);
-                                console.log($scope.rcmVids);
                             }
-                        }
 
+                        });
+
+                        $scope.$apply();
                     });
 
-                    $scope.$apply();
-                });
+                    //Count and display average rating.
+                    db.collection("Videos").doc(getVidId).collection("ratings").get().then(function (querySnapshot) {
 
-                //Count and display average rating.
-                db.collection("Videos").doc(getVidId).collection("ratings").get().then(function (querySnapshot) {
-
-                    var allRating = [];
-                    querySnapshot.forEach(function (doc) {
-                        if (doc.data().rated_user !== "admin@admin.com") {
-                            if (!isNaN(doc.data().rating)) {
-                                allRating.push(doc.data().rating);
+                        var allRating = [];
+                        querySnapshot.forEach(function (doc) {
+                            if (doc.data().rated_user !== "admin@admin.com") {
+                                if (!isNaN(doc.data().rating)) {
+                                    allRating.push(doc.data().rating);
+                                }
                             }
+                        });
+
+                        //Get total of all rating in the array.
+                        function getSum(total, num) {
+                            return total + num;
+                        }
+                        //Calculation for average rating and stars.
+                        if (allRating.length != 0) {
+                            var fullRating = 5,
+                                //Calculate average rating by sum / number of elements in the array
+                                averageRating = allRating.reduce(getSum) / allRating.length,
+                                roundedAvgRating = Math.round(averageRating * 10) / 10,
+                                starsWidthRating = roundedAvgRating * 10 * 2 + '%';
+                            document.querySelector('.stars-inner').style.width = starsWidthRating;
+                            document.getElementById('vid_rating').innerHTML = roundedAvgRating;
                         }
                     });
 
-                    //Get total of all rating in the array.
-                    function getSum(total, num) {
-                        return total + num;
+                    //Get all necessary video information to display.
+                    document.getElementById('video_desc').innerHTML = doc.data().video_desc;
+                    document.getElementById('uploaded_date').innerHTML = uploadDate;
+                    document.getElementById('videolink').src = doc.data().video_link;
+                    document.getElementById('videolink').setAttribute('poster', doc.data().thumbnail_link);
+                    document.getElementById('video_category').innerHTML = doc.data().video_category;
+                    document.getElementById('video_tag').innerHTML = doc.data().video_tags;
+                    document.getElementById('video_name').innerHTML = doc.data().video_name;
+                    document.getElementById('video_views').innerHTML = doc.data().video_view;
+
+                    console.log(document.getElementById('videolink'));
+                    //Get video uploader's name to display.
+                    userRef.get().then(function (doc) {
+
+                        document.getElementById('uploader').innerHTML = doc.data().Name;
+                    });
+
+                    //Video view count
+                    var timeStarted = -1,
+                        timePlayed = 0,
+                        duration = 0;
+
+                    // If video metadata is loaded get duration
+                    if (vid_info.readyState > 0) {
+                        getDuration.call(vid_info);
+                    } else {
+                        //If metadata not loaded, use event to get it
+                        vid_info.addEventListener('loadedmetadata', getDuration);
                     }
-                    //Calculation for average rating and stars.
-                    if (allRating.length != 0) {
-                        var fullRating = 5,
-                            //Calculate average rating by sum / number of elements in the array
-                            averageRating = allRating.reduce(getSum) / allRating.length,
-                            roundedAvgRating = Math.round(averageRating * 10) / 10,
-                            starsWidthRating = roundedAvgRating * 10 * 2 + '%';
-                        document.querySelector('.stars-inner').style.width = starsWidthRating;
-                        document.getElementById('vid_rating').innerHTML = roundedAvgRating;
+
+                    // remember time user started the video
+                    function videoStartedPlaying() {
+                        timeStarted = new Date().getTime() / 1000;
                     }
-                });
 
-                //Get all necessary video information to display.
-                document.getElementById('video_desc').innerHTML = doc.data().video_desc;
-                document.getElementById('uploaded_date').innerHTML = uploadDate;
-                document.getElementById('videolink').src = doc.data().video_link;
-                document.getElementById('videolink').setAttribute('poster', doc.data().thumbnail_link);
-                document.getElementById('video_category').innerHTML = doc.data().video_category;
-                document.getElementById('video_tag').innerHTML = doc.data().video_tags;
-                document.getElementById('video_name').innerHTML = doc.data().video_name;
-                document.getElementById('video_views').innerHTML = doc.data().video_view;
+                    //Will run when the video is skipped/paused/stopped
+                    function videoStoppedPlaying(event) {
+                        // Start time less then zero means stop event was fired vidout start event
+                        if (timeStarted > 0) {
+                            var playedFor = new Date().getTime() / 1000 - timeStarted;
+                            timeStarted = -1;
+                            // add the new ammount of seconds played
+                            timePlayed += playedFor;
+                        }
+                    }
+                    //Get the rounded total duration of the video
+                    function getDuration() {
+                        duration = vid_info.duration;
+                    }
 
-                console.log(document.getElementById('videolink'));
-                //Get video uploader's name to display.
-                userRef.get().then(function (doc) {
+                    function increaseView() {
+                        var totalDuration = duration * 80 / 100,
+                            roundedtotalDuration = Math.round(totalDuration),
+                            roundedPlayedDuration = Math.round(timePlayed),
+                            x = doc.data().video_view;
 
-                    document.getElementById('uploader').innerHTML = doc.data().Name;
-                });
+                        //Add a view if 80% of the total video is watched
+                        var getView = setInterval(function () {
+                            if (roundedPlayedDuration > roundedtotalDuration) {
+                                clearInterval(getView);
+                                x += 1;
+                                db.collection("Videos").doc(getVidId).update({
+                                    video_view: x
+                                });
+                            }
+                        }, 100);
+                    }
 
-                //Video view count
-                var timeStarted = -1,
-                    timePlayed = 0,
-                    duration = 0;
-
-                // If video metadata is loaded get duration
-                if (vid_info.readyState > 0) {
-                    getDuration.call(vid_info);
+                    vid_info.addEventListener("play", videoStartedPlaying);
+                    vid_info.addEventListener("playing", function () {
+                        videoStartedPlaying();
+                        increaseView();
+                    });
+                    vid_info.addEventListener("ended", function () {
+                        videoStoppedPlaying();
+                        increaseView();
+                    });
+                    vid_info.addEventListener("pause", function () {
+                        videoStoppedPlaying();
+                        increaseView();
+                    });
                 } else {
-                    //If metadata not loaded, use event to get it
-                    vid_info.addEventListener('loadedmetadata', getDuration);
+                    alert("This video is currently unavailable!");
+                    $location.path("/Home");
                 }
-
-                // remember time user started the video
-                function videoStartedPlaying() {
-                    timeStarted = new Date().getTime() / 1000;
-                }
-
-                //Will run when the video is skipped/paused/stopped
-                function videoStoppedPlaying(event) {
-                    // Start time less then zero means stop event was fired vidout start event
-                    if (timeStarted > 0) {
-                        var playedFor = new Date().getTime() / 1000 - timeStarted;
-                        timeStarted = -1;
-                        // add the new ammount of seconds played
-                        timePlayed += playedFor;
-                    }
-                }
-                //Get the rounded total duration of the video
-                function getDuration() {
-                    duration = vid_info.duration;
-                }
-
-                function increaseView() {
-                    var totalDuration = duration * 80 / 100,
-                        roundedtotalDuration = Math.round(totalDuration),
-                        roundedPlayedDuration = Math.round(timePlayed),
-                        x = doc.data().video_view;
-
-                    //Add a view if 80% of the total video is watched
-                    var getView = setInterval(function () {
-                        if (roundedPlayedDuration > roundedtotalDuration) {
-                            clearInterval(getView);
-                            x += 1;
-                            db.collection("Videos").doc(getVidId).update({
-                                video_view: x
-                            });
-                        }
-                    }, 100);
-                }
-
-                vid_info.addEventListener("play", videoStartedPlaying);
-                vid_info.addEventListener("playing", function () {
-                    videoStartedPlaying();
-                    increaseView();
-                });
-                vid_info.addEventListener("ended", function () {
-                    videoStoppedPlaying();
-                    increaseView();
-                });
-                vid_info.addEventListener("pause", function () {
-                    videoStoppedPlaying();
-                    increaseView();
-                });
             } else {
                 alert("This video has been blocked!");
                 $location.path("/Home");

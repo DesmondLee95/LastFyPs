@@ -68,11 +68,11 @@ body.waiting * {
     top: 0px;
     left: -15px;
     cursor: default;
+    text-align: center;
 }
 
 .statusVidText {
     left: 0px;
-    font-size: 16px;
     color: red;
     font-size: 13.5px;
     border-radius: 3px;

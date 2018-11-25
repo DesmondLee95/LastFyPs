@@ -118,6 +118,17 @@
     max-width: 400px;
 }
 
+.uploadsPic {
+    text-align: center;
+    background-color: #DCDCDC;
+    color: #808080;
+    padding: 100px;
+    border-radius: 20px;
+    width: 100%;
+    cursor: pointer;
+    max-width: 400px;
+}
+
 .warning {
     margin-top: 30px;
     font-size: 12px;
@@ -171,4 +182,58 @@
     overflow: hidden;
     position: absolute;
     z-index: -1;
+}
+
+@media (max-width: 1200px) {
+
+    .uploads {
+        text-align: center;
+        background-color: #DCDCDC;
+        color: #808080;
+        padding: 70px;
+        border-radius: 20px;
+        width: 100%;
+        cursor: pointer;
+        max-width: 400px;
+    }
+
+    .uploadsPic {
+        text-align: center;
+        background-color: #DCDCDC;
+        color: #808080;
+        padding: 70px;
+        border-radius: 20px;
+        width: 100%;
+        cursor: pointer;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 996px) {
+
+    .uploads {
+        text-align: center;
+        background-color: #DCDCDC;
+        color: #808080;
+        padding: 50px;
+        border-radius: 20px;
+        width: 100%;
+        cursor: pointer;
+        max-width: 400px;
+    }
+
+    .uploadsPic {
+        text-align: center;
+        background-color: #DCDCDC;
+        color: #808080;
+        padding: 50.5px;
+        border-radius: 20px;
+        width: 100%;
+        cursor: pointer;
+        max-width: 400px;
+    }
+
+    .warningWords {
+        font-size: 13px;
+    }
 }
