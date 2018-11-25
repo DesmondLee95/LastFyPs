@@ -66,19 +66,26 @@ body.waiting * {
 .statusVid {
     position: absolute;
     top: 0px;
-    left: -15px;
+    left: 0px;
+    padding-left: 2px;
+    padding-right: 2px;
     cursor: default;
     text-align: center;
 }
 
+
 .statusVidText {
+    position: absolute;
+    top: 0px;
     left: 0px;
     color: red;
-    font-size: 13.5px;
+    font-size: 20px;
     border-radius: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
     background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.);
-}
+    background: rgba(0, 0, 0, 0.6);
+} 
 
 .tstamp {
     position: absolute;
