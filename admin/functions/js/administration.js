@@ -424,6 +424,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
                 tBodyNotifyUploader.innerHTML = onlyID;
                 tBodyNotifyReason.innerHTML = doc.data().reason;
                 tBodyNotifyDate.innerHTML = moment(doc.data().date.toDate()).format('DD-MM-YYYY');
+                $scope.sortNotification(0);
             });
         });
     }
@@ -634,7 +635,7 @@ app.controller('adminCtrl', ['$scope', '$compile', '$location', '$route', '$sce'
     //Sort notification list
     $scope.sortNotification = function (selected) {
         var table, rows, switching, i, x, y, shouldSwitch;
-        table = document.getElementById("notifyTableBody");
+        table = document.getElementById("notifyTable");
         switching = true;
 
         while (switching) {
