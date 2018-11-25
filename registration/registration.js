@@ -67,7 +67,7 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                             db.collection("Users").doc(umail).set({
                                     Name: uname,
                                     Email: umail,
-                                    Course: "",
+                                    Course: "No course selected yet",
                                     video_upload: 0,
                                     userType: "Student"
                                 })
@@ -114,7 +114,7 @@ app.controller('registrationCtrl', ['$scope', 'Auth', '$location', 'toaster', fu
                             db.collection("Users").doc(umail).set({
                                     Name: uname,
                                     Email: umail,
-                                    Course: "",
+                                    Course: "No course selected yet",
                                     video_upload: 0,
                                     userType: "Staff"
                                 })

@@ -87,6 +87,7 @@ app.controller('swinCtrl', ['$scope', 'Auth', '$location', 'toaster', function (
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
+            console.log(user.email);
             if (user.email == "admin@admin.com") {
                 messaging.requestPermission()
                     .then(function () {

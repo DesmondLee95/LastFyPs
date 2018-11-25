@@ -28,7 +28,6 @@ app.controller('homeCtrl', ['$scope', '$location', 'videoService', 'channelServi
     $scope.currentPath = $location.path();
 
     // All videos go here
-
     $scope.publicVideos = [];
 
     // Videos By Category go here
