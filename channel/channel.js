@@ -14,16 +14,14 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('channelCtrl', ['$scope', '$location', '$sce', 'videoService', 'channelService', function ($scope, $location, $sce, videoService, channelService) {
     'use strict'
 
-    //    if (firebase.auth().currentUser === null) {
-    //        $location.path("/login");
-    //    }
     var db = firebase.firestore();
 
     db.settings({
         timestampsInSnapshots: true
     });
 
-
+    $scope.currentPath = $location.path();
+    
     $scope.userChannelVideos = [];
 
     $scope.trustSrc = function (src) {
